@@ -1,38 +1,17 @@
-<ion-menu [content]="content">
+<ion-menu [content]="content" class="side-menu-header">
   <ion-header>
-    <ion-toolbar>
-      <ion-title>Little Cafeteria Menu</ion-title>
+    <ion-toolbar color="second">
+      <ion-title>Little Cafeteria</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content>
-    <ion-list>
-      <button menuClose ion-item (click)="nav.setRoot(pages.quickorderPage)">
-        <ion-icon name="book"></ion-icon>
-       Quick Order
-      </button>
-      <button menuClose ion-item (click)="nav.setRoot(pages.menuorderPage)">
-        <ion-icon name="map"></ion-icon>
-        Menu Order
-      </button>
-      <button menuClose ion-item (click)="nav.setRoot(pages.trackingPage)">
-        <ion-icon name="pin"></ion-icon>
-        Tracking
-      </button>
-      <button menuClose ion-item (click)="nav.setRoot(pages.walletPage)">
-        <ion-icon name="card"></ion-icon>
-        Wallet
-      </button>
-      <button menuClose ion-item (click)="nav.setRoot(pages.baskPage)">
-        <ion-icon name="cart"></ion-icon>
-        Basket
-      </button>
-      <button menuClose ion-item (click)="nav.setRoot(pages.listPage)">
-        <ion-icon name="power"></ion-icon>
-        Sign-Out
+  <ion-content class="side-menu-content">
+    <ion-list no-lines>
+      <button menuClose ion-item *ngFor="let p of sideMenuPages" (click)="openPage(p)" color="first" >
+        <ion-icon [name]="p.icon" item-left></ion-icon>
+        {{p.title}}
       </button>
     </ion-list>
   </ion-content>
-
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->

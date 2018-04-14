@@ -1,4 +1,17 @@
 item {
+  .cart-btn {
+    position: relative;
+  }
+  .cart-badge {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+
+  .toolbar-header{
+    text-align: center;
+    margin-top: 10px;
+  }
   ion-img{
     height: auto;
     width: auto;
@@ -12,7 +25,56 @@ item {
     margin: auto;
     display: block;
   }
-  .buttonTime{
-    margin-bottom:50px;
+  .item-box{
+    display: block;
+    width: 100%;
+    margin: auto;
+    background: $background-color-fifth;
+    border-radius: 30px;
   }
+  .box-item-time{
+    padding-bottom: 75px;
+  }
+
+  ion-row {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  ion-item {
+    border-radius: 30px !important;
+    padding-left: 30px !important;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    border: 1px solid #ffffff;
+    border-bottom: 0px !important;
+    box-shadow: none !important;
+  }
+
+  ion-label{
+    font-size: 0.9em;
+  }
+
+  .check-btn{
+    margin: auto;
+    display: block;
+    background: $background-color-sixth;
+    border-radius: 30px !important;
+    border: 1px solid #ffffff;
+  }
+  .item-inner {
+    border-bottom-color: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .item-footer{
+    button{
+      display: block;
+      background: $background-color-sixth;
+      border-radius: 30px !important;
+      border: 1px solid #ffffff;
+    }
+  }
+
 }

@@ -8,25 +8,23 @@ import { QuickOrderDetails } from "./quick-order-details";
   templateUrl: 'quick-order.html',
 })
 export class QuickOrderPage {
-
   // items for ngfor list with icons
   Items : any ;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-
-    this.Items = [
-      {name : "Drink And Croissant", icon :'star' , src : "assets/svg-files/cor.svg" , component : QuickOrderDetails},
-      {name : "Drink", icon :'cafe' , src : "assets/svg-files/coffe.svg" , component : QuickOrderDetails },
-      {name : "Sandwich" , icon :'pizza' , src : "assets/svg-files/coffe.svg" , component : QuickOrderDetails },
-      {name : "Snack" , icon :'star' , src : "assets/svg-files/food.svg" ,  component : QuickOrderDetails }
-    ];
-
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams){
+   this.initQuickOrderMenu()
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad QuickOrderPage');
+  initQuickOrderMenu(){
+    this.Items = [
+      {name : "Drink And Croissant", src : "assets/imgs/cafe-cor.jpg"},
+      {name : "Drink",  src : "assets/imgs/cafe.jpg" },
+      {name : "Sandwich" ,  src : "assets/imgs/sandwich.jpg" },
+      {name : "Snack" ,  src : "assets/imgs/snack.jpg" }
+    ];
   }
   pushPage(item){
+    console.log(item);
     this.navCtrl.push(QuickOrderDetails,{
       name : item.name,
       url : item.src

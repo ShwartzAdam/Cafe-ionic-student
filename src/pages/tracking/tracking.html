@@ -1,20 +1,34 @@
 
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
+  <ion-navbar color="second">
+    <button ion-button menuToggle color="white">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Track Order</ion-title>
+    <button ion-button icon-only float-right color="white" (click)="gotoBasket()" clear>
+      <ion-icon name="cart"></ion-icon>
+      <ion-badge class="cart-badge"></ion-badge>
+    </button>
+    <ion-title class="toolbar-header">Track Order</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <div padding>
-    <button ion-button (click)="mode = 'horizontal'">horizontal</button>
-    <button ion-button (click)="mode = 'vertical'">vertical</button>
-    <button ion-button (click)="stepper.setStep(0)">select first</button>
-  </div>
-
-  <ion-stepper #stepper [(selectedIndex)]="selectedIndex" [mode]="mode" (selectIndexChange)="selectChange($event)">
+  <form (ngSubmit)="checkOrderStatus()" #registerForm="ngForm">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+          <ion-item>
+            <ion-input type="number" placeholder="Insert your tx number" name="orderdlistid" [(ngModel)]="this.orderListId" required></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="signup-col">
+        <button ion-button="" class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Check</button>
+      </ion-col>
+    </ion-row>
+  </form>
+  <ion-stepper class="tracking-box" #stepper [(selectedIndex)]="selectedIndex" [mode]="this.mode" (selectIndexChange)="selectChange($event)">
     <ion-step label="Step1"
               description="Order Placed">
       <h2>Step1 - Order Placed</h2>

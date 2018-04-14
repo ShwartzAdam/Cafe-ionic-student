@@ -14,3 +14,18 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+.scroll-content{
+  background-color: $background-color-first;
+}
+
+// cart
+.cart-btn {
+  position: relative;
+}
+.cart-badge {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}

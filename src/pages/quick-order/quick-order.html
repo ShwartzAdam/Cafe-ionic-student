@@ -1,20 +1,18 @@
-
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
+  <ion-navbar color="second">
+      <button ion-button menuToggle color="white">
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>Quick Order</ion-title>
+      <button ion-button icon-only float-right color="white" (click)="gotoBasket()" clear>
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge class="cart-badge"></ion-badge>
+      </button>
+      <ion-title class="toolbar-header">Quick Order</ion-title>
     </ion-navbar>
 </ion-header>
-
-<ion-content padding>
-  <ion-list-header>
-    Quick Order Details
-  </ion-list-header>
-
-  <button ion-item *ngFor="let item of Items" (click)="pushPage(item)">
-    <ion-icon name="{{item.icon}}" item-start color="primary"></ion-icon>
-    <ion-label> {{item.name}}</ion-label>
-  </button>
+<ion-content padding class="card-background-page">
+  <ion-card button *ngFor="let item of Items" (click)="pushPage(item)" >
+    <img src="../../{{item.src}}"/>
+    <div class="card-title">{{item.name}}</div>
+  </ion-card>
 </ion-content>

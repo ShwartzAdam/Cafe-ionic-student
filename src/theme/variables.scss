@@ -38,7 +38,14 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  white:      #fff,
+  first:      #2A7C63,
+  second:     #004933,
+  third:      #0D3428,
+  forth:      #90BAAD,
+  fifth:      #5DC7A7,
+  sixth:      #094C38
 );
 
 
@@ -86,3 +93,13 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+$background-color-first: #2A7C63;
+$background-color-second: #004933;
+$background-color-third: #0D3428;
+$background-color-forth: #90BAAD;
+$background-color-fifth: #5DC7A7;
+$background-color-sixth: #094C38;
+
+$logoURL : "../../assets/png/cropped-littlebird-square-logo.png"
+

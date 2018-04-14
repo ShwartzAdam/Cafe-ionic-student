@@ -1,72 +1,73 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
+  <ion-navbar color="second">
+    <button ion-button menuToggle color="white">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Order Ticket</ion-title>
+    <button ion-button icon-only float-right color="white" (click)="gotoBasket()" clear>
+      <ion-icon name="cart"></ion-icon>
+      <ion-badge class="cart-badge"></ion-badge>
+    </button>
+    <ion-title class="toolbar-header">Order Ticket</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-grid>
+  <ion-grid class="ticket-box">
     <ion-row>
-      <div ion-col>
-        <h3>Order Details
-          <span> 1234</span>
+      <ion-col>
+        <h3>Order List TX ID -
+          <span> {{this.orderlist.olid}}</span>
         </h3>
-
-      </div>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <div ion-col>
+      <ion-col>
         <ion-label> To:
-          <span> Adam</span>
+          <span> {{this.student.firstname}} {{this.student.lastname}}</span>
         </ion-label>
-      </div>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <div ion-col>
+      <ion-col>
         <ion-label>Phone:
-          <span> 0542038123</span>
+          <span> {{this.student.phone}}</span>
         </ion-label>
-      </div>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <div ion-col>
+      <ion-col>
         <ion-label>Pick Up Time:
           <span> {{this.myDate}}</span>
         </ion-label>
-      </div>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <div ion-col>
+      <ion-col>
         <ion-label>Order Summary:
         </ion-label>
-      </div>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <div ion-col>
+      <ion-col>
         <p>X{{this.qCross}} Crooisant {{this.crooisant}}</p>
-      </div>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <div ion-col>
+      <ion-col>
         <p>X{{this.qDrink}} {{this.drink}}</p>
-      </div>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <div ion-col>
+      <ion-col>
         <ion-label>Total:
-          <span>10.50 NIS</span>
+          <span>{{this.totalPrice}} Nis</span>
         </ion-label>
-      </div>
+      </ion-col>
     </ion-row>
-
-
   </ion-grid>
 </ion-content>
-<ion-footer no-shadow>
-  <ion-toolbar position="bottom">
-    <button ion-button round float-left (click)="deleOrder">Cancel</button>
+<ion-footer no-shadow class="ticket-order-footer">
+  <ion-toolbar position="bottom" color="first">
+    <button ion-button round float-left (click)="deleOrder()">Cancel</button>
     <button ion-button round float-right (click)="confOrder()">Place Order</button>
   </ion-toolbar>
 </ion-footer>

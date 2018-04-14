@@ -1,0 +1,70 @@
+page-register {
+  .toolbar-header{
+    text-align: center;
+    margin-right: 60px;
+    margin-top: 10px;
+  }
+  .register-content {
+    background: $background-color-first;
+
+    ion-avatar img{
+        height:150px;
+        width: 150px;
+        margin: auto;
+        border-radius: 75px;
+        border: 5px solid #fff;
+    }
+    .upload-button{
+      background: $background-color-sixth;
+      border-radius: 20px !important;
+      border: 1px solid #ffffff;
+
+      input{
+        color:white;
+      }
+
+    }
+    .logo-row {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .register-box {
+      background: $background-color-fifth;
+      padding: 20px 20px 0px 20px;
+      border-radius: 20px;
+      margin-top: 7%;
+    }
+
+    ion-row {
+      align-items: center;
+      text-align: center;
+    }
+
+    ion-item {
+      border-radius: 30px !important;
+      padding-left: 30px !important;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+      border: 1px solid #ffffff;
+      border-bottom: 0px !important;
+      box-shadow: none !important;
+    }
+
+    .register-col {
+      margin: 0px 16px 0px 16px;
+      padding-bottom: 20px;
+    }
+
+    .item-inner {
+      border-bottom-color: #ffffff !important;
+      box-shadow: none !important;
+    }
+
+    .submit-btn {
+      background: $background-color-sixth;
+      border-radius: 30px !important;
+      border: 1px solid #ffffff;
+    }
+  }
+}

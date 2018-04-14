@@ -6,25 +6,36 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 // main App
 import { MyApp } from './app.component';
 // pages
+import { HomePage } from "../pages/home/home";
 import { LoginPage } from '../pages/login/login';
 import { QuickOrderPage } from '../pages/quick-order/quick-order';
 import { MenuOrderPage } from '../pages/menu-order/menu-order';
-import { TrackingPage } from '../pages/tracking/tracking';
 // components
 import { QuickOrderDetails } from '../pages/quick-order/quick-order-details';
 import { MenuOrderDetails } from '../pages/menu-order/menu-order-details';
 import { ItemComponent } from '../components/item/item';
+import { QuickOrderTicket } from "../pages/quick-order/quick-order-ticket";
+import { MenuOrderTicket } from "../pages/menu-order/menu-order-ticket";
 // services
 import { UserProvider } from '../providers/user/user';
-import {SignInComponent} from "../pages/login/signin/signin";
-import {ForgotPassComponent} from "../pages/login/forgotpass/forgotpass";
-import {QuickOrderTicket} from "../pages/quick-order/quick-order-ticket";
-import {MenuOrderTicket} from "../pages/menu-order/menu-order-ticket";
+import { ItemProvider } from '../providers/item/item';
+import { OrderProvider } from '../providers/order/order';
+import { OrderListProvider } from '../providers/order-list/order-list';
+import { ReviewProvider } from '../providers/review/review';
+import { ReviewListProvider } from '../providers/review-list/review-list';
+import { UserData } from '../providers/user-data/user-data';
 // modules
+import { HomePageModule } from "../pages/home/home.module";
+import { LoginPageModule } from "../pages/login/login.module";
 import { IonicStepperModule } from "ionic-stepper";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import {WalletPage} from "../pages/wallet/wallet";
-import {BasketPage} from "../pages/basket/basket";
+import { HttpClientModule } from "@angular/common/http";
+import { IonicStorageModule } from "@ionic/storage";
+import { TrackingPageModule } from "../pages/tracking/tracking.module";
+import { BasketPageModule } from "../pages/basket/basket.module";
+import { WalletPageModule } from "../pages/wallet/wallet.module";
+import { LoggerProvider } from '../providers/logger/logger';
+
 
 
 @NgModule({
@@ -37,41 +48,45 @@ import {BasketPage} from "../pages/basket/basket";
     MenuOrderPage,
     MenuOrderDetails,
     MenuOrderTicket,
-    TrackingPage,
-    WalletPage,
-    BasketPage,
     ItemComponent,
-    SignInComponent,
-    ForgotPassComponent,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStepperModule,
-    BrowserAnimationsModule
+    IonicStorageModule.forRoot(),
+    BrowserAnimationsModule,
+    HttpClientModule,
+    LoginPageModule,
+    HomePageModule,
+    TrackingPageModule,
+    BasketPageModule,
+    WalletPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     LoginPage,
+    HomePage,
     QuickOrderPage,
     QuickOrderDetails,
     QuickOrderTicket,
     MenuOrderPage,
     MenuOrderDetails,
     MenuOrderTicket,
-    TrackingPage,
-    WalletPage,
-    BasketPage,
     ItemComponent,
-    SignInComponent,
-    ForgotPassComponent,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
+    ItemProvider,
+    OrderProvider,
+    OrderListProvider,
+    ReviewProvider,
+    ReviewListProvider,
+    UserData,
+    LoggerProvider,
   ]
 })
 export class AppModule {}

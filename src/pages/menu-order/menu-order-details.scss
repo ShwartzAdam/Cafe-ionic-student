@@ -1,0 +1,66 @@
+page-menu-order-details{
+
+  .toolbar-header{
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  ion-img{
+    height: auto;
+    width: auto;
+    margin: auto;
+    display: block;
+  }
+
+  ion-row {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  ion-item {
+    border-radius: 30px !important;
+    padding-left: 30px !important;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    border: 1px solid #ffffff;
+    border-bottom: 0px !important;
+    box-shadow: none !important;
+  }
+
+  ion-label{
+    font-size: 0.9em;
+  }
+
+  .menu-box{
+    display: block;
+    width: 90%;
+    margin: auto;
+    background: $background-color-fifth;
+    padding: 20px 20px 0px 20px;
+    border-radius: 20px;
+    margin-top: 10%;
+  }
+
+  .submit-btn{
+    margin: auto;
+    display: block;
+    background: $background-color-sixth;
+    border-radius: 30px !important;
+    border: 1px solid #ffffff;
+  }
+  .item-inner {
+    border-bottom-color: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .menu-order-footer{
+    button{
+      display: block;
+      background: $background-color-sixth;
+      border-radius: 30px !important;
+      border: 1px solid #ffffff;
+    }
+  }
+
+}

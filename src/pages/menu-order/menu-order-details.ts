@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {Events, NavController, NavParams} from 'ionic-angular';
 import {ItemComponent} from "../../components/item/item";
+import {ItemProvider} from "../../providers/item/item";
+import {Item} from "../../model/item";
+import {UserData} from "../../providers/user-data/user-data";
 
 @Component({
   selector: 'page-menu-order-details',
@@ -14,54 +17,73 @@ export class MenuOrderDetails {
   // switched to present the right form
   displayFoodList : boolean ;
   displayDrinkList : boolean ;
-  // food array
-  foodList : any ;
-  drinkList : any;
+  // items list from server
+  itemList : Item[];
+  // holds the number of items in the basket
+  private countItems: number;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public itemProv: ItemProvider,
+              public userData: UserData,
+              public events: Events) {
+    // get the values from prev page
     this.title = this.navParams.get('name');
     this.url = this.navParams.get('url');
 
+    this.initView();
+  }
+  private initView() {
+    // checking what king of items to show by Type
     if(this.title == "Food"){
-      // init food list with service
-      this.foodList = [
-        {id : "1", name : "Spaghetti bolognese" , price : "29 Nis", url : "/assets/png/bolognese.png",
-        desc : "Fried rice is a dish of cooked rice that has been\n" +
-        "stir-fried in a wok or a frying pan and is \n" +
-        "usually mixed with other ingredients such \n" +
-        "as eggs, vegetables, seafood, or meat. \n" +
-        "It is often eaten by itself or as an \n" +
-        "accompaniment to another dish." },
-        {id : "2", name : "Fried Rice" , price : "5 Nis" },
-      ];
+      // call Rest API for items
+      this.getAllItems("Food");
       //present Food Menu
       this.displayFoodList = true;
-      console.log("food")
+      console.log("Food Menu")
     }else{
-      // init food list with service
-      this.drinkList = [
-        {id : "1", name : "Coca Cola" , price : "5 Nis" },
-        {id : "2", name : "Fanta" , price : "5 Nis" },
-        {id : "3", name : "Sprite" , price : "5 Nis" },
-        {id : "4", name : "Black Coffee" , price : "5 Nis" },
-        {id : "5", name : "Water" , price : "5 Nis" },
-
-      ];
+      this.getAllItems("Drink");
       // present Drinks Menu
       this.displayDrinkList = true;
-      console.log("drinks")
+      console.log("Drinks Menu")
     }
+    // update cart bedge
+    this.userData.getItemsFromCart().then(res => {
+      if(res){
+        this.countItems = res.length;
+        console.log(this.countItems);
+      }
+    });
   }
-  pushItem(items) {
+  pushItem(item) {
+    console.log(item);
     this.navCtrl.push(ItemComponent,
       {
-        id : items.id,
-        name : items.name,
-        description : items.desc,
-        url : items.url,
-        price : items.price
+        id : item.itemid,
+        name : item.name,
+        description : item.description,
+        url : item.URL,
+        price : item.price
       });
   }
+
+  getAllItems(type){
+    this.itemProv.getAllItems().subscribe((itemList: Item[]) => {
+      if(type == "Food"){
+        //filter the item list and remain only items with TYPE = FOOD
+        let rawData = itemList.filter(item => item.type == "Food");
+        this.itemList = rawData;
+      }
+      else{
+        // filter the item list and remain only items with TYPE = DRINK
+        let rawData = itemList.filter(item => item.type == "Drink");
+        this.itemList = rawData;
+      }
+      console.log(this.itemList)
+    });
+  }
+
+
 
 }

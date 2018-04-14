@@ -1,0 +1,17 @@
+page-home {
+  .cart-btn {
+    position: relative;
+  }
+  .cart-badge {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+  .toolbar-header{
+    text-align: center;
+    margin-top: 10px;
+  }
+  .home-content {
+    background: $background-color-first;
+  }
+}

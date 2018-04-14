@@ -1,3 +1,46 @@
-quick-order {
+page-quick-order {
+  .toolbar-header{
+    text-align: center;
+    margin-top: 10px;
+  }
+  .button-grid{
+    padding:10px;
+    margin-top: 10px;
+    margin-left:10px;
+    border: 1px solid white;
+  }
+  .icons-grid{
+    font-size:20px;
+  }
+  .icon-label{
+    font-size:20px;
+    margin-left: 10px;
+  }
 
+  .card-background-page {
+
+    ion-card {
+      position: relative;
+      text-align: center;
+      height: 200px;
+    }
+
+    .card-title {
+      position: absolute;
+      top: 36%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .card-subtitle {
+      font-size: 1.0em;
+      position: absolute;
+      top: 52%;
+      width: 100%;
+      color: #fff;
+    }
+
+  }
 }

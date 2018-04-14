@@ -1,3 +1,30 @@
 page-basket {
+  .toolbar-header{
+    text-align: center;
+    margin-right: 50px;
+    margin-top: 10px;
+  }
+  .basket-item{
+    display: block;
+    margin: auto;
+    background: $background-color-fifth;
+    padding: 20px 0px 20px 0px;
+    border-radius: 10px;
+    margin-top: 5%;
+
+    ion-item{
+      background: $background-color-fifth;
+    }
+
+    ion-buttons{
+
+    }
+    .basket-body{
+      p{
+        color:#fff;
+        font-size:0.8em;
+      }
+    }
+  }
 
 }

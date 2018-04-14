@@ -1,3 +1,16 @@
 page-tracking {
+  .toolbar-header{
+    text-align: center;
+    margin-top: 10px;
+  }
 
+  .tracking-box {
+    display: block;
+    width: 90%;
+    margin: auto;
+    background: $background-color-fifth;
+    padding: 20px 20px 0px 20px;
+    border-radius: 20px;
+    margin-top: 20%;
+  }
 }

@@ -3,7 +3,11 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Order Ticket</ion-title>
+    <button ion-button icon-only float-right color="white" clear (click)="gotoBasket()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-badge class="cart-badge">{{this.countItems}}</ion-badge>
+    </button>
+    <ion-title class="toolbar-header">Order Ticket</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>

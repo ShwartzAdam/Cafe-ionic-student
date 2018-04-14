@@ -1,20 +1,22 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
+  <ion-navbar color="second">
+    <button ion-button menuToggle color="white">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Menu Order</ion-title>
+    <button ion-button icon-only float-right color="white" clear (click)="gotoBasket()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-badge class="cart-badge">{{this.countItems}}</ion-badge>
+    </button>
+    <ion-title class="toolbar-header">Menu Order</ion-title>
   </ion-navbar>
 </ion-header>
-
-
-<ion-content padding>
-  <ion-list-header>
-    Menu Order Details
-  </ion-list-header>
-
-  <button ion-item *ngFor="let item of Items" (click)="pushPage(item)">
-    <ion-icon name="{{item.icon}}" item-start color="primary"></ion-icon>
-    <ion-label> {{item.name}}</ion-label>
-  </button>
+<ion-content padding class="card-background-page">
+  <ion-card button (click)="pushPage('Drink')" >
+    <img src="../../assets/imgs/drinkss.jpg"/>
+    <div class="card-title">Drinks Menu</div>
+  </ion-card>
+  <ion-card button (click)="pushPage('Food')" >
+    <img src="../../assets/imgs/food-menu.jpg"/>
+    <div class="card-title">Food Menu</div>
+  </ion-card>
 </ion-content>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { TrackingPage } from './tracking';
+import {IonicStepperModule} from "ionic-stepper";
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { TrackingPage } from './tracking';
   ],
   imports: [
     IonicPageModule.forChild(TrackingPage),
+    IonicStepperModule,
   ],
 })
 export class TrackingPageModule {}

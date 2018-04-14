@@ -1,37 +1,44 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-import {QuickOrderPage} from "../quick-order/quick-order";
-import {ForgotPassComponent} from "./forgotpass/forgotpass";
-import {SignInComponent} from "./signin/signin";
+import {NavController, IonicPage, NavParams} from 'ionic-angular';
+import {UserProvider} from "../../providers/user/user";
+import {UserData} from "../../providers/user-data/user-data";
 
 @IonicPage()
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html',
+  templateUrl: 'login.html'
 })
 export class LoginPage {
+  registerCredentials = { email: '', password: '' };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public nav: NavController,
+              public userProvider: UserProvider,
+              public userData: UserData) {
+    this.userData.cleanCart();
+    this.userData.clearStudent();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  createAccount() {
+    this.nav.push('RegisterPage');
   }
 
-  auth(){
-    // user service check email and password
-    this.navCtrl.setRoot(QuickOrderPage);
+  forgotAccount(){
+    this.nav.push('ForgotpassPage');
   }
 
-  pushView(id){
-    if(id == 1){
-      this.navCtrl.push(SignInComponent);
-    }else if(id == 2){
-      this.navCtrl.push(ForgotPassComponent);
-    }else{
-      return;
-    }
+  login() {
+    console.log(this.registerCredentials);
+    this.userProvider.getUser(this.registerCredentials).then( result => {
+        if(result){
+          console.log('Log In Successful, UID: ' + result["userid"] );
+          this.userData.setUserId(result["userid"]);
+          this.nav.setRoot("HomePage");
+        } else{
+            console.log("bad input for loggin");
+        }
+
+    });
+
   }
 
 }

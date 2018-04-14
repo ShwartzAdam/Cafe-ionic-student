@@ -38,5 +38,8 @@ export class ItemProvider {
   public getAllItems(): Observable<Item[]> {
     return this.http.get<Item[]>(this.url + '/items' );
   }
+  public getItemById(id): Observable<Item> {
+    return this.http.get<Item>(this.url + '/items/' + id );
+  }
 
 }

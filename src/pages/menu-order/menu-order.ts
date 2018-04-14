@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import { MenuOrderDetails } from "./menu-order-details";
+import {UserData} from "../../providers/user-data/user-data";
 @Component({
   selector: 'page-menu-order',
   templateUrl: 'menu-order.html',
@@ -8,20 +9,28 @@ import { MenuOrderDetails } from "./menu-order-details";
 @IonicPage()
 export class MenuOrderPage {
 
-  Items : any ;
+  private countItems: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-
-    this.Items = [
-      {name : "Food", icon :'pizza' , src : "assets/svg-files/cor.svg" , component : MenuOrderDetails },
-      {name : "Drink", icon :'cafe' , src : "assets/svg-files/coffe.svg" , component : MenuOrderDetails },
-    ];
-
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public userData: UserData,
+              public events: Events) {
+    this.initView();
   }
-  pushPage(item) {
+
+  public pushPage(type) {
+    let _type = type;
+    console.log("Open page with " + _type + "type");
     this.navCtrl.push(MenuOrderDetails,{
-      name : item.name
+      name : _type
     });
   }
 
+  private initView(): void {
+    this.userData.getItemsFromCart().then(res => {
+      if(res){
+        this.countItems = res.length;
+      }
+    });
+  }
 }

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="second">
+    <ion-title>Forgot Password</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="forgotpass-content" padding>
+  <ion-row class="logo-row">
+    <img class='logo-image' src="../../assets/png/cropped-littlebird-square-logo.png">
+  </ion-row>
+  <div class="forgotpass-box">
+    <form (ngSubmit)="forgotPass()" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-input type="text" placeholder="Email" name="first" [(ngModel)]="userEmail.first" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Repeat Email" name="second" [(ngModel)]="userEmail.second" required></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="forgotpass-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Submit</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+</ion-content>

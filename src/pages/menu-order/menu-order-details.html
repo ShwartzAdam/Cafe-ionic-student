@@ -1,22 +1,32 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
+  <ion-navbar color="second">
+    <button ion-button menuToggle color="white">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{this.title}} Menu</ion-title>
+    <button ion-button icon-only float-right color="white" clear (click)="gotoBasket()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-badge class="cart-badge">{{this.countItems}}</ion-badge>
+    </button>
+    <ion-title class="toolbar-header">Menu Order</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-grid>
-    <ion-list *ngIf="displayFoodList">
-      <button ion-item *ngFor="let item of foodList" (click)="pushItem(item)">
-        <ion-label> {{item.name}}</ion-label>
-      </button>
-    </ion-list>
-    <ion-list *ngIf="displayDrinkList">
-      <button ion-item *ngFor="let item of drinkList" (click)="pushItem(item)">
-        <ion-label> {{item.name}}</ion-label>
-      </button>
-    </ion-list>
+  <ion-grid *ngIf="displayFoodList">
+    <ion-row *ngFor="let item of itemList">
+      <ion-col>
+        <button ion-item no-lines (click)="pushItem(item)" color="third">
+          <ion-label>{{item.name}}</ion-label>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="displayDrinkList">
+    <ion-row *ngFor="let item of itemList">
+      <ion-col>
+        <button ion-item no-lines (click)="pushItem(item)" color="third">
+          <ion-label>{{item.name}}</ion-label>
+        </button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
