@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
 import {Student} from "../../model/user";
 
@@ -21,7 +21,8 @@ export class RegisterPage {
   @ViewChild('selectedFile') selectedFileEl;
 
 
-  constructor(private nav: NavController,
+  constructor(private navCtrl: NavController,
+              private navParams: NavParams,
               private userPr: UserProvider,
               private sanitizer: DomSanitizer){}
 
@@ -30,19 +31,22 @@ export class RegisterPage {
     console.log(this._userRegister);
     // save user in Class
 
-    if(this._userRegister && this.imageFileName != "../../assets/png/avatar.png"){
+    if(this._userRegister){
       this.userPr.createUser(this._userRegister).then((result) => {
         console.log(result);
         if(result){
-          //this.nav.pop();
+          console.log("Succesfuly created new user" + result);
+          this.navCtrl.pop().then(() => {
+            this.navParams.get('callback')(this._userRegister);
+          });
         }
       }, (err) => {
         console.log(err);
       });
     }
-    //this.userPr.createUser()
-    //this.userPr.register(this.registerCredentials).subscribe(success => {});
+
   }
+
 
   public selectFile(event) {
     console.log(event.target.files);
@@ -58,7 +62,7 @@ export class RegisterPage {
     let file: File = files[0];
     this.imageFileUpload = file.name;
     console.log(this.imageFileUpload);
-    this._userRegister.image = file.name;
+    //this._userRegister.image = file.name;
     this.userPr.uploadFile(file)
       .subscribe(
         event => {

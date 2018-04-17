@@ -12,23 +12,16 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <form (ngSubmit)="checkOrderStatus()" #registerForm="ngForm">
-    <ion-row>
-      <ion-col>
-        <ion-list inset>
-          <ion-item>
-            <ion-input type="number" placeholder="Insert your tx number" name="orderdlistid" [(ngModel)]="this.orderListId" required></ion-input>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="signup-col">
-        <button ion-button="" class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Check</button>
-      </ion-col>
-    </ion-row>
-  </form>
-  <ion-stepper class="tracking-box" #stepper [(selectedIndex)]="selectedIndex" [mode]="this.mode" (selectIndexChange)="selectChange($event)">
+  <ion-list radio-group class="tracking-box">
+    <ion-list-header>
+      Track Your Orders
+    </ion-list-header>
+    <ion-item *ngFor="let order of orderListUser; let i = index">
+      <ion-label color="dark">Order: {{order.olid}}</ion-label>
+      <ion-radio checked="{{i == 0}}" value="{{order.olid}}}}" (ionSelect)="getOrderStatus(i)"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <ion-stepper #stepper class="tracking-box" [(selectedIndex)]="selectedIndex" [mode]="this.mode" (selectIndexChange)="selectChange($event)">
     <ion-step label="Step1"
               description="Order Placed">
       <h2>Step1 - Order Placed</h2>
@@ -36,17 +29,12 @@
     </ion-step>
     <ion-step label="Step2"
               description="Order Confirmed">
-      <h2>Step2 - Order Confirmed</h2>
+      <h2>Step2 - Order Confirmed & Started</h2>
       <p>Your order has been confirmed</p>
     </ion-step>
     <ion-step label="Step3"
-              description="Order Processed">
-      <h2>Step3 - Order Processed</h2>
-      <p>We are preparing your order</p>
-    </ion-step>
-    <ion-step label="Step4"
               description="Ready to Pickup">
-      <h2>Step4 - Ready to Pickup</h2>
+      <h2>Step3 - Ready to Pickup</h2>
       <p>Your order is ready for pickup</p>
     </ion-step>
   </ion-stepper>

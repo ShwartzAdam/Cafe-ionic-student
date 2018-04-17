@@ -66,7 +66,7 @@ export class UserProvider {
       reportProgress: true,
     };
 
-    const req = new HttpRequest('POST', this.url + "/upload/", formData, options);
+    const req = new HttpRequest('POST', this.url + "/upload/users/", formData, options);
     return this.http.request(req);
   }
 

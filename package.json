@@ -1,6 +1,6 @@
 {
   "name": "student-app",
-  "version": "1",
+  "version": "1.0.0",
   "author": "Adam Shwartz and Almog Assulin",
   "private": true,
   "scripts": {

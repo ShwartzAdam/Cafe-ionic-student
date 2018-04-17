@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController, IonicPage, NavParams} from 'ionic-angular';
+import {NavController, IonicPage} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
 import {UserData} from "../../providers/user-data/user-data";
 
@@ -10,6 +10,7 @@ import {UserData} from "../../providers/user-data/user-data";
 })
 export class LoginPage {
   registerCredentials = { email: '', password: '' };
+  dataFromOtherPage = null;
 
   constructor(public nav: NavController,
               public userProvider: UserProvider,
@@ -18,8 +19,17 @@ export class LoginPage {
     this.userData.clearStudent();
   }
 
+  callback = data => {
+    this.dataFromOtherPage = data;
+    this.registerCredentials.email = data['email'];
+    this.registerCredentials.password = data['password'];
+    console.log('data received from other page', this.dataFromOtherPage);
+  };
+
   createAccount() {
-    this.nav.push('RegisterPage');
+    this.nav.push('RegisterPage',{
+      callback: this.callback
+    });
   }
 
   forgotAccount(){
@@ -40,5 +50,8 @@ export class LoginPage {
     });
 
   }
+
+
+
 
 }

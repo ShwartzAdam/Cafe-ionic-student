@@ -27,8 +27,11 @@ export class OrderListProvider {
     });
   }
 
-  public getOrderListById(id : number): Observable<OrderList> {
-    return this.http.get<OrderList>(this.url + '/orderedlists/' + id );
+  public getOrderListByUserId(id : number): Observable<OrderList[]> {
+    return this.http.get<OrderList[]>(this.url + '/orderedlists/userid/' + id );
+  }
+  public getOrderListByOlid(id : number): Observable<OrderList> {
+    return this.http.get<OrderList>(this.url + '/orderedlists/olid/' + id );
   }
 
   // delete order list by id
