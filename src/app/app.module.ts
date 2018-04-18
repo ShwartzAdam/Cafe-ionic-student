@@ -37,7 +37,6 @@ import { WalletPageModule } from "../pages/wallet/wallet.module";
 import { LoggerProvider } from '../providers/logger/logger';
 
 
-
 @NgModule({
   declarations: [
     MyApp,

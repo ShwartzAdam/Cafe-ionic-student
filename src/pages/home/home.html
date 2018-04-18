@@ -1,6 +1,6 @@
 <ion-header class="home-header">
   <ion-navbar color="second">
-    <button ion-button menuToggle color="white">
+    <button ion-button icon-only float-left menuToggle color="white">
       <ion-icon name="menu"></ion-icon>
     </button>
     <button ion-button icon-only float-right color="white" clear (click)="gotoBasket()">
@@ -13,10 +13,32 @@
 
 <ion-content class="home-content"  padding>
   <ion-card>
-    <ion-card-header> Hi <strong> {{_student.firstname}} {{_student.lastname}} </strong> !</ion-card-header>
-    <ion-card-content>Welcome to Cafe-App , open the side menu to navigate through the application </ion-card-content>
+    <ion-card-header> Hey <strong> {{_student.firstname }} {{_student.lastname}} </strong> !</ion-card-header>
+    <ion-card-content>
+      <p ion-text>
+        Click on the side menu (top left corner) to start navigate through the application.
+        Another option is using the navigation in the footer section (at bottom of the page) .
+      </p>
+      <p ion-text>
+        Before making an order, make sure to have enough credit in your balance to
+        create a successful purchase.
+      </p>
+      <p ion-text>
+          Enjoy the service,
+          Team AA
+      </p>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <img class='logo-image' src="../../assets/imgs/college-grounds-cafe-coffee.jpg">
   </ion-card>
 </ion-content>
 
+<ion-footer>
+  <ion-toolbar padding color="second" text-center>
+     <app-footer-nav></app-footer-nav>
+  </ion-toolbar>
+</ion-footer>
 
 

@@ -1,0 +1,13 @@
+<ion-buttons>
+  <button *ngFor="let section of footerMenu"
+          ion-button block color="white"
+          class="button-space"
+          (click)="openPage(section)">
+    <div>
+      <div>
+        <ion-icon name="{{section.icon}}"></ion-icon>
+      </div>
+      <label> {{section.title}}</label>
+    </div>
+  </button>
+</ion-buttons>
