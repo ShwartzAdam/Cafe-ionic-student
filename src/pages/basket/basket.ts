@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import {Events, IonicPage, NavController} from 'ionic-angular';
+import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {UserData} from "../../providers/user-data/user-data";
 import {ItemProvider} from "../../providers/item/item";
 import {Order} from "../../model/order";
 import {Item} from "../../model/item";
+import {BasketTicket} from "./basket-ticket";
 
 
 @IonicPage()
@@ -20,7 +21,8 @@ export class BasketPage {
   constructor(public userData: UserData,
               public itemProvider: ItemProvider,
               public event: Events,
-              public navCtrl: NavController) {
+              public navCtrl: NavController,
+              public navParam: NavParams) {
     // function init view with student items in the basket
     this.initView();
 
@@ -133,6 +135,7 @@ export class BasketPage {
 
   checkOut():void{
     console.log(this.items);
+    this.navCtrl.push(BasketTicket,{ "orderList" : this.items});
   }
 
   quantity(_itemid,_action):void{

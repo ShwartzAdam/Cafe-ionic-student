@@ -120,6 +120,7 @@ export class QuickOrderTicket implements OnInit{
   }
 
   confOrder(){
+      this.userData.cleanCart();
       this.orderlist.status = "Incoming";
       this.orderListProvider.updateOrderList(this.orderlist).then(
         res => {

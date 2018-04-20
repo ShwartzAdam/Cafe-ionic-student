@@ -36,6 +36,7 @@ import { BasketPageModule } from "../pages/basket/basket.module";
 import { WalletPageModule } from "../pages/wallet/wallet.module";
 import { LoggerProvider } from '../providers/logger/logger';
 import {SideNavComponent} from "../components/side-nav/side-nav";
+import {BasketTicket} from "../pages/basket/basket-ticket";
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {SideNavComponent} from "../components/side-nav/side-nav";
     MenuOrderDetails,
     MenuOrderTicket,
     ItemComponent,
-    SideNavComponent
+    SideNavComponent,
+    BasketTicket
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,8 @@ import {SideNavComponent} from "../components/side-nav/side-nav";
     MenuOrderDetails,
     MenuOrderTicket,
     ItemComponent,
-    SideNavComponent
+    SideNavComponent,
+    BasketTicket
   ],
   providers: [
     StatusBar,

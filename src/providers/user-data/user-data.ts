@@ -65,6 +65,16 @@ export class UserData {
     });
   };
 
+  public cleanCart(): Promise<string>  {
+    return this.storage.set('cart' , null).then((value) => {
+      if(value)
+        return value;
+      else{
+        return null;
+      }
+    });
+  };
+
   public removeItemFromCart(itemid): Promise<any>{
     return this.storage.get('cart').then((value) => {
         let oldVal = value;
@@ -110,9 +120,7 @@ export class UserData {
     });
   };
 
-  public cleanCart(): void {
-    this.storage.remove('cart');
-  };
+
 
   public setStudent(student: Student):void{
     this.stu = student;

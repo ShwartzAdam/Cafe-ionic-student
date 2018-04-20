@@ -1,8 +1,10 @@
 <ion-header>
   <ion-navbar color="second">
-    <button ion-button menuToggle color="white">
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title class="toolbar-header">Basket</ion-title>
   </ion-navbar>
 </ion-header>
@@ -19,25 +21,27 @@
   <ion-card *ngFor="let item of items" class="basket-item">
     <ion-item>
       <ion-avatar item-start>
-        <img src="http://avatars.io/facebook/joshua.morony">
+        <img src="../../assets/imgs/item.png">
       </ion-avatar>
-      <h3>{{item.name}}</h3>
       <div class="basket-body">
+        <h3>{{item.name}}</h3>
         <p>{{item.qty}} x &#8362; {{item.price}} =
           <strong> &#8362; {{item.price * item.qty}}</strong>
         </p>
       </div>
-      <ion-buttons item-end>
-        <button class="icon-btn" ion-button icon-only small color="first" (click)="deleteItem(item.itemid)">
-          <ion-icon name="trash"></ion-icon>
-        </button>
-        <button class="icon-btn" ion-button icon-only small color="first" (click)="quantity(item.itemid,'Plus')">
-          <ion-icon name="add"></ion-icon>
-        </button>
-        <button class="icon-btn" ion-button icon-only small color="first" (click)="quantity(item.itemid,'Minus')">
-          <ion-icon name="remove"></ion-icon>
-        </button>
-      </ion-buttons>
+      <div class="basket-buttons">
+        <ion-buttons item-end>
+          <button class="icon-btn" ion-button icon-only small color="first" (click)="deleteItem(item.itemid)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+          <button class="icon-btn" ion-button icon-only small color="first" (click)="quantity(item.itemid,'Plus')">
+            <ion-icon name="add"></ion-icon>
+          </button>
+          <button class="icon-btn" ion-button icon-only small color="first" (click)="quantity(item.itemid,'Minus')">
+            <ion-icon name="remove"></ion-icon>
+          </button>
+        </ion-buttons>
+      </div>
     </ion-item>
   </ion-card>
 </ion-content>

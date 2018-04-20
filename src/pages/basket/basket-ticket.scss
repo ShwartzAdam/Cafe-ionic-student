@@ -1,5 +1,10 @@
-quick-order-details {
-  .quick-box{
+page-basket-ticket {
+
+  .toolbar-header{
+    margin-right: 40px;
+  }
+
+  .basket-box{
     display: block;
     width: 90%;
     margin: auto;
@@ -8,25 +13,9 @@ quick-order-details {
     border-radius: 20px;
     margin-top: 5%;
 
-    ion-select{
-      max-width: 100%;
+    ion-card-title{
+      text-align: center;
 
-      ion-option{
-
-      }
-    }
-
-    ion-icon{
-      font-size: 35px;
-    }
-
-    ion-img{
-      display:block;
-      contain: none;
-
-      img{
-        border-radius: 10px;
-      }
     }
 
     ion-item {
@@ -40,17 +29,17 @@ quick-order-details {
     }
 
     ion-label{
-      font-size: 1.0em;
-      strong{
-        font-size: 1.2em;
-      }
+      font-size: 1.1em;
     }
 
     ion-row {
       align-items: center;
       text-align: center;
       margin-bottom: 5px;
+
     }
+
+
 
     .icon-btn{
       margin-bottom: 15px;
@@ -73,27 +62,15 @@ quick-order-details {
       border-bottom-color: #ffffff !important;
       box-shadow: none !important;
     }
+    .button-inner{
 
-    ion-select{
-      text-align: center;
-      .select-icon-inner {
-        top: 50%;
-        border-top: 10px solid!important;
-        border-right: 10px solid transparent!important;
-        border-left: 10px solid transparent!important;
-        left: -4px!important;
-        pointer-events: none;
-      }
-      .button-inner{
-
-      }
     }
 
 
 
   }
 
-  .quick-order-footer{
+  .basket-ticket-buttons{
     button{
       display: block;
       background: $background-color-sixth;

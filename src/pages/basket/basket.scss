@@ -1,6 +1,6 @@
 page-basket {
   .toolbar-header{
-    text-align: center;
+    margin-right: 40px;
   }
   .basket-item{
     display: block;
@@ -10,19 +10,27 @@ page-basket {
     border-radius: 10px;
     margin-top: 5%;
 
+
     ion-item{
       background: $background-color-fifth;
-    }
 
-    ion-buttons{
-
-    }
-    .basket-body{
-      p{
-        color:#fff;
-        font-size:0.8em;
+      .basket-body{
+        h3{
+          font-size:1em;
+        }
+        p{
+          color:#fff;
+          font-size:0.8em;
+        }
       }
+      .basket-buttons{
+        float: right;
+      }
+
+
+
     }
+
   }
 
 }

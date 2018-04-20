@@ -4,7 +4,7 @@ import { BasketPage } from './basket';
 
 @NgModule({
   declarations: [
-    BasketPage,
+    BasketPage
   ],
   imports: [
     IonicPageModule.forChild(BasketPage),

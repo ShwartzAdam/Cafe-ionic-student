@@ -47,7 +47,16 @@ export class UserProvider {
 
 
   public updateUser(_user: User){
-
+    return new Promise((resolve, reject) => {
+      this.http.put(this.url + '/users/' , JSON.stringify(_user) ,{
+        headers: new HttpHeaders().set("Content-Type", 'application/json')
+      }).timeout(2000)
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
   }
 
   public deleteUserById(_userId : number){

@@ -4,10 +4,23 @@ page-wallet {
     margin-top: 10px;
   }
 
-  ion-img{
-    height: auto;
-    width: auto;
-    margin: auto;
+  .wallet-box {
     display: block;
+    width: 90%;
+    margin: auto;
+    background: $background-color-fifth;
+    padding: 20px 20px 20px 20px;
+    border-radius: 20px;
+    margin-top: 5%;
+  }
+
+  ion-img{
+    display:block;
+    contain: none;
+    margin: auto;
+
+    img{
+      border-radius: 10px;
+    }
   }
 }
