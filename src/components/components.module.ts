@@ -3,9 +3,9 @@ import { ItemComponent } from './item/item';
 import { FooterNavComponent } from './footer-nav/footer-nav';
 @NgModule({
 	declarations: [ItemComponent,
-    FooterNavComponent],
+    FooterNavComponent,],
 	imports: [],
 	exports: [ItemComponent,
-    FooterNavComponent]
+    FooterNavComponent,]
 })
 export class ComponentsModule {}

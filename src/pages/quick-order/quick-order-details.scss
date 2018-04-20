@@ -1,8 +1,4 @@
 quick-order-details {
-  .toolbar-header{
-    text-align: center;
-    margin-top: 10px;
-  }
   .quick-box{
     display: block;
     width: 90%;
@@ -77,6 +73,19 @@ quick-order-details {
     .button-inner{
 
     }
+    ion-select{
+      .select-icon-inner {
+        top: 50%;
+        border-top: 10px solid!important;
+        border-right: 10px solid transparent!important;
+        border-left: 10px solid transparent!important;
+        left: -4px!important;
+        pointer-events: none;
+
+      }
+    }
+
+
 
   }
 

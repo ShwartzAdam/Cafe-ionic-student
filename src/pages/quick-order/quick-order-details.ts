@@ -49,8 +49,7 @@ export class QuickOrderDetails {
 
     if(this.title == "Drink And Croissant"){
       //present Drink and Corissant form
-      this.itemProv.getAllItems().subscribe( items =>
-      {
+      this.itemProv.getAllItems().subscribe( items => {
         let rawDataDrinks  = items.filter(item => item.type == "Drink");
         let rawDataCross = items.filter(item => item.name == "Croissant Chocolate");
         let rawDataCrosstwo = items.filter(item => item.name == "Croissant Butter");
@@ -60,7 +59,6 @@ export class QuickOrderDetails {
         this.cors = corItem;
         this.drinks = rawDataDrinks;
         console.log(this.cors);
-
       });
       // get the drinks items
       // get corr items for price and qnty
@@ -70,8 +68,7 @@ export class QuickOrderDetails {
       this.displayCrosQuan = true;
     }else if(this.title == "Drink"){
       // get the drinks items
-      this.itemProv.getAllItems().subscribe( items =>
-      {
+      this.itemProv.getAllItems().subscribe( items => {
         let rawDataDrinks = items.filter(item => item.type == "Drink");
         this.drinks = rawDataDrinks;
       });

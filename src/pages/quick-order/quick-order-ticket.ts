@@ -68,15 +68,9 @@ export class QuickOrderTicket implements OnInit{
     this.orderlist.userid = this.student.userid;
     console.log( this.orderlist.userid);
     this.orderlist.status = "None";
-    /*
-    let time = tz(this.myDate , "Asia/Jerusalem");
-    time.utc();
-    console.log(time);
-    console.log(this.orderlist.ol_dttm);
-    */
-    console.log(this.myDate);
-    this.orderlist.ol_dttm = null;
-    this.orderlist.ol_dttm = new Date(Date.parse(this.myDate));
+    let timeOrder = moment(this.myDate,'hh:mm:ss');
+    console.log(timeOrder);
+    this.orderlist.ol_dttm = timeOrder['_d'];
     console.log(this.orderlist.ol_dttm);
 
     this.orderlist.totalprice = this.totalPrice;
@@ -126,7 +120,7 @@ export class QuickOrderTicket implements OnInit{
   }
 
   confOrder(){
-      this.orderlist.status = "I";
+      this.orderlist.status = "Incoming";
       this.orderListProvider.updateOrderList(this.orderlist).then(
         res => {
           console.log(res);

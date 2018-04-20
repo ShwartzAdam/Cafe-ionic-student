@@ -35,6 +35,7 @@ import { TrackingPageModule } from "../pages/tracking/tracking.module";
 import { BasketPageModule } from "../pages/basket/basket.module";
 import { WalletPageModule } from "../pages/wallet/wallet.module";
 import { LoggerProvider } from '../providers/logger/logger';
+import {SideNavComponent} from "../components/side-nav/side-nav";
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { LoggerProvider } from '../providers/logger/logger';
     MenuOrderDetails,
     MenuOrderTicket,
     ItemComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +75,7 @@ import { LoggerProvider } from '../providers/logger/logger';
     MenuOrderDetails,
     MenuOrderTicket,
     ItemComponent,
+    SideNavComponent
   ],
   providers: [
     StatusBar,

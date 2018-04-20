@@ -1,16 +1,19 @@
-<ion-header class="home-header">
+<ion-header>
   <ion-navbar color="second">
-    <button ion-button icon-only float-left menuToggle color="white">
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <button ion-button icon-only float-right color="white" clear (click)="gotoBasket()">
-      <ion-icon name="cart"></ion-icon>
-      <ion-badge class="cart-badge">{{this.countItems}}</ion-badge>
-    </button>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title class="toolbar-header">Home</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only color="white" clear (click)="gotoBasket()">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge class="cart-badge">{{this.countItems}}</ion-badge>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
-
 <ion-content class="home-content"  padding>
   <ion-card>
     <ion-card-header> Hey <strong> {{_student.firstname }} {{_student.lastname}} </strong> !</ion-card-header>

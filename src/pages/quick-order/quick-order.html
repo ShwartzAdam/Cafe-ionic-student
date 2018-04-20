@@ -1,14 +1,18 @@
 <ion-header>
   <ion-navbar color="second">
-      <button ion-button menuToggle color="white">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle color="white">
         <ion-icon name="menu"></ion-icon>
       </button>
-      <button ion-button icon-only float-right color="white" (click)="gotoBasket()" clear>
+    </ion-buttons>
+    <ion-title class="toolbar-header">Quick Order</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only color="white" clear (click)="gotoBasket()">
         <ion-icon name="cart"></ion-icon>
-        <ion-badge class="cart-badge"></ion-badge>
+        <ion-badge class="cart-badge">{{this.countItems}}</ion-badge>
       </button>
-      <ion-title class="toolbar-header">Quick Order</ion-title>
-    </ion-navbar>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 <ion-content padding class="card-background-page">
   <ion-card button *ngFor="let item of Items" (click)="pushPage(item)" >

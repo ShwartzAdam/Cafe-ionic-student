@@ -50,10 +50,6 @@ export class HomePage{
   }
   // will shut off logged boolean and turn to false
   // when the user log in successfuly we turn a boolean var so we could limit one user for access
-  public logout() {
-    this.userData.setUserId(0);
-    this.navCtrl.setRoot("LoginPage");
-  }
 
   // public so you can reach here from every corner in the app while you logged
   public gotoBasket(){

@@ -1,13 +1,17 @@
 <ion-header>
   <ion-navbar color="second">
-    <button ion-button menuToggle color="white">
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <button ion-button icon-only float-right color="white" (click)="gotoBasket()" clear>
-      <ion-icon name="cart"></ion-icon>
-      <ion-badge class="cart-badge"></ion-badge>
-    </button>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title class="toolbar-header">{{this.title}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only color="white" clear (click)="gotoBasket()">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge class="cart-badge">{{this.countItems}}</ion-badge>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -18,17 +22,13 @@
       </ion-col>
     </ion-row>
     <ion-row *ngIf="displayDrinkList">
-      <ion-col col-10>
+      <ion-col>
         <ion-item>
-          <ion-select [(ngModel)]="drink" interface="popover" placeholder="Choose a Drink...">
+          <ion-label>Choose A Drink ...</ion-label>
+          <ion-select [(ngModel)]="drink" interface="popover">
             <ion-option *ngFor="let drink of drinks" [value]="drink.name">{{drink.name}} - {{drink.price}} &#8362;</ion-option>
           </ion-select>
         </ion-item>
-      </ion-col>
-      <ion-col col-2>
-        <button class="icon-btn" ion-button icon-only>
-          <ion-icon name="help" item-start ></ion-icon>
-        </button>
       </ion-col>
     </ion-row>
     <ion-row *ngIf="displayDrinkQuan">
@@ -39,18 +39,14 @@
       </ion-item>
     </ion-row>
     <ion-row *ngIf="displayCrosList">
-      <ion-col col-10>
+      <ion-col>
         <ion-item>
-          <ion-select [(ngModel)]="crooisant" interface="popover" placeholder="Choose a Croissant...">
+          <ion-label>Choose A Food ...</ion-label>
+          <ion-select [(ngModel)]="crooisant" interface="popover">
             <ion-option value="Butter">Butter - 3.5 &#8362;</ion-option>
             <ion-option value="Chocolate">Chocolate - 3.5 &#8362;</ion-option>
           </ion-select>
         </ion-item>
-      </ion-col>
-      <ion-col col-2>
-        <button class="icon-btn" ion-button icon-only>
-          <ion-icon name="help" item-start></ion-icon>
-        </button>
       </ion-col>
     </ion-row>
     <ion-row *ngIf="displayCrosQuan">
@@ -62,8 +58,8 @@
     </ion-row>
     <ion-row>
       <ion-item>
-        <ion-label>PickUp Time :</ion-label>
-        <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="myDate"></ion-datetime>
+        <ion-label>Pick-Up Time :</ion-label>
+        <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="myDate"></ion-datetime>
       </ion-item>
     </ion-row>
     <ion-row>
