@@ -1,14 +1,18 @@
 <ion-header>
   <ion-navbar color="second">
-    <button ion-button menuToggle color="white">
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <button ion-button icon-only float-right color="white" (click)="gotoBasket()" clear>
-      <ion-icon name="cart"></ion-icon>
-      <ion-badge class="cart-badge">{{this.countItems}}</ion-badge>
-    </button>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title class="toolbar-header">{{this.title}} Details</ion-title>
-  </ion-navbar>
+    <ion-buttons right>
+      <button ion-button icon-only color="white" clear (click)="gotoBasket()">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge class="cart-badge">{{this.countItems}}</ion-badge>
+      </button>
+    </ion-buttons>
+</ion-navbar>
 </ion-header>
 <ion-content padding>
  <ion-grid class="item-box">
@@ -23,7 +27,7 @@
        <ion-row>
          <ion-col></ion-col>
          <ion-col>
-           <h1 ion-text="dark"> {{this.title}}</h1>
+           <h3 ion-text="dark"> {{this.title}}</h3>
          </ion-col>
          <ion-col></ion-col>
        </ion-row>
@@ -53,58 +57,33 @@
        </ion-row>
        <ion-row *ngIf="displayButton">
          <ion-col>
-           <button ion-button round small class="check-btn" (click)="showUIform()">Order Now</button>
-         </ion-col>
-         <ion-col>
            <button  ion-button round small class="check-btn" icon-start (click)="addToCart(item)">
              <ion-icon name='share-alt'></ion-icon>
              Add to Cart
            </button>
          </ion-col>
        </ion-row>
-       <ion-row *ngIf="displayReviews">
-         <ion-col></ion-col>
-         <ion-col>
-           <h1 ion-text="dark"> Reviews</h1>
-         </ion-col>
-         <ion-col></ion-col>
-       </ion-row>
        <ion-list *ngIf="displayReviews">
+         <ion-row>
+           <ion-col></ion-col>
+           <ion-col>
+             <h1 ion-text="dark">Reviews</h1>
+           </ion-col>
+           <ion-col></ion-col>
+         </ion-row>
          <ion-row *ngFor="let review of reviews">
            <ion-col>
              <p ion-text color="dark">{{review.name}},</p>
            </ion-col>
            <ion-col>
-             <p ion-text color="dark">{{review.location}}</p>
+             <p ion-text color="dark" text-left>{{review.location}}</p>
            </ion-col>
            <ion-col>
-             <h4 ion-text color="dark">{{review.stars}} Stars</h4>
+             <h3 ion-text color="dark">{{review.stars}} Stars</h3>
            </ion-col>
            <ion-card-content>{{review.content}}</ion-card-content>
          </ion-row>
        </ion-list>
-     </ion-card-content>
-     <ion-card-content class="box-item-time">
-       <ion-row *ngIf="displayTime">
-         <ion-col col-1></ion-col>
-         <ion-col col-10>
-           <ion-item>
-             <ion-label>Quantity : </ion-label>
-             <ion-input type="text" value="" [(ngModel)]="qItem"></ion-input>
-           </ion-item>
-         </ion-col>
-         <ion-col col-2></ion-col>
-       </ion-row>
-       <ion-row *ngIf="displayTime">
-         <ion-col col-1></ion-col>
-         <ion-col col-10>
-           <ion-item>
-             <ion-label>PickUp Time :</ion-label>
-             <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="date"></ion-datetime>
-           </ion-item>
-         </ion-col>
-         <ion-col col-2></ion-col>
-       </ion-row>
      </ion-card-content>
  </ion-grid>
 </ion-content>

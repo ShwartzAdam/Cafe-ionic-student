@@ -16,21 +16,21 @@
 </ion-header>
 <ion-content padding>
   <ion-grid *ngIf="displayFoodList">
-    <ion-row *ngFor="let item of itemList">
-      <ion-col>
-        <button ion-item no-lines (click)="pushItem(item)" color="third">
-          <ion-label>{{item.name}}</ion-label>
-        </button>
-      </ion-col>
-    </ion-row>
+    <div class="card-background-page">
+      <ion-card button *ngFor="let item of itemList" (click)="pushItem(item)">
+        <img src="../../assets/imgs/food-menu.jpg"/>
+        <div class="card-title">{{item.name}}</div>
+        <div class="card-subtitle">Price: {{item.price}} &#8362;  </div>
+      </ion-card>
+    </div>
   </ion-grid>
   <ion-grid *ngIf="displayDrinkList">
-    <ion-row *ngFor="let item of itemList">
-      <ion-col>
-        <button ion-item no-lines (click)="pushItem(item)" color="third">
-          <ion-label>{{item.name}}</ion-label>
-        </button>
-      </ion-col>
-    </ion-row>
+    <div class="card-background-page">
+      <ion-card button *ngFor="let item of itemList" (click)="pushItem(item)">
+        <img src="../../assets/imgs/drinkss.jpg"/>
+        <div class="card-title">{{item.name}}</div>
+        <div class="card-subtitle">Price: {{item.price}} &#8362;  </div>
+      </ion-card>
+    </div>
   </ion-grid>
 </ion-content>

@@ -17,34 +17,32 @@
 
 ion-header {
 
-  .button-md {
-    box-shadow: none;
+  ion-navbar {
+    .button-md {
+      box-shadow: none;
+    }
+    .toolbar-title {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+    }
+    ion-buttons{
+      padding:2.5%;
+    }
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+    }
   }
 
-  .toolbar-title {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-  }
-
-  // cart
-  .cart-btn {
-    position: relative;
-  }
-  .cart-badge {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-  }
-  ion-icon{
-
-  }
 }
+
 ion-content{
   background: $background-color-first;
 

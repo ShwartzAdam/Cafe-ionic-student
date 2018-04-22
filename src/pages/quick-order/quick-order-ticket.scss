@@ -1,6 +1,10 @@
 quick-order-ticket {
-  
-  .ticket-box{
+
+  .toolbar-header{
+    margin-right: 40px;
+  }
+
+  .quick-ticket-box{
     display: block;
     width: 90%;
     margin: auto;
@@ -9,17 +13,9 @@ quick-order-ticket {
     border-radius: 20px;
     margin-top: 5%;
 
-    .icon-btn{
-      margin-bottom: 15px;
-      margin-right:20px;
-      display: block;
-      background: $background-color-sixth;
-      border-radius: 50px !important;
-      border: 1px solid #ffffff;
-    }
+    ion-card-title{
+      text-align: center;
 
-    ion-icon{
-      font-size: 35px;
     }
 
     ion-item {
@@ -33,20 +29,22 @@ quick-order-ticket {
     }
 
     ion-label{
-      font-size: 1.3em;
-    }
-
-    ion-img{
-      height: auto;
-      width: auto;
-      margin: auto;
-      display: block;
+      font-size: 1.1em;
     }
 
     ion-row {
       align-items: center;
       text-align: center;
-      margin-bottom: 10px;
+
+    }
+
+    .icon-btn{
+      margin-bottom: 15px;
+      margin-right:20px;
+      display: block;
+      background: $background-color-sixth;
+      border-radius: 50px !important;
+      border: 1px solid #ffffff;
     }
 
     .submit-btn{
@@ -61,10 +59,13 @@ quick-order-ticket {
       border-bottom-color: #ffffff !important;
       box-shadow: none !important;
     }
+    .button-inner{
+
+    }
 
   }
 
-  .ticket-order-footer{
+  .quick-order-ticket-buttons{
     button{
       display: block;
       background: $background-color-sixth;

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {OrderListProvider} from "../../providers/order-list/order-list";
 import {UserData} from "../../providers/user-data/user-data";
 import {OrderList} from "../../model/orderList";
+import {BasketPage} from "../basket/basket";
 
 @IonicPage()
 @Component({
@@ -16,9 +17,10 @@ export class TrackingPage {
   selectedIndex = 2;
   orderListId ;
   // list of last five student orders
-  orderListUser: OrderList[] = new Array();
+  private orderListUser: OrderList[] = new Array();
   // user id for all last orders
-  userid: number;
+  private userid: number;
+  private countItems: number;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -39,6 +41,13 @@ export class TrackingPage {
         // return the student id from storage and set it to get all his orders
         console.log(userRes);
         this.userid = userRes;
+        this.userData.getItemsFromCart().then(
+          res => {
+            if(res){
+              this.countItems = res.length;
+            }
+          }
+        );
         this.orderListPro.getOrderListByUserId(this.userid).subscribe(
           ollistRes => {
             let data = ollistRes.filter(orderlist => (orderlist.status == "Incoming" ||
@@ -80,5 +89,10 @@ export class TrackingPage {
       }
     });
   }
+
+  public gotoBasket(){
+    this.navCtrl.setRoot(BasketPage);
+  }
+
 
 }

@@ -11,7 +11,8 @@ import {Student} from "../../model/user";
 })
 export class WalletPage {
 
-  public student: Student;
+  private student: Student;
+  private countItems: number;
   displayCredit: boolean = false;
 
   constructor(public navCtrl: NavController,
@@ -31,6 +32,13 @@ export class WalletPage {
               this.displayCredit = true;
         });
     });
+    this.userData.getItemsFromCart().then(
+      res => {
+        if(res){
+          this.countItems = res.length;
+        }
+      }
+    );
   }
 
   addCredit(): void {

@@ -5,6 +5,8 @@ import {QuickOrderTicket} from "./quick-order-ticket";
 import {ItemProvider} from "../../providers/item/item";
 import {Item} from "../../model/item";
 import {Order} from "../../model/order";
+import {UserData} from "../../providers/user-data/user-data";
+import {BasketPage} from "../basket/basket";
 
 @Component({
   selector: 'quick-order-details',
@@ -12,6 +14,9 @@ import {Order} from "../../model/order";
 })
 export class QuickOrderDetails {
 
+  private userid: number;
+  private countItems: number;
+  private items: Item[] = new Array();
   // varibles from quick-order page taken out with nav controller
   title : string;
   url : string;
@@ -21,7 +26,6 @@ export class QuickOrderDetails {
   drinkId: number;
   crosId: number;
   crooisant : string;
-  myDate : string;
   qDrink : number;
   qCross : number;
   // price
@@ -43,9 +47,22 @@ export class QuickOrderDetails {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public itemProv: ItemProvider) {
+              public itemProv: ItemProvider,
+              public userData: UserData) {
     this.title = this.navParams.get('name');
     this.url = this.navParams.get('url');
+
+    this.userData.getUserId().then(
+      res => {
+        this.userid = res;
+        this.userData.getItemsFromCart().then(
+          res => {
+            if(res){
+              this.countItems = res.length;
+            }
+          }
+        );
+      });
 
     if(this.title == "Drink And Croissant"){
       //present Drink and Corissant form
@@ -119,17 +136,43 @@ export class QuickOrderDetails {
 
   initOrder(){
       // create order and pass it to confirmation in quick-order-ticket
-
+    this.itemProv.getItemById(this.drinkId).subscribe(
+      item => {
+          let _item: Item = new Item;
+          _item.itemid = item.itemid;
+          _item.name = item.name;
+          _item.price = item.price;
+          _item.url = item.url;
+          _item.qty = this.qDrink;
+          this.items.push(_item);
+          console.log(_item);
+      });
+    this.itemProv.getItemById(this.crosId).subscribe(
+      item => {
+        let _item: Item = new Item;
+        _item.itemid = item.itemid;
+        _item.name = item.name;
+        _item.price = item.price;
+        _item.url = item.url;
+        _item.qty = this.qCross;
+        this.items.push(_item);
+        console.log(_item);
+      });
     this.navCtrl.push(QuickOrderTicket,{
+      items: this.items,
       drinkid: this.drinkId,
       crosid: this.crosId,
       price :  this.totalPrice,
       drink : this.drink,
       cross : this.crooisant,
-      time : this.myDate,
       qDrink : this.qDrink,
       qCross : this.qCross
     });
   }
+
+  public gotoBasket(){
+    this.navCtrl.setRoot(BasketPage);
+  }
+
 
 }

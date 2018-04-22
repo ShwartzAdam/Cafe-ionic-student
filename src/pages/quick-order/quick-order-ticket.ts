@@ -5,12 +5,13 @@ import {OrderList} from "../../model/orderList";
 import {Order} from "../../model/order";
 import {OrderListProvider} from "../../providers/order-list/order-list";
 import {UserData} from "../../providers/user-data/user-data";
-import {Student} from "../../model/user";
-import {UserProvider} from "../../providers/user/user";
 import {OrderProvider} from "../../providers/order/order";
 
 import * as moment from 'moment';
 import * as tz from 'moment-timezone';
+import {Item} from "../../model/item";
+import {UserProvider} from "../../providers/user/user";
+import {Student} from "../../model/user";
 
 @Component({
   selector: 'quick-order-ticket',
@@ -18,117 +19,124 @@ import * as tz from 'moment-timezone';
 })
 export class QuickOrderTicket implements OnInit{
 
-  today: any;
-  totalPrice: number;
-  drink : string;
-  drinkid: number;
-  corsid: number;
-  crooisant : string;
-  myDate : string;
-  qDrink : number;
-  qCross : number;
+  private userid: number;
+  private items: Item[] = new Array();
+  private orderList: OrderList = new OrderList;
+  private order: Order[] = new Array();
+  private student: Student = new Student;
   //
-  orderlist: OrderList = new OrderList;
-  orderFood: Order = new Order ;
-  orderDrink: Order = new Order;
-  student: Student = new Student;
+  orderTime: any;
+  orderTimeExtended: any;
+  displayTime: boolean = false;
+  displayButtons: boolean = false;
+  displaySuccessTime: boolean = false;
+  totalPrice: number;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public orderListProvider: OrderListProvider,
-              public orderProvider: OrderProvider,
+              public orderLPro: OrderListProvider,
+              public orderPro: OrderProvider,
               public userData: UserData,
               public userPro: UserProvider){}
 
   ngOnInit(): void {
-    this.today = new Date().toISOString();
-    this.drinkid = this.navParams.get("drinkid");
-    this.corsid = this.navParams.get("crosid");
-    this.totalPrice = this.navParams.get("price");
-    this.drink = this.navParams.get("drink");
-    this.crooisant = this.navParams.get("cross");
-    this.myDate = this.navParams.get("time");
-    this.qDrink = this.navParams.get("qDrink");
-    this.qCross = this.navParams.get("qCross");
-    // get Student Details
+    this.items = this.navParams.get("items");
+    console.log(this.items);
     this.userData.getUserId().then(
-      res => {
-        console.log(res);
-        this.userPro.getUserById(res).subscribe(
-          stu => {
-            this.student = stu;
-            console.log(this.student);
-            this.createOrderList();
+      _userid => {
+          this.userid = _userid;
+          this.userPro.getUserById(_userid).subscribe(
+            _stu => {
+              let stu: Student = new Student;
+              stu.userid = _userid;
+              stu.firstname = _stu.firstname;
+              stu.lastname = _stu.lastname;
+              stu.phone = _stu.phone;
+              stu.credit = _stu.credit;
+              this.student = stu;
+            }
+          )
+      });
+    this.initView();
+  }
+
+  initView(): void{
+    this.totalPrice = 10;
+    console.log(this.totalPrice);
+    this.items.forEach(item => {
+      this.totalPrice = ((this.totalPrice) + Math.imul(item.qty,item.price));
+      console.log(this.totalPrice);
+    });
+  }
+  checkTime(){
+    // if time is good
+    // create connect orderlist to order , add the avaiable time
+    // else
+    //    ask for differet time
+    this.displayTime = true;
+    this.displayButtons = true;
+    this.displaySuccessTime = true;
+    // collect order time
+    console.log(this.orderTime);
+    let time = moment(this.orderTime,'hh:mm:ss');
+    console.log(time);
+    this.orderTimeExtended = time['_d'];
+    console.log(this.orderTimeExtended);
+    // if true and time slot are available
+    this.userData.getUserId().then(
+      userid => {
+        console.log("user id = " + userid);
+        let ol: OrderList = new OrderList;
+        ol.userid = userid;
+        ol.totalprice = this.totalPrice;
+        ol.ol_dttm = this.orderTimeExtended;
+        ol.status = "None";
+        this.orderList = ol;
+        console.log(this.orderList);
+        this.createOrder();
+      });
+
+  }
+  createOrder() {
+    this.orderLPro.createOrderList(this.orderList).then(
+      resOrderListId => {
+        console.log(resOrderListId);
+        this.orderList.olid = resOrderListId["olid"];
+        this.items.forEach( item => {
+          let ord: Order = new Order;
+          ord.itemid = item.itemid;
+          ord.qty = item.qty;
+          ord.olid = this.orderList.olid;
+          this.orderPro.createOrder(ord).then(resOrderListId => {
+            console.log(resOrderListId);
+            ord.orderid = resOrderListId["orderid"];
+            this.order.push(ord);
+            console.log(ord);
           });
-      }
-    );
-
-  }
-  createOrderList() {
-    // create Order List
-    this.orderlist.userid = this.student.userid;
-    console.log( this.orderlist.userid);
-    this.orderlist.status = "None";
-    let timeOrder = moment(this.myDate,'hh:mm:ss');
-    console.log(timeOrder);
-    this.orderlist.ol_dttm = timeOrder['_d'];
-    console.log(this.orderlist.ol_dttm);
-
-    this.orderlist.totalprice = this.totalPrice;
-    console.log(this.orderlist);
-    this.orderListProvider.createOrderList(this.orderlist).then(
-      (result) => {
-        console.log(result);
-        this.orderlist.olid = result["olid"];
-        // creating food order
-        this.orderFood.itemid = this.corsid;
-        this.orderFood.qty = this.qCross;
-        this.orderFood.olid = this.orderlist.olid;
-        // creating drink order
-        this.orderDrink.itemid = this.drinkid;
-        this.orderDrink.qty = this.qDrink;
-        this.orderDrink.olid = this.orderlist.olid;
-
-        this.orderProvider.createOrder(this.orderFood).then(
-          res => {
-            this.orderFood.orderid = res["orderid"];
-            console.log(res);
-          }
-        );
-        this.orderProvider.createOrder(this.orderDrink).then(
-          res2 => {
-            this.orderDrink.orderid = res2["orderid"];
-            console.log(res2)
-          }
-        );
-      }, (err) => {
-        console.log(err);
-      }
-    );
-
-
-  }
-
-  deleOrder(){
-    // delete orderlist id from server and also orderd item
-    this.orderListProvider.deleteOrderlistById(this.orderlist.olid).then(
-      res => {
-        console.log(res);
-        this.navCtrl.pop();
+        });
+        console.log(this.order);
+        console.log(this.orderList);
       });
 
 
   }
 
-  confOrder(){
-      this.userData.cleanCart();
-      this.orderlist.status = "Incoming";
-      this.orderListProvider.updateOrderList(this.orderlist).then(
-        res => {
-          console.log(res);
-          this.navCtrl.setRoot("TrackingPage");
-        }
-      );
+  placeOrder(){
+    this.userData.cleanCart().then(
+      res => console.log(res)
+    );
+    this.orderList.status = "Incoming";
+    this.orderLPro.updateOrderList(this.orderList).then(
+      res => {
+        console.log(res);
+        this.navCtrl.setRoot("TrackingPage");
+      }
+    );
 
+  }
+  clearOrder(): any {
+    // return back to 'Checkout Page'
+    this.navCtrl.pop();
   }
 
 

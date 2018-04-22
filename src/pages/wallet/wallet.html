@@ -1,13 +1,17 @@
 <ion-header>
   <ion-navbar color="second">
-    <button ion-button menuToggle color="white">
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <button ion-button icon-only float-right color="white" (click)="gotoBasket()" clear>
-      <ion-icon name="cart"></ion-icon>
-      <ion-badge class="cart-badge"></ion-badge>
-    </button>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title class="toolbar-header">Wallet</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only color="white" clear (click)="gotoBasket()">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge class="cart-badge">{{this.countItems}}</ion-badge>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding>

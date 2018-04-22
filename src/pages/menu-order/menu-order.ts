@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import { MenuOrderDetails } from "./menu-order-details";
 import {UserData} from "../../providers/user-data/user-data";
+import {BasketPage} from "../basket/basket";
 @Component({
   selector: 'page-menu-order',
   templateUrl: 'menu-order.html',
@@ -13,8 +14,7 @@ export class MenuOrderPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public userData: UserData,
-              public events: Events) {
+              public userData: UserData) {
     this.initView();
   }
 
@@ -33,4 +33,8 @@ export class MenuOrderPage {
       }
     });
   }
+  public gotoBasket(){
+    this.navCtrl.setRoot(BasketPage);
+  }
+
 }

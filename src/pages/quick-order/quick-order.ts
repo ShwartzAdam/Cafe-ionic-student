@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { QuickOrderDetails } from "./quick-order-details";
+import {UserData} from "../../providers/user-data/user-data";
+import {BasketPage} from "../basket/basket";
 
 @IonicPage()
 @Component({
@@ -9,9 +11,12 @@ import { QuickOrderDetails } from "./quick-order-details";
 })
 export class QuickOrderPage {
   // items for ngfor list with icons
-  Items : any ;
+  private Items : any ;
+  private userid: number;
+  private countItems: number;
   constructor(public navCtrl: NavController,
-              public navParams: NavParams){
+              public navParams: NavParams,
+              public userData: UserData){
    this.initQuickOrderMenu()
   }
 
@@ -22,6 +27,18 @@ export class QuickOrderPage {
       {name : "Sandwich" ,  src : "assets/imgs/sandwich.jpg" },
       {name : "Snack" ,  src : "assets/imgs/snack.jpg" }
     ];
+    //saving in local storage
+    this.userData.getUserId().then(
+      res => {
+        this.userid = res;
+        this.userData.getItemsFromCart().then(
+          res => {
+            if(res){
+              this.countItems = res.length;
+            }
+          }
+        );
+      });
   }
   pushPage(item){
     console.log(item);
@@ -30,6 +47,10 @@ export class QuickOrderPage {
       url : item.src
     });
   }
+  public gotoBasket(){
+    this.navCtrl.setRoot(BasketPage);
+  }
+
 
 
 }

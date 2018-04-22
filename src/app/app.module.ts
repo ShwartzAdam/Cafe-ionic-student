@@ -15,7 +15,6 @@ import { QuickOrderDetails } from '../pages/quick-order/quick-order-details';
 import { MenuOrderDetails } from '../pages/menu-order/menu-order-details';
 import { ItemComponent } from '../components/item/item';
 import { QuickOrderTicket } from "../pages/quick-order/quick-order-ticket";
-import { MenuOrderTicket } from "../pages/menu-order/menu-order-ticket";
 // services
 import { UserProvider } from '../providers/user/user';
 import { ItemProvider } from '../providers/item/item';
@@ -48,7 +47,6 @@ import {BasketTicket} from "../pages/basket/basket-ticket";
     QuickOrderTicket,
     MenuOrderPage,
     MenuOrderDetails,
-    MenuOrderTicket,
     ItemComponent,
     SideNavComponent,
     BasketTicket
@@ -75,7 +73,6 @@ import {BasketTicket} from "../pages/basket/basket-ticket";
     QuickOrderTicket,
     MenuOrderPage,
     MenuOrderDetails,
-    MenuOrderTicket,
     ItemComponent,
     SideNavComponent,
     BasketTicket
