@@ -61,6 +61,7 @@ export class BasketTicket {
         ol.userid = userid;
         ol.totalprice = this.totalPrice;
         ol.ol_dttm = this.orderTimeExtended;
+        ol.totalpreptime = 10;
         ol.status = "None";
         this.orderList = ol;
         console.log(this.orderList);

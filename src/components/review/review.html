@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="second">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="toolbar-header">Review </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid class="review-box">
+      <ion-card-title>
+        <ion-row>
+          <ion-col>
+          Review For Order List : {{this.orderListId}}
+          </ion-col>
+        </ion-row>
+      </ion-card-title>
+      <ion-card-content>
+        <ion-list *ngFor="let order of orders;let i = index">
+            <ion-card-title> {{this.items}}</ion-card-title>
+            <ion-item-group>
+              <ion-item>
+                <ion-input type="text" placeholder="Comment"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="stars" ></ion-input>
+              </ion-item>
+            </ion-item-group>
+        </ion-list>
+      </ion-card-content>
+  </ion-grid>
+</ion-content>
+
+

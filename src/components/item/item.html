@@ -18,16 +18,14 @@
  <ion-grid class="item-box">
      <ion-card-title>
        <ion-row>
-         <ion-col></ion-col>
          <ion-col>
-           <ion-img width="200" height="200" src="{{this.url}}"></ion-img>
+           <img class="image-box" img-preloader="{{this.item.url}}" alt="">
          </ion-col>
-         <ion-col></ion-col>
        </ion-row>
        <ion-row>
          <ion-col></ion-col>
          <ion-col>
-           <h3 ion-text="dark"> {{this.title}}</h3>
+           <h3 ion-text="dark"> {{this.item.name}}</h3>
          </ion-col>
          <ion-col></ion-col>
        </ion-row>
@@ -35,7 +33,7 @@
      <ion-card-content>
        <ion-row>
          <ion-card-title>Description :</ion-card-title>
-         <ion-card-content>{{this.desc}}</ion-card-content>
+         <ion-card-content>{{this.item.description}}</ion-card-content>
        </ion-row>
        <ion-row>
          <ion-col>
@@ -43,7 +41,7 @@
          </ion-col>
          <ion-col></ion-col>
          <ion-col>
-           <ion-card-content>10 Minutes</ion-card-content>
+           <ion-card-content>{{this.item.preptime}} Mintues</ion-card-content>
          </ion-col>
        </ion-row>
        <ion-row>
@@ -52,7 +50,7 @@
          </ion-col>
          <ion-col></ion-col>
          <ion-col>
-           <ion-card-content>{{this.price}} &#8362;</ion-card-content>
+           <ion-card-content>{{this.item.price}} &#8362;</ion-card-content>
          </ion-col>
        </ion-row>
        <ion-row *ngIf="displayButton">
@@ -87,11 +85,5 @@
      </ion-card-content>
  </ion-grid>
 </ion-content>
-<ion-footer no-shadow [hidden]="displayBottomNav" class="item-footer">
-  <ion-toolbar position="bottom" color="first">
-    <button ion-button round float-left (click)="clearOrder">Clear</button>
-    <button ion-button round float-right (click)="initOrder()">Submit</button>
-    <button ion-button round align-self-center>Check Time</button>
-  </ion-toolbar>
-</ion-footer>
+
 

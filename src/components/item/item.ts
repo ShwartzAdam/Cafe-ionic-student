@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NavParams, NavController, Events} from "ionic-angular";
 import {UserData} from "../../providers/user-data/user-data";
 import {BasketPage} from "../../pages/basket/basket";
+import {Item} from "../../model/item";
 
 @Component({
   selector: 'item',
@@ -26,19 +27,13 @@ export class ItemComponent {
   // input
   qItem : string;
   date : string;
-
+  item: Item;
   constructor(public navParams: NavParams,
               public navCtrl : NavController,
               public userData: UserData,
               public events: Events){
-    // getting the params from prev page
-    this.itemid = this.navParams.get('id');
-    this.title = this.navParams.get('name');
-    this.url = this.navParams.get('url');
-    this.desc = this.navParams.get('description');
-    this.price = this.navParams.get('price');
+    this.item = this.navParams.get('item');
     // call review service and bring all the review for this items or best 3
-    this.url = "../../assets/png/bolognese.png";
     this.reviews = [
       {name : "Adam Shwartz" , location : "Ramat Gan" , stars : "4" ,content: " ''I stumbled on this undiscovered gem right in our neighboorhood. The waitress was prompt and polite. Everything was just so yummy. The entree I had was sublime. Satisfactory experience, will come again.'' "},
       {name : "Almog Assulin" , location : "Tel-Aviv" , stars : "4" ,content: " ''It was much better than I expected. The food was cooked to perfection. Try out the huge selection of incredible appetizers. After my meal, I was knocked into a food coma. They got a new customer for life!'' "},
@@ -68,18 +63,6 @@ export class ItemComponent {
 
           });
       });
-  }
-
-  showUIform(){
-    // hide reviews and button order
-    this.displayReviews = false;
-    this.displayButton = false;
-    // show time and buttons
-    this.displayTime = true;
-    this.displayBottomNav = false;
-  }
-  clearOrder(){
-    // clear input
   }
 
   addToCart(){

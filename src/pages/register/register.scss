@@ -1,8 +1,6 @@
 page-register {
   .toolbar-header{
-    text-align: center;
-    margin-right: 60px;
-    margin-top: 10px;
+    margin-right: 40px;
   }
   .register-content {
     background: $background-color-first;
@@ -33,7 +31,7 @@ page-register {
       background: $background-color-fifth;
       padding: 20px 20px 0px 20px;
       border-radius: 20px;
-      margin-top: 7%;
+      margin-top: 2%;
     }
 
     ion-row {

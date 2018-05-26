@@ -1,5 +1,10 @@
 <ion-header>
   <ion-navbar color="second">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title class="toolbar-header">Register</ion-title>
   </ion-navbar>
 </ion-header>
@@ -11,37 +16,25 @@
       </ion-avatar>
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col>
-      <button ion-button class="upload-button">
-        <input type="file" name="imageProfile" #selectedFile (change)="selectFile($event)" placeholder="Upload file" accept=".png,.jpeg,.jpg">
-      </button>
-      <button ion-button class="upload-button" (click)="getImageFromService(this.imageFileUpload);">
-      </button>
-    </ion-col>
-  </ion-row>
   <div class="register-box">
     <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-row>
         <ion-col>
           <ion-list inset>
             <ion-item>
-              <ion-input type="text" placeholder="First Name" name="fname" [(ngModel)]="_userRegister.firstname" required></ion-input>
+              <ion-input type="text" placeholder="Israel" name="fname" [(ngModel)]="_userRegister.firstname" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input type="text" placeholder="Last Name" name="lname" [(ngModel)]="_userRegister.lastname" required></ion-input>
+              <ion-input type="text" placeholder="Israeli" name="lname" [(ngModel)]="_userRegister.lastname" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="_userRegister.email" required></ion-input>
+              <ion-input type="email" placeholder="Israel@shenkar.com" name="email" [(ngModel)]="_userRegister.email" email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input type="number" placeholder="Telephone" name="phone" [(ngModel)]="_userRegister.phone" required></ion-input>
+              <ion-input type="number" placeholder="054-278-3331" name="phone" [(ngModel)]="_userRegister.phone" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="_userRegister.password" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input type="password" placeholder="Repeat Password" name="password" [(ngModel)]="_passRepeat" required></ion-input>
+              <ion-input type="password" placeholder="1234 Or Better ..." name="password" [(ngModel)]="_userRegister.password" required></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>

@@ -4,6 +4,8 @@ import {OrderListProvider} from "../../providers/order-list/order-list";
 import {UserData} from "../../providers/user-data/user-data";
 import {OrderList} from "../../model/orderList";
 import {BasketPage} from "../basket/basket";
+import {ReviewComponent} from "../../components/review/review";
+
 
 @IonicPage()
 @Component({
@@ -15,12 +17,14 @@ export class TrackingPage {
   // var for stepers
   mode: string = 'vertical';
   selectedIndex = 2;
-  orderListId ;
+  // order list for review
+  private orderListRev : number;
   // list of last five student orders
   private orderListUser: OrderList[] = new Array();
   // user id for all last orders
   private userid: number;
   private countItems: number;
+  private displayReviewButton: boolean;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -69,30 +73,42 @@ export class TrackingPage {
     );
   }
   public getOrderStatus(e) {
-    console.log("Order list number " + e + "was chosen");
-    let order = this.orderListUser[e];
-    this.checkOrderStatus(order.olid);
+    this.checkOrderStatus(e);
   }
   checkOrderStatus(orderListId){
+    console.log("Order List - " + orderListId);
     // check premmsion for user before make the call
     this.orderListPro.getOrderListByOlid(orderListId).subscribe((orderList: OrderList) => {
       console.log(orderList.status);
       if(orderList.status === "Incoming") {
         // change to zero - incoming
         this.selectedIndex = 0;
+        this.displayReviewButton = false;
       }else if(orderList.status === "Active"){
         // change to one - active
         this.selectedIndex = 1;
+        this.displayReviewButton = false;
       }else {
         // change to two - complete
         this.selectedIndex = 2;
+        this.openBoxReview(orderListId);
       }
     });
+  }
+  private openBoxReview(orderListId: any) {
+    this.orderListRev = orderListId;
+    this.displayReviewButton = true;
+  }
+  public openReviewPage(orderListId){
+    this.navCtrl.push(ReviewComponent,{
+      orderListIdRev: orderListId
+    })
   }
 
   public gotoBasket(){
     this.navCtrl.setRoot(BasketPage);
   }
+
 
 
 }

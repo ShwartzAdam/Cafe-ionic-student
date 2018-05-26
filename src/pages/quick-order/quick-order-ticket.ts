@@ -73,6 +73,8 @@ export class QuickOrderTicket implements OnInit{
     // create connect orderlist to order , add the avaiable time
     // else
     //    ask for differet time
+    // orderTime
+    //
     this.displayTime = true;
     this.displayButtons = true;
     this.displaySuccessTime = true;

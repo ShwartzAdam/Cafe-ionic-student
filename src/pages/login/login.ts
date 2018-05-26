@@ -9,8 +9,9 @@ import {UserData} from "../../providers/user-data/user-data";
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  registerCredentials = { email: '', password: '' };
+  registerCredentials = { email: '', password: '', role: 'Student' };
   dataFromOtherPage = null;
+  imageFileName: any = "../../assets/png/littlecafe.png";
 
   constructor(public nav: NavController,
               public userProvider: UserProvider,

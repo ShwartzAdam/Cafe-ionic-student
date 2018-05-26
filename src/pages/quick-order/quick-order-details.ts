@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-
+import {NavController, NavParams, ViewController} from 'ionic-angular';
 import {QuickOrderTicket} from "./quick-order-ticket";
 import {ItemProvider} from "../../providers/item/item";
 import {Item} from "../../model/item";
@@ -14,6 +13,8 @@ import {BasketPage} from "../basket/basket";
 })
 export class QuickOrderDetails {
 
+  private viewCtrl: ViewController;
+  private entered: number = 0;
   private userid: number;
   private countItems: number;
   private items: Item[] = new Array();
@@ -23,13 +24,13 @@ export class QuickOrderDetails {
   // vars that belong to the form
   // missing sandwich vars
   drink : string;
-  drinkId: number;
-  crosId: number;
+  drinkId: number = 0;
+  crosId: number = 0;
   crooisant : string;
-  qDrink : number;
-  qCross : number;
+  qDrink : number = 0;
+  qCross : number = 0;
   // price
-  totalPrice: number;
+  totalPrice: number = 0;
   // switched to present the right form
   displayDrinkList : boolean ;
   displayDrinkQuan : boolean ;
@@ -38,6 +39,8 @@ export class QuickOrderDetails {
   // present success time icon and final price after check time pressed
   displaySuccessTime: boolean;
   displayFinalPrice: boolean;
+  // enable buttons
+  isenabled: boolean = false;
   // hold the drinks option
   drinks: Item[];
   cors: Item[];
@@ -51,6 +54,7 @@ export class QuickOrderDetails {
               public userData: UserData) {
     this.title = this.navParams.get('name');
     this.url = this.navParams.get('url');
+    this.displaySuccessTime = false;
 
     this.userData.getUserId().then(
       res => {
@@ -98,39 +102,66 @@ export class QuickOrderDetails {
       // present snack form
     }
   }
-
+  ionViewDidEnter() {
+    if(this.entered == 0) {
+      console.log("First Enter to Page - Quick Order Details");
+      this.entered = 1;
+    }
+    else{
+      console.log("Second Enter to Page - Quick Order Details");
+      this.clearOrder();
+    }
+  }
   clearOrder(){
-      // remove all var from input tags
+      this.drinkId = 0;
+      this.crosId = 0;
+      this.qDrink = 0;
+      this.qCross = 0;
+      this.drink = "";
+      this.crooisant = "";
+      this.totalPrice = 0;
+      this.items = new Array();
+      this.displayFinalPrice = false;
+      this.isenabled = false;
   }
 
-  calcOrder(){
-    // check if time is good for cafeteria ..
-    // display all good icon
-    this.displaySuccessTime = true;
-    // init orderList with orderItem
-    // get drink and cors price by name from items
-    let drinkChose = this.drinks.filter( drink => drink.name == this.drink);
-    let corChose;
-    if(this.crooisant == "Butter"){
-      corChose = this.cors.pop();
-    }else{
-      this.cors.pop();
-      corChose = this.cors.pop();
-    }
-    this.drinkId = drinkChose[0].itemid;
-    this.crosId = corChose[0].itemid;
+  calcOrder() {
+    if(!this.drink || !this.crooisant){return;}
+    else if(this.qCross == 0 || this.qDrink == 0){return;}
+    else{
+      // init orderList with orderItem
+      // get drink and cors price by name from items
+      let drinkChose = this.drinks.
+      filter( drink => drink.name == this.drink);
+      let corChose;
+      if(this.crooisant == "Butter"){
+        corChose = this.cors.pop();
+      }else{
+        this.cors.pop();
+        corChose = this.cors.pop();
+      }
+      if(this.drinkId == 0 || this.crosId == 0) {
+        console.log("drink == 0 or this.cordId == 0");
+      }
+      this.drinkId = drinkChose[0].itemid;
+      this.crosId = corChose[0].itemid;
 
-    console.log(corChose);
-    console.log(drinkChose);
-    console.log(corChose[0].price);
-    // calc
-    let corSumPrice = Math.imul(corChose[0].price,this.qCross);
-    let driSumPrice = Math.imul(drinkChose[0].price,this.qDrink);
-    // sum it
-    this.totalPrice = corSumPrice + driSumPrice;
-    console.log(this.totalPrice);
+      console.log(corChose);
+      console.log(corChose[0]);
+      console.log(drinkChose[0]);
+      console.log(drinkChose);
+      // calc
+      console.log(Math.imul(corChose[0].price,this.qCross));
+      let corSumPrice = Math.imul(corChose[0].price,this.qCross);
+      let driSumPrice = Math.imul(drinkChose[0].price,this.qDrink);
+      // sum it
+      this.totalPrice = corSumPrice + driSumPrice;
+      console.log(this.totalPrice);
+    }
+
     // present full price for student
     this.displayFinalPrice = true;
+    this.isenabled = true;
     // wait for proccess
   }
 

@@ -36,6 +36,8 @@ import { WalletPageModule } from "../pages/wallet/wallet.module";
 import { LoggerProvider } from '../providers/logger/logger';
 import {SideNavComponent} from "../components/side-nav/side-nav";
 import {BasketTicket} from "../pages/basket/basket-ticket";
+import {ImagePreloader} from "../directives/img-preload/img-preload";
+import {ReviewComponent} from "../components/review/review";
 
 
 @NgModule({
@@ -48,8 +50,10 @@ import {BasketTicket} from "../pages/basket/basket-ticket";
     MenuOrderPage,
     MenuOrderDetails,
     ItemComponent,
+    ReviewComponent,
     SideNavComponent,
-    BasketTicket
+    BasketTicket,
+    ImagePreloader,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,7 @@ import {BasketTicket} from "../pages/basket/basket-ticket";
     HomePageModule,
     TrackingPageModule,
     BasketPageModule,
-    WalletPageModule
+    WalletPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -74,8 +78,9 @@ import {BasketTicket} from "../pages/basket/basket-ticket";
     MenuOrderPage,
     MenuOrderDetails,
     ItemComponent,
+    ReviewComponent,
     SideNavComponent,
-    BasketTicket
+    BasketTicket,
   ],
   providers: [
     StatusBar,

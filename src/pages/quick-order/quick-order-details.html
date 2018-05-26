@@ -43,8 +43,8 @@
         <ion-item>
           <ion-label>Choose A Food ...</ion-label>
           <ion-select [(ngModel)]="crooisant" interface="popover">
-            <ion-option value="Butter">Butter - 3.5 &#8362;</ion-option>
-            <ion-option value="Chocolate">Chocolate - 3.5 &#8362;</ion-option>
+            <ion-option value="Butter">Butter 2.5 &#8362;</ion-option>
+            <ion-option value="Chocolate">Chocolate 2.5 &#8362;</ion-option>
           </ion-select>
         </ion-item>
       </ion-col>
@@ -63,6 +63,7 @@
     </ion-row>
     <ion-row *ngIf="displayFinalPrice">
       <ion-col>
+        <ion-label><strong>You Received A Discount !!!</strong></ion-label>
         <ion-label>Total Price : <span>{{this.totalPrice}} NIS</span></ion-label>
       </ion-col>
     </ion-row>
@@ -70,7 +71,7 @@
 </ion-content>
 <ion-footer no-shadow class="quick-order-footer">
   <ion-toolbar position="bottom" color="first">
-    <button ion-button round float-left (click)="clearOrder">Clear</button>
-    <button ion-button round float-right (click)="initOrder()">Create Order</button>
+    <button ion-button round float-left (click)="clearOrder()" [disabled]="!isenabled">Clear</button>
+    <button ion-button round float-right (click)="initOrder()" [disabled]="!isenabled">Create Order</button>
   </ion-toolbar>
 </ion-footer>

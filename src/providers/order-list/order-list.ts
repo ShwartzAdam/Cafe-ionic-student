@@ -31,7 +31,7 @@ export class OrderListProvider {
     return this.http.get<OrderList[]>(this.url + '/orderedlists/userid/' + id );
   }
   public getOrderListByOlid(id : number): Observable<OrderList> {
-    return this.http.get<OrderList>(this.url + '/orderedlists/olid/' + id );
+    return this.http.get<OrderList>(this.url + '/orderedlists/' + id );
   }
 
   // delete order list by id

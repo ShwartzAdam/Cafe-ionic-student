@@ -5,6 +5,8 @@ export class User {
   public email: string = ""
   public password: string = ""
   public phone: string = ""
+  public url: string = "";
+  public role: string = ""
 
   public constructor(init?:Partial<User>) {
     Object.assign(this, init);

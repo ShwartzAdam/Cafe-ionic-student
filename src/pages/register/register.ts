@@ -4,7 +4,7 @@ import {UserProvider} from "../../providers/user/user";
 import {Student} from "../../model/user";
 
 import {HttpEventType, HttpResponse} from "@angular/common/http";
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @IonicPage()
@@ -28,6 +28,7 @@ export class RegisterPage {
 
   public register(){
     // check for error in form
+    this._userRegister.role = "Student";
     console.log(this._userRegister);
     // save user in Class
 

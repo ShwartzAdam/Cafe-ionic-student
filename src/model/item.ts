@@ -8,6 +8,7 @@ export class Item {
   public price: number = 0
   public type: string = "default"
   public ispublished: boolean = false;
+  public preptime: number = 0;
 
   public constructor(init?:Partial<Item>) {
     Object.assign(this, init);

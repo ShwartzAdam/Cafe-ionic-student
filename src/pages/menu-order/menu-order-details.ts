@@ -19,6 +19,7 @@ export class MenuOrderDetails {
   displayDrinkList : boolean ;
   // items list from server
   itemList : Item[];
+  item: Item;
   // holds the number of items in the basket
   private countItems: number;
 
@@ -60,11 +61,7 @@ export class MenuOrderDetails {
     console.log(item);
     this.navCtrl.push(ItemComponent,
       {
-        id : item.itemid,
-        name : item.name,
-        description : item.description,
-        url : item.URL,
-        price : item.price
+        item: item
       });
   }
 

@@ -19,11 +19,17 @@
     <ion-list-header>
       Track Your Orders
     </ion-list-header>
-    <ion-item *ngFor="let order of orderListUser; let i = index">
+    <ion-item *ngFor="let order of orderListUser | slice:0:5; let i = index ">
       <ion-label color="dark">Order: {{order.olid}}</ion-label>
-      <ion-radio checked="{{i == 0}}" value="{{order.olid}}}}" (ionSelect)="getOrderStatus(i)"></ion-radio>
+      <ion-radio checked="{{i == 0}}" value="{{order.olid}}}}" (ionSelect)="getOrderStatus(order.olid)"></ion-radio>
     </ion-item>
   </ion-list>
+  <ion-card class="tracking-box" *ngIf="displayReviewButton">
+    <ion-label align-self-center>Order ID {{this.orderListRev}} Has Completed ! </ion-label>
+    <button ion-button round small class="review-btn" (click)="openReviewPage(this.orderListRev)">
+      Leave A Review
+    </button>
+  </ion-card>
   <ion-stepper #stepper class="tracking-box" [(selectedIndex)]="selectedIndex" [mode]="this.mode" (selectIndexChange)="selectChange($event)">
     <ion-step label="Step1"
               description="Order Placed">
