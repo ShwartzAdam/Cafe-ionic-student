@@ -65,9 +65,9 @@ export class ItemComponent {
       });
   }
 
-  addToCart(){
-    this.userData.addItemToCart(this.itemid);
-    console.log(this.itemid);
+  addToCart(item){
+    console.log(item.itemid);
+    this.userData.addItemToCart(item.itemid);
     this.events.publish('cart:update');
   }
   public gotoBasket(){

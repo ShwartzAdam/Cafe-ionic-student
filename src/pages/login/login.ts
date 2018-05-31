@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController, IonicPage} from 'ionic-angular';
+import {NavController, IonicPage, LoadingController} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
 import {UserData} from "../../providers/user-data/user-data";
 
@@ -15,7 +15,8 @@ export class LoginPage {
 
   constructor(public nav: NavController,
               public userProvider: UserProvider,
-              public userData: UserData) {
+              public userData: UserData,
+              public loadingCtrl: LoadingController) {
     this.userData.cleanCart();
     this.userData.clearStudent();
   }
@@ -37,13 +38,28 @@ export class LoginPage {
     this.nav.push('ForgotpassPage');
   }
 
+
   login() {
+
     console.log(this.registerCredentials);
     this.userProvider.getUser(this.registerCredentials).then( result => {
         if(result){
           console.log('Log In Successful, UID: ' + result["userid"] );
           this.userData.setUserId(result["userid"]);
-          this.nav.setRoot("HomePage");
+
+          let loading = this.loadingCtrl.create({
+            spinner: 'crescent',
+            content: 'Please Wait...'
+          });
+          loading.present();
+          setTimeout(() => {
+            this.nav.setRoot("HomePage");
+          }, 1000);
+
+          setTimeout(() => {
+            loading.dismiss();
+          }, 3000);
+
         } else{
             console.log("bad input for loggin");
         }

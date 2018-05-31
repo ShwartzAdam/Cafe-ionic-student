@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
 import {Student} from "../../model/user";
 
@@ -24,22 +24,35 @@ export class RegisterPage {
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
               private userPr: UserProvider,
-              private sanitizer: DomSanitizer){}
+              private sanitizer: DomSanitizer,
+              public loadingCtrl: LoadingController){
+    this._userRegister.role = "Student";
+  }
 
   public register(){
-    // check for error in form
-    this._userRegister.role = "Student";
     console.log(this._userRegister);
     // save user in Class
-
     if(this._userRegister){
       this.userPr.createUser(this._userRegister).then((result) => {
         console.log(result);
         if(result){
           console.log("Succesfuly created new user" + result);
-          this.navCtrl.pop().then(() => {
-            this.navParams.get('callback')(this._userRegister);
+
+          let loading = this.loadingCtrl.create({
+            spinner: 'crescent',
+            content: 'Please Wait...'
           });
+          loading.present();
+          setTimeout(() => {
+            this.navCtrl.pop().then(() => {
+              this.navParams.get('callback')(this._userRegister);
+            });
+          }, 1000);
+
+          setTimeout(() => {
+            loading.dismiss();
+          }, 3000);
+
         }
       }, (err) => {
         console.log(err);
