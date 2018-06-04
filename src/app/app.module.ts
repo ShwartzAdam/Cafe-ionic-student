@@ -26,7 +26,6 @@ import { UserData } from '../providers/user-data/user-data';
 // modules
 import { HomePageModule } from "../pages/home/home.module";
 import { LoginPageModule } from "../pages/login/login.module";
-import { IonicStepperModule } from "ionic-stepper";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule } from "@angular/common/http";
 import { IonicStorageModule } from "@ionic/storage";
@@ -39,12 +38,15 @@ import {BasketTicket} from "../pages/basket/basket-ticket";
 import {ImagePreloader} from "../directives/img-preload/img-preload";
 import {ReviewComponent} from "../components/review/review";
 import {ReviewItemComponent} from "../components/review-item/review-item";
+import {Ionic2RatingModule} from "ionic2-rating";
+import {QuickOrderActionPage} from "../pages/quick-order-action/quick-order-action";
 
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
+    QuickOrderActionPage,
     QuickOrderPage,
     QuickOrderDetails,
     QuickOrderTicket,
@@ -61,6 +63,7 @@ import {ReviewItemComponent} from "../components/review-item/review-item";
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    Ionic2RatingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     LoginPageModule,
@@ -74,6 +77,7 @@ import {ReviewItemComponent} from "../components/review-item/review-item";
     MyApp,
     LoginPage,
     HomePage,
+    QuickOrderActionPage,
     QuickOrderPage,
     QuickOrderDetails,
     QuickOrderTicket,

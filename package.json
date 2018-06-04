@@ -32,6 +32,7 @@
     "cordova-plugin-file-transfer": "^1.7.1",
     "ionic-angular": "3.9.2",
     "ionic-stepper": "^1.1.0",
+    "ionic2-rating": "^1.2.2",
     "ionicons": "3.0.0",
     "moment": "^2.22.0",
     "moment-timezone": "^0.5.14",

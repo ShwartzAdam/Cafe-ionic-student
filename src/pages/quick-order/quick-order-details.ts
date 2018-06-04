@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams, ViewController} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {QuickOrderTicket} from "./quick-order-ticket";
 import {ItemProvider} from "../../providers/item/item";
 import {Item} from "../../model/item";
@@ -13,7 +13,6 @@ import {BasketPage} from "../basket/basket";
 })
 export class QuickOrderDetails {
 
-  private viewCtrl: ViewController;
   private entered: number = 0;
   private userid: number;
   private countItems: number;

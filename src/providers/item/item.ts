@@ -24,17 +24,17 @@ export class ItemProvider {
      });
    });
  }
-
- public getAllItemByType(type){
+*/
+  public getAllItemByType(type){
    return new Promise(resolve => {
-     this.http.get(this.url + "/items?type=" + type).subscribe(data => {
+     this.http.get(this.url + "/items/type/" + type).subscribe(data => {
        resolve(data);
      }, err => {
        console.log(err);
      });
    });
  }
- */
+
   public getAllItems(): Observable<Item[]> {
     return this.http.get<Item[]>(this.url + '/items' );
   }

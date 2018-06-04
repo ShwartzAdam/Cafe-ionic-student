@@ -12,7 +12,6 @@ import {ItemProvider} from "../../providers/item/item";
 import {ReviewListProvider} from "../../providers/review-list/review-list";
 import {ReviewProvider} from "../../providers/review/review";
 import {OrderList} from "../../model/orderList";
-import {TrackingPage} from "../../pages/tracking/tracking";
 
 @Component({
   selector: 'review',
@@ -69,13 +68,14 @@ export class ReviewComponent {
   private deleteTrueReview() {
     this.revListPro.getItemRevUser(this.userid,this.orderListId).then(
       res => {
-        console.log(res);
-        if( res.length == 0){
+        console.log(res['length']);
+        const len = res['length'];
+        if( len == 0){
           console.log('No done reviews at all in this order');
           // display all items for reviews
         } else {
           console.log('There is an open review to finish');
-          for(let index = 0 ; index < res.length ; index++ ){
+          for(let index = 0 ; index < len ; index++ ){
             console.log('need to remove item id ' + res[index]['itemid']);
             let removeItem = res[index]['itemid'];
             this.items = this.items.filter(item => item.itemid !== removeItem);
