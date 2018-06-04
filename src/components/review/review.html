@@ -13,22 +13,37 @@
       <ion-card-title>
         <ion-row>
           <ion-col>
-          Review For Order List : {{this.orderListId}}
+          Review For Order List : #{{this.orderListId}}
           </ion-col>
         </ion-row>
       </ion-card-title>
       <ion-card-content>
-        <ion-list *ngFor="let order of orders;let i = index">
-            <ion-card-title> {{this.items}}</ion-card-title>
+        <ion-card *ngFor="let item of items;let i = index">
+          <ion-card-header>
+            <ion-item>
+              <ion-card-title> {{item.name}}</ion-card-title>
+              <button ion-button icon-only item-right clear (click)="sendReview(item,i)">
+                <ion-icon name="paper-plane" color="first"></ion-icon>
+              </button>
+            </ion-item>
+            <img class="image-box" img-preloader="{{item.url}}" alt="">
+          </ion-card-header>
+          <ion-card-content>
             <ion-item-group>
-              <ion-item>
-                <ion-input type="text" placeholder="Comment"></ion-input>
+              <ion-label>Leave a comment...</ion-label>
+              <ion-item class="review-items">
+                <ion-textarea type="text" placeholder='"It was tasty and I really enjoyed it..."' (input)="adjustTextarea($event);" [(ngModel)]="this.comment[i]"></ion-textarea>
               </ion-item>
-              <ion-item>
-                <ion-input type="text" placeholder="stars" ></ion-input>
-              </ion-item>
-            </ion-item-group>
-        </ion-list>
+              <ion-label>Rate {{item.name}}</ion-label>
+              <ion-item class="review-items">
+                  <ion-range min="0" max="5" step="1" snaps="true"  color="second" [(ngModel)]="this.stars[i]" >
+                    <ion-label range-left>0</ion-label>
+                    <ion-label range-right>5</ion-label>
+                  </ion-range>
+                </ion-item>
+              </ion-item-group>
+          </ion-card-content>
+        </ion-card>
       </ion-card-content>
   </ion-grid>
 </ion-content>

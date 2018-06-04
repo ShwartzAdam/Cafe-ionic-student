@@ -40,7 +40,6 @@ export class LoginPage {
 
 
   login() {
-
     console.log(this.registerCredentials);
     this.userProvider.getUser(this.registerCredentials).then( result => {
         if(result){

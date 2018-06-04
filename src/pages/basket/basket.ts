@@ -7,6 +7,7 @@ import {Item} from "../../model/item";
 import {BasketTicket} from "./basket-ticket";
 
 
+
 @IonicPage()
 @Component({
   selector: 'page-basket',

@@ -90,14 +90,23 @@ export class TrackingPage {
         this.displayReviewButton = false;
       }else {
         // change to two - complete
+        this.displayReviewButton = false;
         this.selectedIndex = 2;
         this.openBoxReview(orderListId);
       }
     });
   }
   private openBoxReview(orderListId: any) {
-    this.orderListRev = orderListId;
-    this.displayReviewButton = true;
+    this.orderListPro.getOrderListByOlid(orderListId).subscribe(
+      res => {
+          if(res['hasreview'] == false){
+            this.orderListRev = orderListId;
+            this.displayReviewButton = true;
+          } else {
+            console.log('this orderlist has reviews');
+          }
+      });
+
   }
   public openReviewPage(orderListId){
     this.navCtrl.push(ReviewComponent,{

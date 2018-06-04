@@ -1,8 +1,15 @@
 review {
 
   .image-box{
-    height: 30%;
-    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 50%;
+    height: 10em;
+  }
+  .card{
+    border-radius: 5px !important;
   }
 
   .button{
@@ -22,18 +29,19 @@ review {
       margin-bottom: 10px;
     }
 
-    ion-item {
-      border-radius: 30px !important;
-      padding-left: 30px !important;
-      font-size: 0.9em;
-      margin-bottom: 10px;
-      border: 1px solid #ffffff;
-      border-bottom: 0px !important;
-      box-shadow: none !important;
+    .review-items {
+      border-radius: 10px !important;
+      padding-left: 10px !important;
+      font-size: 1.4em;
+      border: 1px solid $background-color-first;
+      -webkit-box-shadow: 4px 4px 14px -3px rgba(0,0,0,0.75);
+      -moz-box-shadow: 4px 4px 14px -3px rgba(0,0,0,0.75);
+      box-shadow: 4px 4px 14px -3px rgba(0,0,0,0.75);
+      ion-input {
 
-      .item-inner {
-        border-bottom-color: #ffffff !important;
-        box-shadow: none !important;
+      }
+      ion-range{
+
       }
 
     }

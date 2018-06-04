@@ -38,6 +38,7 @@ import {SideNavComponent} from "../components/side-nav/side-nav";
 import {BasketTicket} from "../pages/basket/basket-ticket";
 import {ImagePreloader} from "../directives/img-preload/img-preload";
 import {ReviewComponent} from "../components/review/review";
+import {ReviewItemComponent} from "../components/review-item/review-item";
 
 
 @NgModule({
@@ -51,9 +52,10 @@ import {ReviewComponent} from "../components/review/review";
     MenuOrderDetails,
     ItemComponent,
     ReviewComponent,
+    ReviewItemComponent,
     SideNavComponent,
     BasketTicket,
-    ImagePreloader,
+    ImagePreloader
   ],
   imports: [
     BrowserModule,
@@ -79,6 +81,7 @@ import {ReviewComponent} from "../components/review/review";
     MenuOrderDetails,
     ItemComponent,
     ReviewComponent,
+    ReviewItemComponent,
     SideNavComponent,
     BasketTicket,
   ],

@@ -61,27 +61,7 @@
            </button>
          </ion-col>
        </ion-row>
-       <ion-list *ngIf="displayReviews">
-         <ion-row>
-           <ion-col></ion-col>
-           <ion-col>
-             <h1 ion-text="dark">Reviews</h1>
-           </ion-col>
-           <ion-col></ion-col>
-         </ion-row>
-         <ion-row *ngFor="let review of reviews">
-           <ion-col>
-             <p ion-text color="dark">{{review.name}},</p>
-           </ion-col>
-           <ion-col>
-             <p ion-text color="dark" text-left>{{review.location}}</p>
-           </ion-col>
-           <ion-col>
-             <h3 ion-text color="dark">{{review.stars}} Stars</h3>
-           </ion-col>
-           <ion-card-content>{{review.content}}</ion-card-content>
-         </ion-row>
-       </ion-list>
+       <review-item></review-item>
      </ion-card-content>
  </ion-grid>
 </ion-content>
