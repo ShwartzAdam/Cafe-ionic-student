@@ -12,14 +12,10 @@ import {UserData} from "../../providers/user-data/user-data";
 export class MenuOrderDetails {
 
   // varibles from quick-order page taken out with nav controller
-  title : string;
-  url : string;
-  // switched to present the right form
-  displayFoodList : boolean ;
-  displayDrinkList : boolean ;
+  private title : string;
+  private  url : string;
   // items list from server
-  itemList : Item[];
-  item: Item;
+  private itemList : Item[] = new Array();
   // holds the number of items in the basket
   private countItems: number;
 
@@ -32,23 +28,6 @@ export class MenuOrderDetails {
     // get the values from prev page
     this.title = this.navParams.get('name');
     this.url = this.navParams.get('url');
-
-    this.initView();
-  }
-  private initView() {
-    // checking what king of items to show by Type
-    if(this.title == "Food"){
-      // call Rest API for items
-      this.getAllItems("Food");
-      //present Food Menu
-      this.displayFoodList = true;
-      console.log("Food Menu")
-    }else{
-      this.getAllItems("Drink");
-      // present Drinks Menu
-      this.displayDrinkList = true;
-      console.log("Drinks Menu")
-    }
     // update cart bedge
     this.userData.getItemsFromCart().then(res => {
       if(res){
@@ -56,6 +35,25 @@ export class MenuOrderDetails {
         console.log(this.countItems);
       }
     });
+    this.initView();
+  }
+  private initView() {
+    // checking what king of items to show by Type
+    if(this.title == "Food"){
+      // call Rest API for items
+      this.getItemsByType("Food");
+      console.log("Food Menu")
+    } else if (this.title == "Drink") {
+      this.getItemsByType("Drink");
+      console.log("Drinks Menu")
+    } else if (this.title == "Snack") {
+        this.getItemsByType('Snack');
+    } else if (this.title == "Pastry") {
+        this.getItemsByType('Pastry');
+      console.log("Drinks Menu")
+    } else {
+        this.getItemsByType('Sandwich');
+    }
   }
   pushItem(item) {
     console.log(item);
@@ -65,22 +63,10 @@ export class MenuOrderDetails {
       });
   }
 
-  getAllItems(type){
-    this.itemProv.getAllItems().subscribe((itemList: Item[]) => {
-      if(type == "Food"){
-        //filter the item list and remain only items with TYPE = FOOD
-        let rawData = itemList.filter(item => item.type == "Food");
-        this.itemList = rawData;
-      }
-      else{
-        // filter the item list and remain only items with TYPE = DRINK
-        let rawData = itemList.filter(item => item.type == "Drink");
-        this.itemList = rawData;
-      }
-      console.log(this.itemList)
-    });
+  private getItemsByType(s: string) {
+    this.itemProv.getAllItemByType(s).then(
+      (res : any[]) => {
+        res.forEach(item => this.itemList.push(item))
+      });
   }
-
-
-
 }

@@ -1,4 +1,4 @@
-<ion-header>
+]<ion-header>
   <ion-navbar color="second">
     <ion-buttons left>
       <button ion-button icon-only menuToggle color="white">
@@ -15,12 +15,9 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding class="card-background-page">
-  <ion-card button (click)="pushPage('Drink')" >
-    <img src="../../assets/imgs/drinkss.jpg"/>
-    <div class="card-title">Drinks Menu</div>
-  </ion-card>
-  <ion-card button (click)="pushPage('Food')" >
-    <img src="../../assets/imgs/food-menu.jpg"/>
-    <div class="card-title">Food Menu</div>
+  <ion-card button *ngFor="let item of items" (click)="pushPage(item)" >
+    <img src="../../{{item.src}}"/>
+    <div class="card-title">{{item.name}}</div>
   </ion-card>
 </ion-content>
+

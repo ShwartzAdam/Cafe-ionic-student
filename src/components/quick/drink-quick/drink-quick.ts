@@ -112,6 +112,7 @@ export class DrinkQuickComponent implements OnInit{
           this.itemChoosen = this.items[index].name + '  ' + this.items[index].price + ' NIS';
           this.itemDesc = this.items[index].description;
           this.itemPrice = this.items[index].price;
+          this.urlImage = this.items[index].url;
           this.displayDesc = true;
           return true;
         }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { QuickOrderDetails } from "./quick-order-details";
 import {UserData} from "../../providers/user-data/user-data";
 import {BasketPage} from "../basket/basket";
 import {DrinkQuickComponent} from "../../components/quick/drink-quick/drink-quick";

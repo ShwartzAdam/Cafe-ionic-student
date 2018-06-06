@@ -24,12 +24,9 @@ export class QuickOrderTicket implements OnInit{
   private orderList = new OrderList();
   private order = new Order();
   private items: Item[] = new Array();
-  private orderList: OrderList = new OrderList;
-  private order: Order[] = new Array();
   private student: Student = new Student;
   // enable buttons
-  isenabled: boolean = false;
-  //
+  public isenabled: boolean = false;
   public pickUpTime: any;
   public orderTime: any;
   public orderTimeExtended: any;
@@ -64,6 +61,16 @@ export class QuickOrderTicket implements OnInit{
         stu.credit = _stu.credit;
         this.student = stu;
       });
+    // loop on orders for items
+    this.itemPro.getItemById(this.order.itemid).subscribe(
+       res => {
+         console.log(res);
+         let item: Item = new Item;
+         item.qty = this.order.qty;
+         item.name = res.name;
+         item.price = res.price;
+         this.items.push(item);
+       });
   }
 
   checkTime(){

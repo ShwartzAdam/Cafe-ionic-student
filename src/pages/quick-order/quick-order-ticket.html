@@ -14,9 +14,10 @@
       Order Information
     </ion-card-title>
     <ion-card-content>
+      <ion-item>
         <ion-row>
           <ion-col col-3>
-            <p ion-text>To :</p>
+            <p ion-text><strong>To :</strong></p>
           </ion-col>
           <ion-col col-1></ion-col >
           <ion-col col-6>
@@ -25,7 +26,7 @@
         </ion-row>
         <ion-row>
           <ion-col col-3>
-            <p ion-text>Phone :</p>
+            <p ion-text><strong>Phone :</strong></p>
           </ion-col>
           <ion-col col-1></ion-col>
           <ion-col col-6>
@@ -34,29 +35,30 @@
         </ion-row>
         <ion-row>
           <ion-col col-3>
-            <p ion-text>Credit :</p>
+            <p ion-text><strong>Credit :</strong></p>
           </ion-col>
           <ion-col col-1></ion-col>
           <ion-col col-6>
-            <p ion-text>{{this.student.credit}}</p>
+            <p ion-text>{{this.student.credit}} &#8362;</p>
           </ion-col>
         </ion-row>
-      <ion-row *ngFor="let item of items">
-        <ion-col>
-          {{item.name}}
-        </ion-col>
-        <ion-col>
-          {{item.qty}}X
-        </ion-col>
-        <ion-col>
-          {{item.price}} &#8362;
-        </ion-col>
-      </ion-row>
-      <ion-row class="basket-total">
-        <ion-col>
-          Total Price : {{this.totalPrice}} &#8362;
-        </ion-col>
-      </ion-row>
+        <ion-row *ngFor="let item of items">
+          <ion-col>
+            {{item.name}}
+          </ion-col>
+          <ion-col>
+            {{item.qty}}X
+          </ion-col>
+          <ion-col>
+            {{item.price}} &#8362;
+          </ion-col>
+        </ion-row>
+        <ion-row class="basket-total">
+          <ion-col>
+            Total Price : {{this.totalPrice}} &#8362;
+          </ion-col>
+        </ion-row>
+      </ion-item>
     </ion-card-content>
   </ion-grid>
   <ion-grid class="quick-ticket-box">

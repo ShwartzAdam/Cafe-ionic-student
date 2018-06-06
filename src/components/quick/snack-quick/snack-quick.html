@@ -1,4 +1,64 @@
-<!-- Generated template for the SnackQuickComponent component -->
-<div>
-  {{text}}
-</div>
+<ion-header>
+  <ion-navbar color="second">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="toolbar-header">{{this.title}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only color="white" clear (click)="gotoBasket()">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge class="cart-badge">{{this.countItems}}</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid class="quick-box-form">
+    <ion-row>
+      <ion-col>
+        <ion-img class="item-image"  src="../{{this.url}}"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item class="item-list">
+        <ion-label>{{this.itemChoosen}}</ion-label>
+      </ion-item>
+      <ion-col float-right class="item-button">
+        <button ion-button round icon-only (click)="chooseDrink()" color="first">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="displayDesc">
+      <ion-item text-wrap class="item-decs">
+        <ion-label>Description : {{this.itemDesc}}</ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label>How many snacks would you like? <strong>  {{this.qDrink}}</strong> </ion-label>
+        <ion-range min="0" max="5" [(ngModel)]="qDrink" color="secondary">
+        </ion-range>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button class="submit-btn" ion-button round (click)="calcOrder()">Calculate</button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="displayFinalPrice">
+      <ion-col>
+        <ion-label><strong>You Received A Discount !!!</strong></ion-label>
+        <ion-label>Total Price : <span>{{this.totalPrice}} NIS</span></ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer no-shadow class="quick-order-footer">
+  <ion-toolbar position="bottom" color="first">
+    <button ion-button round float-left (click)="clearOrder()" [disabled]="!isenabled">Clear</button>
+    <button ion-button round float-right (click)="initOrder()" [disabled]="!isenabled">Create Order</button>
+  </ion-toolbar>
+</ion-footer>
