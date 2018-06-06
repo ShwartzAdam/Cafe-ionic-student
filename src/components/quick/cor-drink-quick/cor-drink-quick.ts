@@ -7,10 +7,10 @@ import { Component } from '@angular/core';
  * Components.
  */
 @Component({
-  selector: 'food-quick',
-  templateUrl: 'food-quick.html'
+  selector: 'cor-drink-quick',
+  templateUrl: 'cor-drink-quick.html'
 })
-export class FoodQuickComponent {
+export class CorDrinkQuickComponent {
 
   text: string;
 

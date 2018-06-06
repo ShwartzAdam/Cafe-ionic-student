@@ -57,18 +57,13 @@
           Total Price : {{this.totalPrice}} &#8362;
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="displayTime">
-        <ion-col>
-          Pick Up Time : {{this.orderTime}}
-        </ion-col>
-      </ion-row>
     </ion-card-content>
   </ion-grid>
   <ion-grid class="quick-ticket-box">
     <ion-row>
       <ion-item>
         <ion-label>Pick-Up Time :</ion-label>
-        <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="orderTime"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="this.orderTime"></ion-datetime>
       </ion-item>
     </ion-row>
     <ion-row>

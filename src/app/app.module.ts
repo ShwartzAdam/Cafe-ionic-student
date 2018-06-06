@@ -40,6 +40,10 @@ import {ReviewComponent} from "../components/review/review";
 import {ReviewItemComponent} from "../components/review-item/review-item";
 import {Ionic2RatingModule} from "ionic2-rating";
 import {QuickOrderActionPage} from "../pages/quick-order-action/quick-order-action";
+import {DrinkQuickComponent} from "../components/quick/drink-quick/drink-quick";
+import {SnackQuickComponent} from "../components/quick/snack-quick/snack-quick";
+import {SandQuickComponent} from "../components/quick/sand-quick/sand-quick";
+import {CorDrinkQuickComponent} from "../components/quick/cor-drink-quick/cor-drink-quick";
 
 
 @NgModule({
@@ -57,7 +61,11 @@ import {QuickOrderActionPage} from "../pages/quick-order-action/quick-order-acti
     ReviewItemComponent,
     SideNavComponent,
     BasketTicket,
-    ImagePreloader
+    ImagePreloader,
+    DrinkQuickComponent,
+    CorDrinkQuickComponent,
+    SnackQuickComponent,
+    SandQuickComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +96,10 @@ import {QuickOrderActionPage} from "../pages/quick-order-action/quick-order-acti
     ReviewItemComponent,
     SideNavComponent,
     BasketTicket,
+    DrinkQuickComponent,
+    CorDrinkQuickComponent,
+    SnackQuickComponent,
+    SandQuickComponent
   ],
   providers: [
     StatusBar,
