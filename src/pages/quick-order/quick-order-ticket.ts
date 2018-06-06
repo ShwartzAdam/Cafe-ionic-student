@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { NavController, NavParams} from 'ionic-angular';
+import {LoadingController, NavController, NavParams} from 'ionic-angular';
 
 import {OrderList} from "../../model/orderList";
 import {Order} from "../../model/order";
@@ -24,11 +24,13 @@ export class QuickOrderTicket implements OnInit{
   private orderList: OrderList = new OrderList;
   private order: Order[] = new Array();
   private student: Student = new Student;
+  // enable buttons
+  isenabled: boolean = false;
   //
   orderTime: any;
   orderTimeExtended: any;
   displayTime: boolean = false;
-  displayButtons: boolean = false;
+  displayButtons: boolean = true;
   displaySuccessTime: boolean = false;
   totalPrice: number;
 
@@ -37,7 +39,8 @@ export class QuickOrderTicket implements OnInit{
               public orderLPro: OrderListProvider,
               public orderPro: OrderProvider,
               public userData: UserData,
-              public userPro: UserProvider){}
+              public userPro: UserProvider,
+              public loadingCtrl: LoadingController){}
 
   ngOnInit(): void {
     this.items = this.navParams.get("items");
@@ -75,14 +78,18 @@ export class QuickOrderTicket implements OnInit{
     //    ask for differet time
     // orderTime
     //
+    this.isenabled = true;
     this.displayTime = true;
-    this.displayButtons = true;
+    //this.displayButtons = true;
     this.displaySuccessTime = true;
     // collect order time
     console.log(this.orderTime);
-    let time = moment(this.orderTime,'hh:mm:ss');
-    console.log(time);
-    this.orderTimeExtended = time['_d'];
+    const orderTime = moment(new Date().getTime(),'hh:mm:ss').add(3,'h').toISOString();
+    const pickUpTime = moment(this.orderTime,'hh:mm:ss').add(3,'h').toISOString();
+    console.log(orderTime);
+    console.log(pickUpTime);
+    this.orderTime = orderTime;
+    this.orderTimeExtended = pickUpTime;
     console.log(this.orderTimeExtended);
     // if true and time slot are available
     this.userData.getUserId().then(
@@ -91,7 +98,8 @@ export class QuickOrderTicket implements OnInit{
         let ol: OrderList = new OrderList;
         ol.userid = userid;
         ol.totalprice = this.totalPrice;
-        ol.ol_dttm = this.orderTimeExtended;
+        ol.ol_dttm_real = this.orderTimeExtended;
+        ol.ol_dttm = this.orderTime;
         ol.status = "None";
         this.orderList = ol;
         console.log(this.orderList);
@@ -132,6 +140,18 @@ export class QuickOrderTicket implements OnInit{
       res => {
         console.log(res);
         this.navCtrl.setRoot("TrackingPage");
+        let loading = this.loadingCtrl.create({
+          spinner: 'crescent',
+          content: 'Your order has been received by the cafteria.<br> Order number is ' + this.orderList.olid ,
+        });
+        loading.present();
+        setTimeout(() => {
+          this.navCtrl.setRoot("TrackingPage");
+        }, 1000);
+
+        setTimeout(() => {
+          loading.dismiss();
+        }, 4000);
       }
     );
 

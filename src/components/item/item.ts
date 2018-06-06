@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavParams, NavController, Events} from "ionic-angular";
+import {NavParams, NavController, Events, ToastController} from "ionic-angular";
 import {UserData} from "../../providers/user-data/user-data";
 import {BasketPage} from "../../pages/basket/basket";
 import {Item} from "../../model/item";
@@ -31,7 +31,8 @@ export class ItemComponent {
   constructor(public navParams: NavParams,
               public navCtrl : NavController,
               public userData: UserData,
-              public events: Events){
+              public events: Events,
+              private toastCtrl: ToastController){
     this.item = this.navParams.get('item');
 
     // present review and button for order
@@ -63,9 +64,23 @@ export class ItemComponent {
     console.log(item.itemid);
     this.userData.addItemToCart(item.itemid);
     this.events.publish('cart:update');
+    this.presentToast(item.name);
   }
   public gotoBasket(){
     this.navCtrl.setRoot(BasketPage);
+  }
+  presentToast(item: string) {
+    let toast = this.toastCtrl.create({
+      message: item + ' has been added to your cart ',
+      duration: 3000,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 
 }

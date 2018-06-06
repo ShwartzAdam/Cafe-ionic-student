@@ -10,6 +10,7 @@ import { LoginPage } from "../pages/login/login";
 import { WalletPage } from "../pages/wallet/wallet";
 import { BasketPage } from "../pages/basket/basket";
 import { HomePage } from "../pages/home/home";
+import {QuickOrderActionPage} from "../pages/quick-order-action/quick-order-action";
 // provider
 
 @Component({
@@ -32,6 +33,7 @@ export class MyApp {
     this.sideMenuPages = [
       {title: 'Home' , component: HomePage , icon: 'home'},
       {title: 'Quick Order' , component: QuickOrderPage , icon: 'book'},
+      {title: 'Quick Order Action' , component: QuickOrderActionPage , icon: 'book'},
       {title: 'Menu Order' , component: MenuOrderPage , icon: 'map'},
       {title: 'Tracking' , component: TrackingPage , icon: 'pin'},
       {title: 'Wallet' , component: WalletPage , icon: 'card'},
@@ -58,5 +60,5 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(sideMenuPages.component);
   }
-  
+
 }

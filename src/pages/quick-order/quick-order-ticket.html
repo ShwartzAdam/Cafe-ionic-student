@@ -15,29 +15,29 @@
     </ion-card-title>
     <ion-card-content>
         <ion-row>
-          <ion-col>
+          <ion-col col-3>
             <p ion-text>To :</p>
           </ion-col>
-          <ion-col></ion-col>
-          <ion-col>
+          <ion-col col-1></ion-col >
+          <ion-col col-6>
             <p ion-text> {{this.student.firstname}} {{this.student.lastname}}</p>
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col>
+          <ion-col col-3>
             <p ion-text>Phone :</p>
           </ion-col>
-          <ion-col></ion-col>
-          <ion-col>
+          <ion-col col-1></ion-col>
+          <ion-col col-6>
             <p ion-text> {{this.student.phone}}</p>
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col>
+          <ion-col col-3>
             <p ion-text>Credit :</p>
           </ion-col>
-          <ion-col></ion-col>
-          <ion-col>
+          <ion-col col-1></ion-col>
+          <ion-col col-6>
             <p ion-text>{{this.student.credit}}</p>
           </ion-col>
         </ion-row>
@@ -84,7 +84,7 @@
 </ion-content>
 <ion-footer no-shadow class="quick-order-ticket-buttons" *ngIf="displayButtons">
   <ion-toolbar position="bottom" color="first">
-    <button ion-button round float-left (click)="clearOrder()">Clear</button>
-    <button ion-button round float-right (click)="placeOrder()">Place Order</button>
+    <button ion-button round float-left (click)="clearOrder()" [disabled]="!isenabled">Clear</button>
+    <button ion-button round float-right (click)="placeOrder()" [disabled]="!isenabled">Place Order</button>
   </ion-toolbar>
 </ion-footer>

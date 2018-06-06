@@ -11,7 +11,16 @@ import {Item} from "../../model/item";
   templateUrl: 'quick-order-action.html',
 })
 export class QuickOrderActionPage implements OnInit{
+  // url for image
+  public urlImage: string = '';
+  // item for display
+  public itemChoosen: string = 'Choose a drink';
+  public itemDesc: string = '';
+  public displayDesc: boolean = false;
   // array of items
+  qDrink: number;
+  drinkId: number;
+  // choosen item
   private items: Item[] = new Array();
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -22,11 +31,12 @@ export class QuickOrderActionPage implements OnInit{
     this.itemProv.getAllItemByType('Drink').then(
       (_items: Item[]) => {
           _items.forEach(item => this.items.push(item));
-          this.presentActionSheet();
       });
-
+    console.log(this.items);
   }
-
+  chooseDrink(){
+    this.presentActionSheet();
+  }
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Choose Your Drink',
@@ -40,10 +50,14 @@ export class QuickOrderActionPage implements OnInit{
     let buttons = [];
     for (let index in this.items) {
       let button = {
-        text: this.items[index].name + '  ' + this.items[index].price + '&#8362',
+        text: this.items[index].name + '  ' + this.items[index].price + ' NIS',
         //icon: this.possibleButtons[index].icon,
         handler: () => {
           console.log('choosen item id ' + this.items[index].itemid);
+          this.drinkId = this.items[index].itemid;
+          this.itemChoosen = this.items[index].name + '  ' + this.items[index].price + ' NIS';
+          this.itemDesc = this.items[index].description;
+          this.displayDesc = true;
           return true;
         }
       }

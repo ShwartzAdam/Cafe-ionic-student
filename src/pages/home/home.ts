@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NavController, NavParams, IonicPage, Events} from 'ionic-angular';
 import { BasketPage } from "../basket/basket";
+import { AlertController } from 'ionic-angular';
 // providers
 import { UserProvider } from "../../providers/user/user";
 // model
@@ -21,7 +22,8 @@ export class HomePage{
               public navParams: NavParams,
               public userProvider: UserProvider,
               public userData: UserData,
-              public events: Events) {
+              public events: Events,
+              public alertCtrl: AlertController) {
     this.initView();
   }
 
@@ -41,10 +43,24 @@ export class HomePage{
       });
   }
 
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Hello Student !',
+      subTitle: 'We noticed you credit is 0 ,Please click on Wallet before making any purchase, Thank you AA',
+      buttons: ['Got it...']
+    });
+    alert.present();
+  }
+
   private display(){
     this.userProvider.getUserById(this.userid).subscribe((res: Student)=> {
       this._student = res;
       this.userData.setStudent(this._student);
+      if(this._student.credit == 0){
+        console.log('student has no credit at all');
+        this.presentAlert();
+
+      }
     });
 
   }

@@ -49,10 +49,12 @@ export class BasketTicket {
     this.displaySuccessTime = true;
     // collect order time
     console.log(this.orderTime);
-    let time = moment(this.orderTime,'hh:mm:ss');
-    console.log(time);
-    this.orderTimeExtended = time['_d'];
-    console.log(this.orderTimeExtended);
+    const orderTime = moment(new Date().getTime(),'hh:mm:ss').add(3,'h').toISOString();
+    const pickUpTime = moment(this.orderTime,'hh:mm:ss').add(3,'h').toISOString();
+    console.log(orderTime);
+    console.log(pickUpTime);
+    this.orderTime = orderTime;
+    this.orderTimeExtended = pickUpTime;
     // if true and time slot are available
     this.userData.getUserId().then(
       userid => {
@@ -60,7 +62,8 @@ export class BasketTicket {
         let ol: OrderList = new OrderList;
         ol.userid = userid;
         ol.totalprice = this.totalPrice;
-        ol.ol_dttm = this.orderTimeExtended;
+        ol.ol_dttm_real = this.orderTimeExtended;
+        ol.ol_dttm = this.orderTime;
         ol.totalpreptime = 10;
         ol.status = "None";
         this.orderList = ol;

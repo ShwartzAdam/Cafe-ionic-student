@@ -1,5 +1,6 @@
 page-quick-order-action {
-  .quick-box{
+
+  .quick-box-form{
     display: block;
     width: 90%;
     margin: auto;
@@ -7,17 +8,15 @@ page-quick-order-action {
     padding: 20px 20px 0px 20px;
     border-radius: 20px;
     margin-top: 5%;
-
-    ion-select{
-      max-width: 100%;
-
-      ion-option{
-
-      }
+    .item-image{
+      display:block;
+      margin-left: auto;
+      margin-right:auto;
+      height:40%;
+      width: 80%;
     }
-
     ion-icon{
-      font-size: 35px;
+      font-size: 30px;
     }
 
     ion-img{
@@ -26,6 +25,7 @@ page-quick-order-action {
 
       img{
         border-radius: 10px;
+        contain: none;
       }
     }
 
@@ -37,8 +37,26 @@ page-quick-order-action {
       border: 1px solid #ffffff;
       border-bottom: 0px !important;
       box-shadow: none !important;
-    }
 
+    }
+    .item-list{
+      width: 70% !important;
+    }
+    .item-decs{
+      width: 100% !important;
+      height: 100px !important;
+
+    }
+    .item-inner {
+      border-bottom-color: #ffffff !important;
+      box-shadow: none !important;
+    }
+    .item-button{
+      margin-bottom: 8px;
+    }
+    .desc-header{
+      margin:5px !important;
+    }
     ion-label{
       font-size: 1.0em;
       strong{
@@ -68,27 +86,6 @@ page-quick-order-action {
       border-radius: 30px !important;
       border: 1px solid #ffffff;
     }
-
-    .item-inner {
-      border-bottom-color: #ffffff !important;
-      box-shadow: none !important;
-    }
-
-    ion-select{
-      text-align: center;
-      .select-icon-inner {
-        top: 50%;
-        border-top: 10px solid!important;
-        border-right: 10px solid transparent!important;
-        border-left: 10px solid transparent!important;
-        left: -4px!important;
-        pointer-events: none;
-      }
-      .button-inner{
-
-      }
-    }
-
 
 
   }

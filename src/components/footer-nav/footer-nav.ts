@@ -4,6 +4,7 @@ import {QuickOrderPage} from "../../pages/quick-order/quick-order";
 import {MenuOrderPage} from "../../pages/menu-order/menu-order";
 import {WalletPage} from "../../pages/wallet/wallet";
 import {LoginPage} from "../../pages/login/login";
+import {TrackingPage} from "../../pages/tracking/tracking";
 
 @Component({
   selector: 'app-footer-nav',
@@ -22,6 +23,7 @@ export class FooterNavComponent {
     this.footerMenu = [
       {title: 'Quick' , component: QuickOrderPage , icon: 'book'},
       {title: 'Menu' , component: MenuOrderPage , icon: 'map'},
+      {title: 'Tracking' , component: TrackingPage , icon: 'pin'},
       {title: 'Wallet' , component: WalletPage , icon: 'card'},
       {title: 'Sign-Out' , component: LoginPage , icon: 'power'}
     ];

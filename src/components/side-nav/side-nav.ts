@@ -7,6 +7,7 @@ import { WalletPage } from "../../pages/wallet/wallet";
 import { BasketPage } from "../../pages/basket/basket";
 import { HomePage } from "../../pages/home/home";
 import {QuickOrderPage} from "../../pages/quick-order/quick-order";
+import {QuickOrderActionPage} from "../../pages/quick-order-action/quick-order-action";
 
 @Component({
   selector: 'app-side-nav',
@@ -27,6 +28,7 @@ export class SideNavComponent {
     this.sideMenuPages = [
       {title: 'Home' , component: HomePage , icon: 'home'},
       {title: 'Quick Order' , component: QuickOrderPage , icon: 'book'},
+      {title: 'Quick Order Action' , component: QuickOrderActionPage , icon: 'book'},
       {title: 'Menu Order' , component: MenuOrderPage , icon: 'map'},
       {title: 'Tracking' , component: TrackingPage , icon: 'pin'},
       {title: 'Wallet' , component: WalletPage , icon: 'card'},
