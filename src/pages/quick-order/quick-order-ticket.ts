@@ -127,19 +127,36 @@ export class QuickOrderTicket implements OnInit{
         console.log(this.orderList);
          */
       });
-
+     let hasCredit: boolean = this.checkBalance();
+     if(hasCredit) {
+       console.log('user has credit to procced')
+     } else {
+       console.log('user has no credit ');
+     }
 
   }
-  checkBalance(): number {
+  checkBalance(): boolean {
     let balance: number = this.student.credit;
     let priceToDec: number = this.orderList.totalprice;
-    let diff = Math.
-
+    let diff = Math.abs(balance - priceToDec);
+    if (diff > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 
   placeOrder() {
-    let hasCredit: number = this.checkBalance();
+    let balance: number = this.student.credit;
+    console.log('user credit before ' + balance );
+    let priceToDec: number = this.orderList.totalprice;
+    let diff = Math.abs(balance - priceToDec);
+    console.log('user credit after ' + diff );
+    this.student.credit = diff;
+    this.userPro.updateUser(this.student).then(
+      res => console.log(res)
+    );
     // clean cart
     this.userData.cleanCart().then(
       res => console.log(res)
