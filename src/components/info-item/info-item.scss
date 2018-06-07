@@ -1,0 +1,43 @@
+info-item {
+    display: block;
+    margin: auto;
+
+    .item-box{
+      display: block;
+      width: 100%;
+      margin: auto;
+      background: $background-color-fifth;
+      border-radius: 30px;
+    }
+    .box-item-time{
+      padding-bottom: 75px;
+    }
+
+    ion-row {
+      align-items: center;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    ion-item {
+      border-radius: 30px !important;
+      padding-left: 30px !important;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+      border: 1px solid #ffffff;
+      border-bottom: 0px !important;
+      box-shadow: none !important;
+    }
+
+    ion-label{
+      font-size: 0.9em;
+    }
+
+    .item-inner {
+      border-bottom-color: #ffffff !important;
+      box-shadow: none !important;
+    }
+
+
+
+}
