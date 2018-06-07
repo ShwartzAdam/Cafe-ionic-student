@@ -8,39 +8,23 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-grid class="quick-box-form">
-    <ion-row>
-      <ion-col>
-        <ion-img class="item-image"  src="../assets/imgs/cafe.jpg"></ion-img>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-item class="item-list">
-          <ion-label>{{this.itemChoosen}}</ion-label>
-      </ion-item>
-      <ion-col float-right class="item-button">
-        <button ion-button round icon-only (click)="chooseDrink()" color="first">
-          <ion-icon name="add"></ion-icon>
-        </button>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="displayDesc">
-      <ion-item text-wrap class="item-decs">
-        <ion-label>Description : {{this.itemDesc}}</ion-label>
-      </ion-item>
-    </ion-row>
-    <ion-row>
+  <ion-card>
+    <ion-card-header>
+      {{ rootComponent }}
+    </ion-card-header>
+    <ion-card-content>
       <ion-item>
-        <ion-label>How many drinks would you like? <strong>  {{this.qDrink}}</strong> </ion-label>
-        <ion-range min="0" max="5" [(ngModel)]="qDrink" color="secondary">
-        </ion-range>
+      <ion-segment class="seg-box" [(ngModel)]="rootComponent" color="second">
+        <ion-segment-button value="Information" (ionSelect)="selectedInformation()">
+          <ion-icon name="information-circle"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="Review" (ionSelect)="selectedReview()">
+          <ion-icon name="albums"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
       </ion-item>
-    </ion-row>
-  </ion-grid>
+      <review-item *ngIf="displayReview"></review-item>
+      <info-item *ngIf="displayInfo"></info-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
-<ion-footer no-shadow class="quick-order-footer">
-  <ion-toolbar position="bottom" color="first">
-    <button ion-button round float-left (click)="clearOrder()" [disabled]="!isenabled">Clear</button>
-    <button ion-button round float-right (click)="initOrder()" [disabled]="!isenabled">Create Order</button>
-  </ion-toolbar>
-</ion-footer>

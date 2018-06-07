@@ -1,18 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {LoadingController, NavController, NavParams} from 'ionic-angular';
-
 import {OrderList} from "../../model/orderList";
 import {Order} from "../../model/order";
 import {OrderListProvider} from "../../providers/order-list/order-list";
 import {UserData} from "../../providers/user-data/user-data";
 import {OrderProvider} from "../../providers/order/order";
-
-import * as moment from 'moment';
-import * as tz from 'moment-timezone';
 import {Item} from "../../model/item";
 import {UserProvider} from "../../providers/user/user";
 import {Student} from "../../model/user";
 import {ItemProvider} from "../../providers/item/item";
+
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'quick-order-ticket',
@@ -25,11 +24,13 @@ export class QuickOrderTicket implements OnInit{
   private order = new Order();
   private items: Item[] = new Array();
   private student: Student = new Student;
+  private prepTotal: number = 0;
   // enable buttons
   public isenabled: boolean = false;
   public pickUpTime: any;
   public orderTime: any;
   public orderTimeExtended: any;
+  public length : number;
   displayTime: boolean = false;
   displayButtons: boolean = true;
   displaySuccessTime: boolean = false;
@@ -48,9 +49,12 @@ export class QuickOrderTicket implements OnInit{
   ngOnInit(): void {
     this.orderList = this.navParams.get('orderListParam');
     this.order = this.navParams.get('orderParam');
+    this.length = this.navParams.get('size');
+
     this.totalPrice = this.orderList.totalprice;
     console.log(this.orderList);
     console.log(this.order);
+
     this.userPro.getUserById(this.orderList.userid).subscribe(
       _stu => {
         let stu: Student = new Student;
@@ -62,15 +66,36 @@ export class QuickOrderTicket implements OnInit{
         this.student = stu;
       });
     // loop on orders for items
-    this.itemPro.getItemById(this.order.itemid).subscribe(
-       res => {
-         console.log(res);
-         let item: Item = new Item;
-         item.qty = this.order.qty;
-         item.name = res.name;
-         item.price = res.price;
-         this.items.push(item);
-       });
+    if(this.length == 1){
+      console.log('one item to checkout');
+      this.itemPro.getItemById(this.order.itemid).subscribe(
+        res => {
+          console.log(res);
+          let item: Item = new Item;
+          item.qty = this.order.qty;
+          item.name = res.name;
+          item.price = res.price;
+          this.items.push(item);
+        });
+
+    } else {
+      console.log('two or more item to checkout');
+      for (let i = 0 ; i < this.length ; i++) {
+        this.itemPro.getItemById(this.order[i].itemid).subscribe(
+          res => {
+            console.log(res);
+            let item: Item = new Item;
+            item.qty = this.order[i].qty;
+            item.name = res.name;
+            item.price = res.price;
+            this.items.push(item);
+          });
+      }
+
+    }
+   console.log(this.items);
+
+
   }
 
   checkTime(){
@@ -89,17 +114,35 @@ export class QuickOrderTicket implements OnInit{
     this.orderTime = pickUpTimeStr;
     this.pickUpTime = pickUpTimeStr;
     this.orderTimeExtended = orderTimeStr;
-    // if true and time slot are available
     this.orderList.ol_dttm_real = this.orderTimeExtended;
     this.orderList.ol_dttm = this.orderTime;
+    // set orderlist status to none
     this.orderList.status = 'None';
-    this.itemPro.getItemById(this.order.itemid).subscribe(
-      res => {
-        let timePrepItem = res.preptime;
-        let quantity = this.order.qty;
-        let prep: number = Math.imul(timePrepItem,quantity);
-        this.orderList.totalpreptime = prep;
-      });
+    // get item for prep time
+    if ( this.length == 1){
+      this.itemPro.getItemById(this.order.itemid).subscribe(
+        res => {
+          let timePrepItem = res.preptime;
+          let quantity = this.order.qty;
+          let prep: number = Math.imul(timePrepItem, quantity);
+          this.prepTotal = prep;
+          console.log(this.prepTotal);
+        });
+    } else {
+      for ( let i = 0 ; i < this.length ; i++) {
+        this.itemPro.getItemById(this.order[i].itemid).subscribe(
+          res => {
+            let timePrepItem = res.preptime;
+            let quantity = this.order[i].qty;
+            let prep: number = Math.imul(timePrepItem, quantity);
+            this.prepTotal = this.prepTotal + prep;
+            console.log(this.prepTotal);
+          });
+      }
+    }
+
+    this.orderList.totalpreptime = this.prepTotal;
+    console.log(this.orderList.totalpreptime);
     console.log(this.orderList);
     this.createOrder();
   }
@@ -112,11 +155,23 @@ export class QuickOrderTicket implements OnInit{
       resOrderListId => {
         console.log(resOrderListId);
         this.orderList.olid = resOrderListId["olid"];
-        this.order.olid = this.orderList.olid;
-        this.orderPro.createOrder(this.order).then(
-          res => {
-            console.log(res);
-          });
+        if ( this.length == 1) {
+          // if order is size of one
+          this.order.olid = this.orderList.olid;
+          this.orderPro.createOrder(this.order).then(
+            res => {
+              console.log(res);
+            });
+        } else {
+          for ( let i = 0 ; i < this.length ; i++) {
+            this.order[i].olid = this.orderList.olid;
+            this.orderPro.createOrder(this.order[i]).then(
+              res => {
+                console.log(res);
+              });
+          }
+        }
+
         /*
         this.items.forEach( item => {
           let ord: Order = new Order;

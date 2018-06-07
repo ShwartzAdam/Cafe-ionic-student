@@ -155,6 +155,7 @@ export class SnackQuickComponent implements OnInit{
     this.navCtrl.push(QuickOrderTicket,{
       orderListParam: orderList,
       orderParam: order,
+      size: 1
     });
   }
 

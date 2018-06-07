@@ -44,6 +44,7 @@ import {DrinkQuickComponent} from "../components/quick/drink-quick/drink-quick";
 import {SnackQuickComponent} from "../components/quick/snack-quick/snack-quick";
 import {SandQuickComponent} from "../components/quick/sand-quick/sand-quick";
 import {CorDrinkQuickComponent} from "../components/quick/cor-drink-quick/cor-drink-quick";
+import {InfoItemComponent} from "../components/info-item/info-item";
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import {CorDrinkQuickComponent} from "../components/quick/cor-drink-quick/cor-dr
     DrinkQuickComponent,
     CorDrinkQuickComponent,
     SnackQuickComponent,
-    SandQuickComponent
+    SandQuickComponent,
+    InfoItemComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +101,8 @@ import {CorDrinkQuickComponent} from "../components/quick/cor-drink-quick/cor-dr
     DrinkQuickComponent,
     CorDrinkQuickComponent,
     SnackQuickComponent,
-    SandQuickComponent
+    SandQuickComponent,
+    InfoItemComponent
   ],
   providers: [
     StatusBar,

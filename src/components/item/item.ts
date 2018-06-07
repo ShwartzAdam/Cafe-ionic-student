@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavParams, NavController, Events, ToastController} from "ionic-angular";
 import {UserData} from "../../providers/user-data/user-data";
 import {BasketPage} from "../../pages/basket/basket";
 import {Item} from "../../model/item";
+import {TrackingPage} from "../../pages/tracking/tracking";
+import {ReviewComponent} from "../review/review";
+import {WalletPage} from "../../pages/wallet/wallet";
+import {InfoItemComponent} from "../info-item/info-item";
+import {ReviewItemComponent} from "../review-item/review-item";
 
 @Component({
   selector: 'item',
   templateUrl: 'item.html'
 })
-export class ItemComponent {
+export class ItemComponent implements OnInit{
 
   private countItems: number;
   // details on the items
@@ -28,6 +33,11 @@ export class ItemComponent {
   qItem : string;
   date : string;
   item: Item;
+  public rootComponent = 'Information';
+  private displayReview: boolean = false;
+  private displayInfo: boolean = false;
+  //tabOneRoot = ReviewItemComponent;
+  //tabTwoRoot = InfoItemComponent;
   constructor(public navParams: NavParams,
               public navCtrl : NavController,
               public userData: UserData,
@@ -58,6 +68,23 @@ export class ItemComponent {
 
           });
       });
+  }
+  ngOnInit(): void {
+    if(this.rootComponent == 'Information') {
+      this.selectedInformation();
+    } else {
+      this.selectedReview();
+    }
+  }
+
+  selectedReview() {
+    this.displayReview = true;
+    this.displayInfo = false;
+  }
+
+  selectedInformation() {
+    this.displayReview = false;
+    this.displayInfo = true;
   }
 
   addToCart(item){

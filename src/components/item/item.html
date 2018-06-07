@@ -5,7 +5,7 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title class="toolbar-header">{{this.title}} Details</ion-title>
+    <ion-title class="toolbar-header">{{this.item.name}} Details</ion-title>
     <ion-buttons right>
       <button ion-button icon-only color="white" clear (click)="gotoBasket()">
         <ion-icon name="cart"></ion-icon>
@@ -22,37 +22,8 @@
            <img class="image-box" img-preloader="{{this.item.url}}" alt="">
          </ion-col>
        </ion-row>
-       <ion-row>
-         <ion-col></ion-col>
-         <ion-col>
-           <h3 ion-text="dark"> {{this.item.name}}</h3>
-         </ion-col>
-         <ion-col></ion-col>
-       </ion-row>
      </ion-card-title>
      <ion-card-content>
-       <ion-row>
-         <ion-card-title>Description :</ion-card-title>
-         <ion-card-content>{{this.item.description}}</ion-card-content>
-       </ion-row>
-       <ion-row>
-         <ion-col>
-           <ion-card-title>Time Preparation:</ion-card-title>
-         </ion-col>
-         <ion-col></ion-col>
-         <ion-col>
-           <ion-card-content>{{this.item.preptime}} Mintues</ion-card-content>
-         </ion-col>
-       </ion-row>
-       <ion-row>
-         <ion-col>
-           <ion-card-title>Price :</ion-card-title>
-         </ion-col>
-         <ion-col></ion-col>
-         <ion-col>
-           <ion-card-content>{{this.item.price}} &#8362;</ion-card-content>
-         </ion-col>
-       </ion-row>
        <ion-row *ngIf="displayButton">
          <ion-col>
            <button  ion-button round small class="check-btn" icon-start (click)="addToCart(item)">
@@ -61,7 +32,26 @@
            </button>
          </ion-col>
        </ion-row>
-       <review-item></review-item>
+       <ion-card>
+         <ion-card-header>
+           {{ rootComponent }}
+         </ion-card-header>
+         <ion-card-content>
+           <ion-segment class="seg-box" [(ngModel)]="rootComponent" color="first">
+             <ion-segment-button value="Information" (ionSelect)="selectedInformation()">
+               <ion-icon name="information-circle"></ion-icon>
+             </ion-segment-button>
+             <ion-segment-button value="Review" (ionSelect)="selectedReview()">
+               <ion-icon name="albums"></ion-icon>
+             </ion-segment-button>
+           </ion-segment>
+         </ion-card-content>
+       </ion-card>
+       <ion-row>
+         <review-item *ngIf="displayReview" [itemInput]="this.item.itemid" ></review-item>
+         <info-item *ngIf="displayInfo" [itemInput]="this.item.itemid"></info-item>
+       </ion-row>
+
      </ion-card-content>
  </ion-grid>
 </ion-content>

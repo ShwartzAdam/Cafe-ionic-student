@@ -10,7 +10,7 @@ import {UserProvider} from "../../providers/user/user";
 })
 export class ReviewItemComponent implements OnInit{
   // holds the reviews for display
-  @Input() itemId: number;
+  @Input() itemInput: number;
   private review: Review = new Review();
   rate = 3;
 
@@ -25,7 +25,7 @@ export class ReviewItemComponent implements OnInit{
     this.review.userid = 1;
     this.review.rlid = 103;
     // get the reivewslist by item by id
-    console.log(this.itemId);
+    console.log(this.itemInput);
 
 
   }

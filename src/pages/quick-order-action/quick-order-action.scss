@@ -1,5 +1,16 @@
 page-quick-order-action {
 
+  ion-content{
+    background: $background-color-fifth;
+  }
+  ion-tabs {
+    margin-bottom: 20px;
+  }
+  ion-tabs,
+  ion-tabs .tabbar {
+    visibility: visible;
+    opacity: 1;
+  }
   .quick-box-form{
     display: block;
     width: 90%;
@@ -90,16 +101,4 @@ page-quick-order-action {
 
   }
 
-  .quick-order-footer{
-    button{
-      display: block;
-      background: $background-color-sixth;
-      border-radius: 30px !important;
-      border: 1px solid #ffffff;
-    }
-  }
-  .quick-order-price{
-    display: block;
-
-  }
 }

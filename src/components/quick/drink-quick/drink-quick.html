@@ -43,7 +43,17 @@
         </ion-range>
       </ion-item>
     </ion-row>
-
+    <ion-row>
+      <ion-col>
+        <button class="submit-btn" ion-button round (click)="calcOrder()">Calculate</button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="displayFinalPrice">
+      <ion-col>
+        <ion-label><strong>You Received A Discount !!!</strong></ion-label>
+        <ion-label>Total Price : <span>{{this.totalPrice}} NIS</span></ion-label>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
 <ion-footer no-shadow class="quick-order-footer">

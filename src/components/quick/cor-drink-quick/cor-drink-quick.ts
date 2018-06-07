@@ -15,17 +15,25 @@ import {QuickOrderTicket} from "../../../pages/quick-order/quick-order-ticket";
 })
 export class CorDrinkQuickComponent implements OnInit{
   // choosen item
-  private items: Item[] = new Array();
+  private itemsDrink: Item[] = new Array();
+  private itemsFood: Item[] = new Array();
   // url for image
-  public urlImage: string = '';
+  public urlImageDrink: string = '';
+  public urlImageFood: string = '';
   // item for display
-  public itemChoosen: string = 'Choose a drink';
-  public itemDesc: string = '';
-  public itemPrice: number;
-  public displayDesc: boolean = false;
+  public itemChoosenDrink: string = 'Choose a drink';
+  public itemChoosenFood: string = 'Choose a pastry';
+  public itemDescDrink: string = '';
+  public itemDescFood: string = '';
+  public itemPriceDrink: number;
+  public itemPriceFood: number;
+  public displayDescDrink: boolean = false;
+  public displayDescFood: boolean = false;
   // array of items
   public qDrink: number = 0;
+  public qFood: number = 0;
   public drinkId: number = -1;
+  public foodId: number = -1;
   // varibles from quick-order page taken out with nav controller
   public title : string;
   public url : string;
@@ -75,6 +83,8 @@ export class CorDrinkQuickComponent implements OnInit{
     }
   }
   clearOrder(){
+    this.foodId = 0;
+    this.qFood = 0;
     this.drinkId = 0;
     this.qDrink = 0;
     this.totalPrice = 0;
@@ -84,58 +94,105 @@ export class CorDrinkQuickComponent implements OnInit{
   ngOnInit(): void {
     this.itemProv.getAllItemByType('Drink').then(
       (_items: Item[]) => {
-        _items.forEach(item => this.items.push(item));
+        _items.forEach(item => this.itemsDrink.push(item));
       });
-    console.log(this.items);
+    this.itemProv.getAllItemByType('Pastry').then(
+      (_items: Item[]) => {
+        _items.forEach(item => this.itemsFood.push(item));
+      });
   }
-  chooseDrink(){
-    this.presentActionSheet();
-  }
-  presentActionSheet() {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Choose Your Drink',
-      buttons: this.createButtons()
-    });
-    actionSheet.present();
-  }
-
-
-  private createButtons() {
-    let buttons = [];
-    for (let index in this.items) {
-      let button = {
-        text: this.items[index].name + '  ' + this.items[index].price + ' NIS',
-        //icon: this.possibleButtons[index].icon,
-        handler: () => {
-          console.log('choosen item id ' + this.items[index].itemid);
-          this.drinkId = this.items[index].itemid;
-          this.itemChoosen = this.items[index].name + '  ' + this.items[index].price + ' NIS';
-          this.itemDesc = this.items[index].description;
-          this.itemPrice = this.items[index].price;
-          this.urlImage = this.items[index].url;
-          this.displayDesc = true;
-          return true;
-        }
-      };
-      buttons.push(button);
+  choose(s){
+    if(s == 'Drink'){
+      // present action sheet of Drinks
+      this.presentActionSheet('Drink');
+    } else if (s == 'Food') {
+      // present action sheet of Pastery
+      this.presentActionSheet('Pastry');
+    } else {
+      console.log('bad input');
     }
-    return buttons;
+
+  }
+  presentActionSheet(s) {
+    if( s == 'Drink') {
+      let actionSheet = this.actionSheetCtrl.create({
+        title: 'Choose Your Drink',
+        buttons: this.createButtons('Drink')
+      });
+      actionSheet.present();
+    } else {
+      let actionSheet = this.actionSheetCtrl.create({
+        title: 'Choose Your Pastry',
+        buttons: this.createButtons('Pastry')
+      });
+      actionSheet.present();
+    }
+
+  }
+
+
+  private createButtons(s) {
+    if ( s == 'Drink'){
+      let buttons = [];
+      for (let index in this.itemsDrink) {
+        let button = {
+          text: this.itemsDrink[index].name + '  ' + this.itemsDrink[index].price + ' NIS',
+          //icon: this.possibleButtons[index].icon,
+          handler: () => {
+            console.log('choosen item id ' + this.itemsDrink[index].itemid);
+            this.drinkId = this.itemsDrink[index].itemid;
+            this.itemChoosenDrink = this.itemsDrink[index].name + '  ' + this.itemsDrink[index].price + ' NIS';
+            this.itemDescDrink = this.itemsDrink[index].description;
+            this.itemPriceDrink = this.itemsDrink[index].price;
+            this.urlImageDrink = this.itemsDrink[index].url;
+            this.displayDescDrink = true;
+            return true;
+          }
+        };
+        buttons.push(button);
+      }
+      return buttons;
+    } else {
+      let buttons = [];
+      for (let index in this.itemsFood) {
+        let button = {
+          text: this.itemsFood[index].name + '  ' + this.itemsFood[index].price + ' NIS',
+          //icon: this.possibleButtons[index].icon,
+          handler: () => {
+            console.log('choosen item id ' + this.itemsFood[index].itemid);
+            this.foodId = this.itemsFood[index].itemid;
+            this.itemChoosenFood = this.itemsFood[index].name + '  ' + this.itemsFood[index].price + ' NIS';
+            this.itemDescFood = this.itemsFood[index].description;
+            this.itemPriceFood = this.itemsFood[index].price;
+            this.urlImageFood = this.itemsFood[index].url;
+            this.displayDescFood = true;
+            return true;
+          }
+        };
+        buttons.push(button);
+      }
+      return buttons;
+    }
+
   }
 
 
   calcOrder() {
-    if(this.drinkId == -1 || this.qDrink == 0){
+    if(this.drinkId == -1 || this.foodId == -1){
       // drink wasnot choose and quaninty for order
-      console.log('error input');
+      console.log('no drink or food were chosen');
       return;
+    } else if ( this.qDrink == 0 || this.qFood == 0) {
+      console.log('no qunaitiy')
     }
     else {
-      // take item price and mul with quantity
-      console.log(this.itemPrice);
-      console.log(this.qDrink);
       // calc
-      this.totalPrice = Math.imul(this.itemPrice,this.qDrink);
+      let drinkSum = Math.imul(this.itemPriceDrink,this.qDrink);
+      let foodSum = Math.imul(this.itemPriceFood,this.qFood);
       // sum it
+      console.log(drinkSum);
+      console.log(foodSum);
+      this.totalPrice = drinkSum + foodSum;
       console.log(this.totalPrice);
       // present full price for student
       this.displayFinalPrice = true;
@@ -150,17 +207,26 @@ export class CorDrinkQuickComponent implements OnInit{
     let orderList = new OrderList();
     orderList.totalprice = this.totalPrice;
     orderList.userid = this.userid;
-    let order = new Order();
-    order.qty = this.qDrink;
-    order.itemid = this.drinkId;
+    let orderDrink = new Order();
+    orderDrink.qty = this.qDrink;
+    orderDrink.itemid = this.drinkId;
+    let orderFood = new Order();
+    orderFood.qty = this.qFood;
+    orderFood.itemid = this.foodId;
+    let orderArr: Order[] = new Array();
+    orderArr.push(orderDrink);
+    orderArr.push(orderFood);
+    console.log(orderArr);
     this.navCtrl.push(QuickOrderTicket,{
       orderListParam: orderList,
-      orderParam: order,
+      orderParam: orderArr,
+      size: 2
     });
   }
 
   public gotoBasket(){
     this.navCtrl.setRoot(BasketPage);
   }
+
 
 }
