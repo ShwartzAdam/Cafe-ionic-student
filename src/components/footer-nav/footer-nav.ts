@@ -23,7 +23,6 @@ export class FooterNavComponent {
     this.footerMenu = [
       {title: 'Quick' , component: QuickOrderPage , icon: 'book'},
       {title: 'Menu' , component: MenuOrderPage , icon: 'map'},
-      {title: 'Tracking' , component: TrackingPage , icon: 'pin'},
       {title: 'Wallet' , component: WalletPage , icon: 'card'},
       {title: 'Sign-Out' , component: LoginPage , icon: 'power'}
     ];

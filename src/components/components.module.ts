@@ -7,6 +7,9 @@ import { SnackQuickComponent } from './quick/snack-quick/snack-quick';
 import { SandQuickComponent } from './quick/sand-quick/sand-quick';
 import {CorDrinkQuickComponent} from "./quick/cor-drink-quick/cor-drink-quick";
 import { InfoItemComponent } from './info-item/info-item';
+import { InfoOrderComponent } from './info-order/info-order';
+import { InfoOrderDetailsComponent } from './info-order-details/info-order-details';
+import {AccordionListComponent} from "./accordion-list/accordion-list";
 @NgModule({
 	declarations: [ItemComponent,
     FooterNavComponent,
@@ -15,7 +18,10 @@ import { InfoItemComponent } from './info-item/info-item';
     CorDrinkQuickComponent,
     SnackQuickComponent,
     SandQuickComponent,
-    InfoItemComponent,],
+    InfoItemComponent,
+    InfoOrderComponent,
+    InfoOrderDetailsComponent,
+    AccordionListComponent],
 	imports: [],
 	exports: [ItemComponent,
     FooterNavComponent,
@@ -24,6 +30,9 @@ import { InfoItemComponent } from './info-item/info-item';
     CorDrinkQuickComponent,
     SnackQuickComponent,
     SandQuickComponent,
-    InfoItemComponent,]
+    InfoItemComponent,
+    InfoOrderComponent,
+    InfoOrderDetailsComponent,
+    AccordionListComponent]
 })
 export class ComponentsModule {}

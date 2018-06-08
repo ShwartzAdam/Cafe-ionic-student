@@ -99,12 +99,6 @@ export class QuickOrderTicket implements OnInit{
   }
 
   checkTime(){
-    // if time is good
-    // create connect orderlist to order , add the avaiable time
-    // else
-    //    ask for differet time
-    // orderTime
-    //
     this.isenabled = true;
     //this.displayButtons = true;
     this.displaySuccessTime = true;
@@ -189,12 +183,8 @@ export class QuickOrderTicket implements OnInit{
         console.log(this.orderList);
          */
       });
-     let hasCredit: boolean = this.checkBalance();
-     if(hasCredit) {
-       console.log('user has credit to procced')
-     } else {
-       console.log('user has no credit ');
-     }
+
+
 
   }
   checkBalance(): boolean {
@@ -210,6 +200,13 @@ export class QuickOrderTicket implements OnInit{
 
 
   placeOrder() {
+    let hasCredit: boolean = this.checkBalance();
+    if(hasCredit) {
+      console.log('user has credit to procced')
+    } else {
+      console.log('user has no credit ');
+      return;
+    }
     let balance: number = this.student.credit;
     console.log('user credit before ' + balance );
     let priceToDec: number = this.orderList.totalprice;

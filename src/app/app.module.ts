@@ -11,7 +11,6 @@ import { LoginPage } from '../pages/login/login';
 import { QuickOrderPage } from '../pages/quick-order/quick-order';
 import { MenuOrderPage } from '../pages/menu-order/menu-order';
 // components
-import { QuickOrderDetails } from '../pages/quick-order/quick-order-details';
 import { MenuOrderDetails } from '../pages/menu-order/menu-order-details';
 import { ItemComponent } from '../components/item/item';
 import { QuickOrderTicket } from "../pages/quick-order/quick-order-ticket";
@@ -45,6 +44,11 @@ import {SnackQuickComponent} from "../components/quick/snack-quick/snack-quick";
 import {SandQuickComponent} from "../components/quick/sand-quick/sand-quick";
 import {CorDrinkQuickComponent} from "../components/quick/cor-drink-quick/cor-drink-quick";
 import {InfoItemComponent} from "../components/info-item/info-item";
+import {ProfilePage} from "../pages/profile/profile";
+import {InfoOrderComponent} from "../components/info-order/info-order";
+import {InfoOrderDetailsComponent} from "../components/info-order-details/info-order-details";
+import {AccordionListComponent} from "../components/accordion-list/accordion-list";
+import {CapitalizeFirstPipe} from "../pipes/capitalize-first/capitalize-first";
 
 
 @NgModule({
@@ -53,7 +57,6 @@ import {InfoItemComponent} from "../components/info-item/info-item";
     LoginPage,
     QuickOrderActionPage,
     QuickOrderPage,
-    QuickOrderDetails,
     QuickOrderTicket,
     MenuOrderPage,
     MenuOrderDetails,
@@ -67,7 +70,12 @@ import {InfoItemComponent} from "../components/info-item/info-item";
     CorDrinkQuickComponent,
     SnackQuickComponent,
     SandQuickComponent,
-    InfoItemComponent
+    InfoItemComponent,
+    InfoOrderComponent,
+    InfoOrderDetailsComponent,
+    AccordionListComponent,
+    ProfilePage,
+    CapitalizeFirstPipe
   ],
   imports: [
     BrowserModule,
@@ -89,7 +97,6 @@ import {InfoItemComponent} from "../components/info-item/info-item";
     HomePage,
     QuickOrderActionPage,
     QuickOrderPage,
-    QuickOrderDetails,
     QuickOrderTicket,
     MenuOrderPage,
     MenuOrderDetails,
@@ -102,7 +109,11 @@ import {InfoItemComponent} from "../components/info-item/info-item";
     CorDrinkQuickComponent,
     SnackQuickComponent,
     SandQuickComponent,
-    InfoItemComponent
+    InfoItemComponent,
+    InfoOrderComponent,
+    InfoOrderDetailsComponent,
+    AccordionListComponent,
+    ProfilePage,
   ],
   providers: [
     StatusBar,

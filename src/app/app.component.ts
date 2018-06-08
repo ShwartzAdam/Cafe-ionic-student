@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import {MenuController, Nav, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 // pages
@@ -11,6 +11,7 @@ import { WalletPage } from "../pages/wallet/wallet";
 import { BasketPage } from "../pages/basket/basket";
 import { HomePage } from "../pages/home/home";
 import {QuickOrderActionPage} from "../pages/quick-order-action/quick-order-action";
+import {ProfilePage} from "../pages/profile/profile";
 // provider
 
 @Component({
@@ -25,12 +26,21 @@ export class MyApp {
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
-              public splashScreen: SplashScreen){
+              public splashScreen: SplashScreen,
+              public menuCtrl: MenuController){
     this.initializeApp();
+  }
+  ionViewWillEnter() {
+    this.menuCtrl.enable(true, 'menu-right');
+  }
+
+  ionViewWillLeave() {
+    this.menuCtrl.enable(false, 'menu-right');
   }
 
   initializeApp() {
     this.sideMenuPages = [
+      {title: 'Profile' , component: ProfilePage , icon: 'person'},
       {title: 'Home' , component: HomePage , icon: 'home'},
       {title: 'Quick Order' , component: QuickOrderPage , icon: 'book'},
       {title: 'Quick Order Action' , component: QuickOrderActionPage , icon: 'book'},

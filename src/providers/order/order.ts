@@ -54,5 +54,9 @@ export class OrderProvider {
         });
     });
   }
+  public getOrdersByOrderListIdSuc(id: number) : Observable<Order[]> {
+    return this.http.get<Order[]>(this.url + '/ordereditems/olid/' + id );
+
+  }
 
 }
