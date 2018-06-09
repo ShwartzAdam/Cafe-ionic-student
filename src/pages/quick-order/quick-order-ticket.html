@@ -65,16 +65,21 @@
     <ion-row>
       <ion-item>
         <ion-label>Pick-Up Time :</ion-label>
-        <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="this.orderTime"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="this.orderTime" (ngModelChange)="dateChanged()"></ion-datetime>
       </ion-item>
     </ion-row>
     <ion-row>
       <ion-col>
-        <button class="submit-btn" ion-button round (click)="checkTime()">Check Time</button>
+        <button class="submit-btn" ion-button round (click)="checkTime()" [disabled]="!ischeckTimeEnable">Check Time</button>
       </ion-col>
-      <ion-col *ngIf="displaySuccessTime">
-        <ion-icon name="checkmark"></ion-icon>
-        <span> Good for Order!</span>
+    </ion-row>
+    <ion-row *ngIf="displaySuccessTime">
+      <ion-col>
+        <ion-item text-wrap>
+          <h3 ion-text align-self-center> Time offered for your order : </h3>
+          <p ion-text> {{this.timeOffered | date: "medium" : 'UTC'}}</p>
+          <timer #countdown [timeInSeconds]="30" (notifyTimer)="onChange($event)" ></timer>
+        </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>

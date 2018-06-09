@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Timer} from "../../components/countdown-timer/timer";
 
 
 @IonicPage()
@@ -7,30 +8,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-quick-order-action',
   templateUrl: 'quick-order-action.html',
 })
-export class QuickOrderActionPage implements OnInit{
-  public rootComponent = 'Information';
-  private displayReview: boolean = false;
-  private displayInfo: boolean = false;
+export class QuickOrderActionPage{
+
+  @ViewChild(Timer) child : Timer;
+
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              ) {
+              public navParams: NavParams) {}
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad TimerPage');
+    this.child.startTimer();
   }
-  ngOnInit(): void {
-      if(this.rootComponent == 'Information') {
-        this.selectedInformation();
-      } else {
-        this.selectedReview();
-      }
+  public onChange(e){
+    console.log(e);
   }
 
-
-  selectedReview() {
-    this.displayReview = true;
-    this.displayInfo = false;
-  }
-
-  selectedInformation() {
-    this.displayReview = false;
-    this.displayInfo = true;
-  }
 }

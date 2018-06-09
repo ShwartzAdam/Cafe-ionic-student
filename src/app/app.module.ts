@@ -49,6 +49,8 @@ import {InfoOrderComponent} from "../components/info-order/info-order";
 import {InfoOrderDetailsComponent} from "../components/info-order-details/info-order-details";
 import {AccordionListComponent} from "../components/accordion-list/accordion-list";
 import {CapitalizeFirstPipe} from "../pipes/capitalize-first/capitalize-first";
+import {Time} from "@angular/common";
+import {Timer} from "../components/countdown-timer/timer";
 
 
 @NgModule({
@@ -75,7 +77,8 @@ import {CapitalizeFirstPipe} from "../pipes/capitalize-first/capitalize-first";
     InfoOrderDetailsComponent,
     AccordionListComponent,
     ProfilePage,
-    CapitalizeFirstPipe
+    CapitalizeFirstPipe,
+    Timer
   ],
   imports: [
     BrowserModule,
@@ -114,6 +117,7 @@ import {CapitalizeFirstPipe} from "../pipes/capitalize-first/capitalize-first";
     InfoOrderDetailsComponent,
     AccordionListComponent,
     ProfilePage,
+    Timer
   ],
   providers: [
     StatusBar,

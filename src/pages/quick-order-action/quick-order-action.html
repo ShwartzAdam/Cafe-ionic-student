@@ -10,21 +10,9 @@
 <ion-content padding>
   <ion-card>
     <ion-card-header>
-      {{ rootComponent }}
     </ion-card-header>
     <ion-card-content>
-      <ion-item>
-      <ion-segment class="seg-box" [(ngModel)]="rootComponent" color="second">
-        <ion-segment-button value="Information" (ionSelect)="selectedInformation()">
-          <ion-icon name="information-circle"></ion-icon>
-        </ion-segment-button>
-        <ion-segment-button value="Review" (ionSelect)="selectedReview()">
-          <ion-icon name="albums"></ion-icon>
-        </ion-segment-button>
-      </ion-segment>
-      </ion-item>
-      <review-item *ngIf="displayReview"></review-item>
-      <info-item *ngIf="displayInfo"></info-item>
+      <timer #countdown [timeInSeconds]="5" (notifyTimer)="onChange($event)" ></timer>
     </ion-card-content>
   </ion-card>
 </ion-content>

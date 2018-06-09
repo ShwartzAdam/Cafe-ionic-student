@@ -75,8 +75,6 @@ export class DrinkQuickComponent implements OnInit{
     }
   }
   clearOrder(){
-    this.drinkId = 0;
-    this.qDrink = 0;
     this.totalPrice = 0;
     this.displayFinalPrice = false;
     this.isenabled = false;
