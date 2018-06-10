@@ -21,8 +21,8 @@ export class RegisterPage {
   maleClicked: boolean = true;
   femaleClicked: boolean = false;
   imageFileUpload: any;
-  imageFileNameMen: any = "../../assets/png/avatar.png";
-  imageFileNameWoman: any = "../../assets/png/avater.png";
+  imageFileNameMen: any = "../../assets/profile/male.png";
+  imageFileNameWoman: any = "../../assets/profile/female.png";
 
   @ViewChild('selectedFile') selectedFileEl;
 

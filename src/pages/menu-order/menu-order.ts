@@ -34,11 +34,11 @@ export class MenuOrderPage {
       }
     });
     this.items = [
-      {name : "Dishes", src : "assets/imgs/food-menu.jpg"},
-      {name : "Drink",  src : "assets/imgs/cafe.jpg" },
-      {name : "Pastry",  src : "assets/imgs/pastery.png" },
-      {name : "Sandwich" ,  src : "assets/imgs/sandwich.jpg" },
-      {name : "Snack" ,  src : "assets/imgs/snack.jpg" }
+      {name : "Dishes", src : "assets/order-images/food-menu.jpg"},
+      {name : "Drink",  src : "assets/order-images/cafe.jpg" },
+      {name : "Pastry",  src : "assets/order-images/pastery.png" },
+      {name : "Sandwich" ,  src : "assets/order-images/sandwich.jpg" },
+      {name : "Snack" ,  src : "assets/order-images/snack.jpg" }
     ];
   }
   public gotoBasket(){
