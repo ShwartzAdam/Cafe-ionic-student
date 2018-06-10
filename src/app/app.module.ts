@@ -28,12 +28,9 @@ import { LoginPageModule } from "../pages/login/login.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule } from "@angular/common/http";
 import { IonicStorageModule } from "@ionic/storage";
-import { TrackingPageModule } from "../pages/tracking/tracking.module";
 import { BasketPageModule } from "../pages/basket/basket.module";
-import { WalletPageModule } from "../pages/wallet/wallet.module";
 import { LoggerProvider } from '../providers/logger/logger';
 import {SideNavComponent} from "../components/side-nav/side-nav";
-import {BasketTicket} from "../pages/basket/basket-ticket";
 import {ImagePreloader} from "../directives/img-preload/img-preload";
 import {ReviewComponent} from "../components/review/review";
 import {ReviewItemComponent} from "../components/review-item/review-item";
@@ -49,7 +46,6 @@ import {InfoOrderComponent} from "../components/info-order/info-order";
 import {InfoOrderDetailsComponent} from "../components/info-order-details/info-order-details";
 import {AccordionListComponent} from "../components/accordion-list/accordion-list";
 import {CapitalizeFirstPipe} from "../pipes/capitalize-first/capitalize-first";
-import {Time} from "@angular/common";
 import {Timer} from "../components/countdown-timer/timer";
 
 
@@ -66,7 +62,6 @@ import {Timer} from "../components/countdown-timer/timer";
     ReviewComponent,
     ReviewItemComponent,
     SideNavComponent,
-    BasketTicket,
     ImagePreloader,
     DrinkQuickComponent,
     CorDrinkQuickComponent,
@@ -89,9 +84,7 @@ import {Timer} from "../components/countdown-timer/timer";
     HttpClientModule,
     LoginPageModule,
     HomePageModule,
-    TrackingPageModule,
     BasketPageModule,
-    WalletPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -107,7 +100,6 @@ import {Timer} from "../components/countdown-timer/timer";
     ReviewComponent,
     ReviewItemComponent,
     SideNavComponent,
-    BasketTicket,
     DrinkQuickComponent,
     CorDrinkQuickComponent,
     SnackQuickComponent,

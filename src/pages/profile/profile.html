@@ -1,0 +1,60 @@
+]<ion-header transparent-header>
+  <ion-navbar color="second">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="toolbar-header">Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="card-background-page">
+  <div id="profile-bg" [ngStyle]="{'background-image': 'url(' + data.coverImage +')'}"></div>
+  <div id="content">
+    <div id="profile-info" padding>
+      <img id="profile-image" [src]="data.profileImage">
+      <h3 id="profile-name">{{this.stu.firstname | capitalizeFirst}} {{this.stu.lastname | capitalizeFirst}}</h3>
+    </div>
+    <hr/>
+    <ion-row class="profile-numbers">
+      <ion-col col-4>
+        <p>Completed Orders</p>
+        <span>{{data.closeOrder}}</span>
+      </ion-col>
+      <ion-col col-4>
+        <p>Open Orders</p>
+        <span>{{data.openOrder}}</span>
+      </ion-col>
+      <ion-col col-4>
+        <p>Credit</p>
+        <span>{{this.stu.credit}} &#8362;</span>
+      </ion-col>
+    </ion-row>
+    <ion-segment class="seg-box" [(ngModel)]="rootComponent"  color="first">
+      <ion-segment-button value="Complete" (ionSelect)="selectedSeg('C')">
+        <ion-icon name="albums"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Open" (ionSelect)="selectedSeg('O')">
+        <ion-icon name="book"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Credit" (ionSelect)="selectedSeg('CT')">
+        <ion-icon name="card"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+    <hr><hr/>
+    <ion-row>
+      <info-order *ngIf="displayOpen" [status]="'open'"></info-order>
+      <info-order *ngIf="displayComplete" [status]="'close'"></info-order>
+      <div *ngIf="displayCredit" class="item-block">
+        <ion-item>
+          <ion-card-title> Please Charge Your Account With Credit</ion-card-title>
+          <ion-card-content>
+            <p ion-text>Click on the Ethereum button to recieve free coins</p>
+            <div (click)="addCredit()" id="button-bg" [ngStyle]="{'background-image': 'url(' + data.moneyButton +')'}"></div>
+          </ion-card-content>
+        </ion-item>
+      </div>
+    </ion-row>
+  </div>
+
+</ion-content>

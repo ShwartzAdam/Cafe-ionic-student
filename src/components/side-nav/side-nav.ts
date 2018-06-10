@@ -1,9 +1,7 @@
 import { Component,ViewChild } from '@angular/core';
 import {NavParams, NavController, Events,Nav} from "ionic-angular";
 import { MenuOrderPage } from '../../pages/menu-order/menu-order';
-import { TrackingPage}  from '../../pages/tracking/tracking';
 import { LoginPage } from "../../pages/login/login";
-import { WalletPage } from "../../pages/wallet/wallet";
 import { BasketPage } from "../../pages/basket/basket";
 import { HomePage } from "../../pages/home/home";
 import {QuickOrderPage} from "../../pages/quick-order/quick-order";
@@ -30,8 +28,6 @@ export class SideNavComponent {
       {title: 'Quick Order' , component: QuickOrderPage , icon: 'book'},
       {title: 'Quick Order Action' , component: QuickOrderActionPage , icon: 'book'},
       {title: 'Menu Order' , component: MenuOrderPage , icon: 'map'},
-      {title: 'Tracking' , component: TrackingPage , icon: 'pin'},
-      {title: 'Wallet' , component: WalletPage , icon: 'card'},
       {title: 'Basket' , component: BasketPage , icon: 'cart'},
       {title: 'Sign-Out' , component: LoginPage , icon: 'power'}
     ];

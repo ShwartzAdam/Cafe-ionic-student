@@ -1,0 +1,27 @@
+<ion-row>
+  <ion-title>
+    <p ion-text>
+      Order Status : {{this.orderList.status}}
+    </p>
+    <p ion-text>
+      Pick Up Time : {{this.orderList.ol_dttm | date: 'medium'}}
+    </p>
+  </ion-title>
+</ion-row>
+<ion-row *ngFor="let or of orders; let i = index">
+  <ion-col>
+    Item : {{items[i]?.name}}
+  </ion-col>
+  <ion-col>
+  </ion-col>
+  <ion-col>
+    Quantity: {{or?.qty}}
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-title>
+    <p ion-text>
+      Order Total Price : {{this.orderList.totalprice}} &#8362;
+    </p>
+  </ion-title>
+</ion-row>

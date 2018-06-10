@@ -1,0 +1,140 @@
+page-profile {
+  .profile-image{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+  ion-content {
+    background: linear-gradient(0deg, #eeeef1 0%, white 80%, white 100%);
+  }
+  button, ion-button,
+  .button-md,
+  .button-ios {
+    text-transform: none !important;
+  }
+  p {
+    color: #fff;
+  }
+  .item-block{
+    margin:auto;
+    display:block;
+  }
+
+  #button-bg {
+    width: 60%;
+    margin: auto;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+  }
+  // Cover image
+  #profile-bg {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    margin-top: -16px;
+    height: 160px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+  }
+  // Profile content
+  #content {
+    position: relative;
+    margin-top: 150px;
+    padding-top: 80px;
+    text-align: center;
+  }
+  #profile-image {
+    display: block;
+    border-radius: 50%;
+    width: auto;
+    height: 100px;
+    margin: 0 auto 0;
+    box-shadow: 0px 11px 20px -3px rgba(142, 136, 146, 0.75);
+  }
+  #profile-info {
+    position: absolute;
+    top: -95px;
+    width: 100%;
+    z-index: 2;
+    text-align: center;
+  }
+  #profile-name {
+    color: #fff;
+    font-size: 26px;
+  }
+  .profile-description {
+    font-size: 15px;
+    color: #fff;
+  }
+  .follow-button {
+    text-transform: none;
+    border-radius: 3px !important;
+    ion-icon {
+      font-weight: bold;
+      padding-left: 5px;
+      font-size: 2.5rem;
+    }
+  }
+  // Following, Followers and all..
+  .profile-numbers {
+    p {
+      color: #fff;
+      font-size: 0.9em;
+      margin-bottom: 3px;
+    }
+    span {
+      font-weight: bold;
+      font-size: 2.4rem;
+      color: #fff;
+    }
+  }
+  hr {
+    border: 0;
+    height: 1px;
+    background: #444;
+    background: -webkit-linear-gradient(left, hsla(0, 0%, 0%, 0) 0%, rgb(188, 198, 214) 50%, hsla(0, 0%, 0%, 0) 100%);
+  }
+  // Posts feed
+  #posts {
+    text-align: justify;
+  }
+  .seg-box {
+    background-color: $background-color-second !important;
+  }
+  .segment-button.segment-activated{
+    background-color: $background-color-third !important;
+  }
+  ion-card{
+    background-color: $background-color-fifth !important;
+    border-radius: 20px !important;
+    box-shadow: none !important;
+  }
+  .card-header{
+    text-align: center;
+  }
+  ion-row {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  ion-item {
+    border-radius: 30px !important;
+    padding-left: 30px !important;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    border: 1px solid #ffffff;
+    border-bottom: 0px !important;
+    box-shadow: none !important;
+  }
+
+  ion-label{
+    font-size: 0.9em;
+  }
+
+}

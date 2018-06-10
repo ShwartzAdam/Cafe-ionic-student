@@ -4,7 +4,8 @@ import {UserData} from "../../providers/user-data/user-data";
 import {ItemProvider} from "../../providers/item/item";
 import {Order} from "../../model/order";
 import {Item} from "../../model/item";
-import {BasketTicket} from "./basket-ticket";
+import {QuickOrderTicket} from "../quick-order/quick-order-ticket";
+import {OrderList} from "../../model/orderList";
 
 
 
@@ -15,10 +16,10 @@ import {BasketTicket} from "./basket-ticket";
 })
 export class BasketPage {
   // items in the basket
-  items: Item[] = new Array();
-  totalPrice: number = 0;
-  ordersItem: Order[] = new Array();
-
+  private items: Item[] = new Array();
+  private totalPrice: number = 0;
+  private ordersItem: Order[] = new Array();
+  private userid: number;
   constructor(public userData: UserData,
               public itemProvider: ItemProvider,
               public event: Events,
@@ -26,6 +27,12 @@ export class BasketPage {
               public navParam: NavParams) {
     // function init view with student items in the basket
     this.initView();
+    this.userData.getUserId().then(
+      res => {
+                this.userid = res;
+                console.log(this.userid);
+          }
+    );
 
     // this code subscribe event to a publish call 'cart:delete'
     this.event.subscribe('cart:delete' , () => {
@@ -136,7 +143,19 @@ export class BasketPage {
 
   checkOut():void{
     console.log(this.items);
-    this.navCtrl.push(BasketTicket,{ "orderList" : this.items});
+    for(let i = 0 ; i < this.items.length ; i++ ){
+      this.ordersItem[i].qty = this.items[i].qty;
+    }
+    const orderList = new OrderList();
+    orderList.totalprice = this.totalPrice;
+    orderList.userid = this.userid;
+    console.log(this.ordersItem);
+    console.log(orderList);
+    this.navCtrl.push(QuickOrderTicket, {
+          orderListParam: orderList,
+          orderParam: this.ordersItem,
+          size: this.items.length
+      });
   }
 
   quantity(_itemid,_action):void{

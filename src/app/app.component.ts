@@ -5,9 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 // pages
 import { QuickOrderPage } from '../pages/quick-order/quick-order';
 import { MenuOrderPage } from '../pages/menu-order/menu-order';
-import { TrackingPage}  from '../pages/tracking/tracking';
 import { LoginPage } from "../pages/login/login";
-import { WalletPage } from "../pages/wallet/wallet";
 import { BasketPage } from "../pages/basket/basket";
 import { HomePage } from "../pages/home/home";
 import {QuickOrderActionPage} from "../pages/quick-order-action/quick-order-action";
@@ -45,8 +43,6 @@ export class MyApp {
       {title: 'Quick Order' , component: QuickOrderPage , icon: 'book'},
       {title: 'Quick Order Action' , component: QuickOrderActionPage , icon: 'book'},
       {title: 'Menu Order' , component: MenuOrderPage , icon: 'map'},
-      {title: 'Tracking' , component: TrackingPage , icon: 'pin'},
-      {title: 'Wallet' , component: WalletPage , icon: 'card'},
       {title: 'Basket' , component: BasketPage , icon: 'cart'},
       {title: 'Sign-Out' , component: LoginPage , icon: 'power'}
     ];

@@ -121,13 +121,17 @@ export class QuickOrderTicket implements OnInit{
     //this.displayButtons = true;
     this.displaySuccessTime = true;
     // collect order time
-    let orderTimeStr = moment(new Date().getTime(),'hh:mm:ss').add(3,'h').toISOString();
+    let orderTimeStr = moment(new Date().getTime().toString(),'hh:mm:ss').add(3,'h').toISOString();
     let pickUpTimeStr = moment(this.orderTime,'hh:mm:ss').add(3,'h').toISOString();
     this.orderTime = pickUpTimeStr;
     this.pickUpTime = pickUpTimeStr;
+    console.log(new Date().getTime().toString());
+    console.log(orderTimeStr);
+    console.log(pickUpTimeStr);
     this.orderTimeExtended = orderTimeStr;
-    this.orderList.ol_dttm_real = this.orderTimeExtended;
+    //this.orderList.ol_dttm_real = this.orderTimeExtended;
     this.orderList.ol_dttm = this.orderTime;
+    console.log(this.orderList);
     // set orderlist status to none
     this.orderList.status = '';
     // get item for prep time
@@ -152,9 +156,9 @@ export class QuickOrderTicket implements OnInit{
             this.prepTotal = this.prepTotal + prep;
             console.log(this.prepTotal);
           });
-        this.orderList.totalpreptime = this.prepTotal;
-        this.createOrder();
       }
+      this.orderList.totalpreptime = this.prepTotal;
+      this.createOrder();
     }
 
 
@@ -180,46 +184,6 @@ export class QuickOrderTicket implements OnInit{
 
 
       });
-    /*
-    this.orderLPro.createOrderList(this.orderList).then(
-      resOrderListId => {
-        console.log(resOrderListId);
-        this.orderList.olid = resOrderListId["olid"];
-        if ( this.length == 1) {
-          // if order is size of one
-          this.order.olid = this.orderList.olid;
-          this.orderPro.createOrder(this.order).then(
-            res => {
-              console.log(res);
-            });
-        } else {
-          for ( let i = 0 ; i < this.length ; i++) {
-            this.order[i].olid = this.orderList.olid;
-            this.orderPro.createOrder(this.order[i]).then(
-              res => {
-                console.log(res);
-              });
-          }
-        }
-    */
-        /*
-        this.items.forEach( item => {
-          let ord: Order = new Order;
-          ord.itemid = item.itemid;
-          ord.qty = item.qty;
-          ord.olid = this.orderList.olid;
-          this.orderPro.createOrder(ord).then(resOrderListId => {
-            console.log(resOrderListId);
-            ord.orderid = resOrderListId["orderid"];
-            this.order.push(ord);
-            console.log(ord);
-          });
-        });
-        console.log(this.order);
-        console.log(this.orderList);
-
-      });
-    */
 
 
   }
@@ -276,14 +240,13 @@ export class QuickOrderTicket implements OnInit{
     this.orderLPro.updateOrderList(this.orderList).then(
       res => {
         console.log(res);
-        this.navCtrl.setRoot("TrackingPage");
         let loading = this.loadingCtrl.create({
           spinner: 'crescent',
-          content: 'Your order has been received by the cafteria.<br> Order number is ' + this.orderList.olid ,
+          content: 'Your order has been received by the Cafeteria !<br> Order number is ' + this.orderList.olid ,
         });
         loading.present();
         setTimeout(() => {
-          this.navCtrl.setRoot("TrackingPage");
+          this.navCtrl.setRoot("HomePage");
         }, 1000);
 
         setTimeout(() => {

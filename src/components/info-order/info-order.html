@@ -1,0 +1,7 @@
+<accordion-list *ngFor="let order of orderList; let index = index"
+                [title]="'Order List #' + order.olid"
+                textColor="#FFF"
+                hasMargin="false"
+                [expanded]="index === 0">
+  <info-order-details [orderListId]="order.olid" [orderList]="order"></info-order-details>
+</accordion-list>

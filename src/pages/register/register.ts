@@ -13,11 +13,17 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  _userRegister: Student = new Student;
-  _passRepeat: string;
+  private _userRegister: Student = new Student;
 
+  borderAttMen: string = '5px solid #fff';
+  borderAttWmn: string = '0px';
+
+  maleClicked: boolean = true;
+  femaleClicked: boolean = false;
   imageFileUpload: any;
-  imageFileName: any = "../../assets/png/avatar.png";
+  imageFileNameMen: any = "../../assets/png/avatar.png";
+  imageFileNameWoman: any = "../../assets/png/avater.png";
+
   @ViewChild('selectedFile') selectedFileEl;
 
 
@@ -27,6 +33,26 @@ export class RegisterPage {
               private sanitizer: DomSanitizer,
               public loadingCtrl: LoadingController){
     this._userRegister.role = "Student";
+    this._userRegister.url = "users/male.png";
+  }
+  public setUrl(s){
+    if(s == 'M' && !this.maleClicked) {
+      // remove female att and set female to false
+      this.femaleClicked = false;
+      this.maleClicked = true;
+      this.borderAttMen = '5px solid #fff';
+      this.borderAttWmn = '0px';
+      this._userRegister.url = 'users/male.png'
+    } else if ( s == 'W' && !this.femaleClicked){
+      this.maleClicked = false;
+      this.femaleClicked = true;
+      this.borderAttWmn = '5px solid #fff';
+      this.borderAttMen = '0px';
+      this._userRegister.url = 'users/female.png'
+
+    } else {
+      console.log('Clicked twice on the same image');
+    }
   }
 
   public register(){
@@ -61,7 +87,7 @@ export class RegisterPage {
 
   }
 
-
+  /*
   public selectFile(event) {
     console.log(event.target.files);
     this.uploadFile(event.target.files);
@@ -129,7 +155,7 @@ export class RegisterPage {
       console.log(error);
     });
   }
-
+*/
 
 
 }
