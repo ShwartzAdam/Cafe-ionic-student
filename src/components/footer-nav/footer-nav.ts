@@ -19,8 +19,8 @@ export class FooterNavComponent {
 
   initFooterNav(): any {
     this.footerMenu = [
-      {title: 'Quick' , component: QuickOrderPage , icon: 'book'},
-      {title: 'Menu' , component: MenuOrderPage , icon: 'map'},
+      {title: 'Quick Order' , component: QuickOrderPage , icon: 'book'},
+      {title: 'Menu Order' , component: MenuOrderPage , icon: 'map'},
       {title: 'Sign-Out' , component: LoginPage , icon: 'power'}
     ];
   }

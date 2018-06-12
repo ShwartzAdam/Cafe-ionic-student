@@ -39,9 +39,9 @@ export class MenuOrderDetails {
   }
   private initView() {
     // checking what king of items to show by Type
-    if(this.title == "Food"){
+    if(this.title == "Dishes"){
       // call Rest API for items
-      this.getItemsByType("Food");
+      this.getItemsByType("Dish");
       console.log("Food Menu")
     } else if (this.title == "Drink") {
       this.getItemsByType("Drink");

@@ -11,6 +11,7 @@ import { InfoOrderComponent } from './info-order/info-order';
 import { InfoOrderDetailsComponent } from './info-order-details/info-order-details';
 import {AccordionListComponent} from "./accordion-list/accordion-list";
 import {Timer} from "./countdown-timer/timer";
+import { UserComponent } from './user/user';
 @NgModule({
 	declarations: [ItemComponent,
     FooterNavComponent,
@@ -23,7 +24,8 @@ import {Timer} from "./countdown-timer/timer";
     InfoOrderComponent,
     InfoOrderDetailsComponent,
     AccordionListComponent,
-    Timer],
+    Timer,
+    UserComponent],
 	imports: [],
 	exports: [ItemComponent,
     FooterNavComponent,
@@ -36,6 +38,7 @@ import {Timer} from "./countdown-timer/timer";
     InfoOrderComponent,
     InfoOrderDetailsComponent,
     AccordionListComponent,
-    Timer]
+    Timer,
+    UserComponent]
 })
 export class ComponentsModule {}

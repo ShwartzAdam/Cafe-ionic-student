@@ -20,6 +20,11 @@ page-quick-order {
       position: relative;
       text-align: center;
     }
+    ion-card img {
+      display: block;
+      width: 100%;
+      height: 15em !important;
+    }
 
     .card-title {
       position: absolute;

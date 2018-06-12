@@ -18,6 +18,21 @@
     Quantity: {{or?.qty}}
   </ion-col>
 </ion-row>
+<div *ngIf="displayReview">
+  <ion-row>
+    <ion-title>
+      <p ion-text text-wrap>
+        Please Click On The 'Leave A Review' button , So We Could Improve Our Services.
+      </p>
+    </ion-title>
+  </ion-row>
+  <ion-row>
+    <button ion-button round small color="first" class="check-btn" icon-start (click)="initReviewForm()">
+      <ion-icon name='create'></ion-icon>
+      Leave A Review
+    </button>
+  </ion-row>
+</div>
 <ion-row>
   <ion-title>
     <p ion-text>

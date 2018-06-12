@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {Timer} from "../../components/countdown-timer/timer";
 
 
@@ -10,17 +10,32 @@ import {Timer} from "../../components/countdown-timer/timer";
 })
 export class QuickOrderActionPage{
 
-  @ViewChild(Timer) child : Timer;
-
   constructor(public navCtrl: NavController,
-              public navParams: NavParams) {}
+              public navParams: NavParams,
+              public alertCtrl: AlertController) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TimerPage');
-    this.child.startTimer();
-  }
-  public onChange(e){
-    console.log(e);
+
+  doConfirm() {
+    const alert = this.alertCtrl.create({
+      title: 'Use this lightsaber?',
+      message: 'Do you agree to use this lightsaber to do good across the intergalactic galaxy?',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
 }

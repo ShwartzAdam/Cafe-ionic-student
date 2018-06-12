@@ -47,6 +47,7 @@ import {InfoOrderDetailsComponent} from "../components/info-order-details/info-o
 import {AccordionListComponent} from "../components/accordion-list/accordion-list";
 import {CapitalizeFirstPipe} from "../pipes/capitalize-first/capitalize-first";
 import {Timer} from "../components/countdown-timer/timer";
+import {UserComponent} from "../components/user/user";
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import {Timer} from "../components/countdown-timer/timer";
     AccordionListComponent,
     ProfilePage,
     CapitalizeFirstPipe,
-    Timer
+    Timer,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,7 @@ import {Timer} from "../components/countdown-timer/timer";
     HttpClientModule,
     LoginPageModule,
     HomePageModule,
-    BasketPageModule,
+    BasketPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -109,7 +111,8 @@ import {Timer} from "../components/countdown-timer/timer";
     InfoOrderDetailsComponent,
     AccordionListComponent,
     ProfilePage,
-    Timer
+    Timer,
+    UserComponent,
   ],
   providers: [
     StatusBar,

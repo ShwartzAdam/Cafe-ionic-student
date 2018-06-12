@@ -26,10 +26,10 @@ export class QuickOrderPage {
 
   initQuickOrderMenu(){
     this.Items = [
-      {name : "Drink And Croissant", src : "assets/imgs/cafe-cor.jpg"},
-      {name : "Drink",  src : "assets/imgs/cafe.jpg" },
-      {name : "Sandwich" ,  src : "assets/imgs/sandwich.jpg" },
-      {name : "Snack" ,  src : "assets/imgs/snack.jpg" }
+      {name : "Drink And Croissant", src : "assets/order-images/cafe-cor.jpg"},
+      {name : "Drink",  src : "assets/order-images/cafe.jpg" },
+      {name : "Sandwich" ,  src : "assets/order-images/sandwich.jpg" },
+      {name : "Snack" ,  src : "assets/order-images/snack.jpg" }
     ];
     //saving in local storage
     this.userData.getUserId().then(

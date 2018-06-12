@@ -12,7 +12,7 @@
     <ion-card-header>
     </ion-card-header>
     <ion-card-content>
-      <timer #countdown [timeInSeconds]="5" (notifyTimer)="onChange($event)" ></timer>
+      <button ion-button color="light" block (click)="doConfirm()">Confirm Alert</button>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {LoadingController, NavController, NavParams} from 'ionic-angular';
+import {AlertController, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {OrderList} from "../../model/orderList";
 import {Order} from "../../model/order";
 import {OrderListProvider} from "../../providers/order-list/order-list";
@@ -12,6 +12,7 @@ import {ItemProvider} from "../../providers/item/item";
 
 import * as moment from 'moment';
 import {Timer} from "../../components/countdown-timer/timer";
+import {ProfilePage} from "../profile/profile";
 
 
 @Component({
@@ -35,6 +36,8 @@ export class QuickOrderTicket implements OnInit{
   public orderTimeExtended: any;
   public length : number;
   public timeOffered: any;
+  public startDatetimeMin: any;
+  public maxAddDaysStartTime: any;
   displayTime: boolean = false;
   displayButtons: boolean = true;
   displaySuccessTime: boolean = false;
@@ -47,7 +50,8 @@ export class QuickOrderTicket implements OnInit{
               public userData: UserData,
               public userPro: UserProvider,
               public itemPro: ItemProvider,
-              public loadingCtrl: LoadingController){
+              public loadingCtrl: LoadingController,
+              public alertCtrl: AlertController){
   }
 
   ngOnInit(): void {
@@ -59,6 +63,10 @@ export class QuickOrderTicket implements OnInit{
     this.totalPrice = this.orderList.totalprice;
     console.log(this.orderList);
     console.log(this.order);
+
+    // set min time to order
+    this.startDatetimeMin = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString();// set the current date time
+
 
     this.userPro.getUserById(this.orderList.userid).subscribe(
       _stu => {
@@ -114,6 +122,7 @@ export class QuickOrderTicket implements OnInit{
   }
 
   checkTime(){
+    this.ischeckTimeEnable = false;
     this.isReturnOffer = true;
     // if the user clicking again on the checktime -> remove orderlist from tables by delete call
     this.deleteOrder();
@@ -181,8 +190,6 @@ export class QuickOrderTicket implements OnInit{
             console.log(this.timeOffered);
             // present 1 minutes to decide if create orders items
             this.child.startTimer();
-
-
       });
 
 
@@ -196,6 +203,30 @@ export class QuickOrderTicket implements OnInit{
     } else {
       return false;
     }
+  }
+
+  doConfirm() {
+    const alert = this.alertCtrl.create({
+      title: 'Confirm Alert',
+      message: 'Are you sure you want to place this order?',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            console.log('Disagree clicked');
+            return;
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            console.log('Agree clicked');
+            this.placeOrder();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 
@@ -241,17 +272,23 @@ export class QuickOrderTicket implements OnInit{
       res => {
         console.log(res);
         let loading = this.loadingCtrl.create({
-          spinner: 'crescent',
-          content: 'Your order has been received by the Cafeteria !<br> Order number is ' + this.orderList.olid ,
+          spinner: 'dots',
+          content: '<div class="custom-spinner-container">' +
+          '        <div class="custom-spinner-box"></div> ' +
+          '        </div> ' +
+          '        <div>Your order has been received by the Cafeteria !<br>'  +
+          '          Order number is ' + this.orderList.olid  + '<br>Please Check out the Open Orders section in your profile page </div> ' +
+          '       </div>'
+
         });
         loading.present();
         setTimeout(() => {
-          this.navCtrl.setRoot("HomePage");
+          this.navCtrl.setRoot(ProfilePage);
         }, 1000);
 
         setTimeout(() => {
           loading.dismiss();
-        }, 4000);
+        }, 5000);
       }
     );
 

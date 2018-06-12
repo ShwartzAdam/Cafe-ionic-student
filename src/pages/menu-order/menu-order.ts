@@ -34,7 +34,7 @@ export class MenuOrderPage {
       }
     });
     this.items = [
-      {name : "Dishes", src : "assets/order-images/food-menu.jpg"},
+      {name : "Dishes", src : "assets/order-images/dishes.jpg"},
       {name : "Drink",  src : "assets/order-images/cafe.jpg" },
       {name : "Pastry",  src : "assets/order-images/pastery.png" },
       {name : "Sandwich" ,  src : "assets/order-images/sandwich.jpg" },

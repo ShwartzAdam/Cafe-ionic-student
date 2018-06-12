@@ -14,16 +14,16 @@ import {OrderListProvider} from "../../providers/order-list/order-list";
 export class ProfilePage implements OnInit{
   private userId: number;
   private stu: Student = new Student();
-  public rootComponent = 'Complete';
+  public rootComponent = 'Open';
   private displayComplete: boolean = false;
   private displayOpen: boolean = false;
   private displayCredit: boolean = false;
+  private userUrl: string = null;
   data = {
     openOrder: 0,
     closeOrder: 0,
-    profileImage: '../../assets/png/avatar.png',
-    coverImage: '../../assets/imgs/cover.jpg',
-    moneyButton: '../../assets/imgs/buttonmoney.png'
+    coverImage: '../../assets/profile/cover.jpg',
+    moneyButton: '../../assets/ui/buttonmoney.png'
   };
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -39,7 +39,7 @@ export class ProfilePage implements OnInit{
 
   ngOnInit(): void {
     // root segment
-    this.selectedSeg('C');
+    this.selectedSeg('O');
 
     this.userData.getUserId().then(
       res => {
@@ -47,6 +47,7 @@ export class ProfilePage implements OnInit{
         this.userPro.getUserById(this.userId).subscribe(
           res => {
             this.stu = res;
+            this.userUrl = "../../assets/" + this.stu.url;
             console.log(this.stu);
           });
         this.orderListPro.getOrderListByUserId(this.userId).subscribe(

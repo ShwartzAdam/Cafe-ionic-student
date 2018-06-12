@@ -3,9 +3,6 @@ import {NavParams, NavController, Events, ToastController} from "ionic-angular";
 import {UserData} from "../../providers/user-data/user-data";
 import {BasketPage} from "../../pages/basket/basket";
 import {Item} from "../../model/item";
-import {ReviewComponent} from "../review/review";
-import {InfoItemComponent} from "../info-item/info-item";
-import {ReviewItemComponent} from "../review-item/review-item";
 
 @Component({
   selector: 'item',

@@ -31,6 +31,9 @@ export class ReviewProvider {
   public getReviewById(id : number): Observable<Review> {
     return this.http.get<Review>(this.url + '/reviews/' + id );
   }
+  public getReviewByItemId(id : number): Observable<Review[]> {
+    return this.http.get<Review[]>(this.url + '/reviews/item/' + id );
+  }
 
   public updateReview(_review: Review){
     return new Promise((resolve, reject) => {

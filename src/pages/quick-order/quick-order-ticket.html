@@ -65,7 +65,7 @@
     <ion-row>
       <ion-item>
         <ion-label>Pick-Up Time :</ion-label>
-        <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="this.orderTime" (ngModelChange)="dateChanged()"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm:ss" [min]="startDatetimeMin"  [(ngModel)]="this.orderTime" (ngModelChange)="dateChanged()"></ion-datetime>
       </ion-item>
     </ion-row>
     <ion-row>
@@ -76,9 +76,9 @@
     <ion-row *ngIf="displaySuccessTime">
       <ion-col>
         <ion-item text-wrap>
-          <h3 ion-text align-self-center> Time offered for your order : </h3>
+          <h3 ion-text align-self-center> Time to place your order : </h3>
           <p ion-text> {{this.timeOffered | date: "medium" : 'UTC'}}</p>
-          <timer #countdown [timeInSeconds]="30" (notifyTimer)="onChange($event)" ></timer>
+          <timer #countdown [timeInSeconds]="60" (notifyTimer)="onChange($event)" ></timer>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -87,6 +87,6 @@
 <ion-footer no-shadow class="quick-order-ticket-buttons" *ngIf="displayButtons">
   <ion-toolbar position="bottom" color="first">
     <button ion-button round float-left (click)="clearOrder()" [disabled]="!isenabled">Clear</button>
-    <button ion-button round float-right (click)="placeOrder()" [disabled]="!isenabled">Place Order</button>
+    <button ion-button round float-right (click)="doConfirm()" [disabled]="!isenabled">Place Order</button>
   </ion-toolbar>
 </ion-footer>

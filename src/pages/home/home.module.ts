@@ -7,7 +7,7 @@ import {FooterNavComponent} from "../../components/footer-nav/footer-nav";
 @NgModule({
   declarations: [
     HomePage,
-    FooterNavComponent,
+    FooterNavComponent
   ],
   imports: [
     IonicPageModule.forChild(HomePage),

@@ -1,13 +1,13 @@
-<ion-item text-wrap>
+<ion-item text-wrap *ngFor="let review of reviews">
   <ion-row>
     <ion-col col-5>
-      <p ion-text color="dark">Adam Shwartz</p>
+      <user [userId]="review.userid"></user>
     </ion-col>
     <ion-col col-1>
     </ion-col >
     <ion-col col-6>
-      <rating [(ngModel)]="this.review.stars" readOnly="false"> </rating>
+      <rating [(ngModel)]="review.stars" readOnly="false"> </rating>
     </ion-col>
-    <ion-card-content>{{this.review.comment}}</ion-card-content>
+    <ion-card-content>{{review.comment}}</ion-card-content>
   </ion-row>
 </ion-item>

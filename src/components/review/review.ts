@@ -28,6 +28,7 @@ export class ReviewComponent {
   private userid: number;
   public comment: string[] = new Array();
   public stars: number[] = new Array();
+  public callback: any;
   constructor(public navParams: NavParams,
               public navCtrl : NavController,
               public userData: UserData,
@@ -38,6 +39,7 @@ export class ReviewComponent {
               public revPro: ReviewProvider,
               public loadingCtrl: LoadingController) {
     this.orderListId = this.navParams.get('orderListIdRev');
+    this.callback = this.navParams.get("callback");
     this.initView();
   }
   initView(): any {
@@ -151,8 +153,10 @@ export class ReviewComponent {
                 });
                 loading.present();
                 setTimeout(() => {
-                  this.navCtrl.setRoot("TrackingPage");
-                }, 1000);
+                  this.callback(true).then(()=>{
+                    this.navCtrl.pop();
+                  });
+                  });
 
                 setTimeout(() => {
                   loading.dismiss();
