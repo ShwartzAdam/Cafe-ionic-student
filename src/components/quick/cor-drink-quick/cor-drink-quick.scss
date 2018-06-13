@@ -1,4 +1,12 @@
 cor-drink-quick {
+  .total-price{
+    padding-bottom: 25px !important;
+    ion-label{
+      font-size:1.4em !important;
+      text-align: center !important;
+    }
+  }
+
   .quick-box-form{
     display: block;
     width: 90%;

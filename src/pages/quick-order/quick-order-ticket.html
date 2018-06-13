@@ -75,8 +75,8 @@
     </ion-row>
     <ion-row *ngIf="displaySuccessTime">
       <ion-col>
-        <ion-item text-wrap>
-          <h3 ion-text align-self-center> Time to place your order : </h3>
+        <ion-item text-wrap class="successTime">
+          <h3 ion-text align-self-center> The time offered to <strong>place</strong> your order : </h3>
           <p ion-text> {{this.timeOffered | date: "medium" : 'UTC'}}</p>
           <timer #countdown [timeInSeconds]="60" (notifyTimer)="onChange($event)" ></timer>
         </ion-item>

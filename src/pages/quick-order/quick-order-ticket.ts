@@ -37,7 +37,6 @@ export class QuickOrderTicket implements OnInit{
   public length : number;
   public timeOffered: any;
   public startDatetimeMin: any;
-  public maxAddDaysStartTime: any;
   displayTime: boolean = false;
   displayButtons: boolean = true;
   displaySuccessTime: boolean = false;
@@ -67,13 +66,16 @@ export class QuickOrderTicket implements OnInit{
     // set min time to order
     this.startDatetimeMin = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString();// set the current date time
 
-
     this.userPro.getUserById(this.orderList.userid).subscribe(
       _stu => {
         let stu: Student = new Student;
         stu.userid = this.orderList.userid;
         stu.firstname = _stu.firstname;
         stu.lastname = _stu.lastname;
+        stu.url = _stu.url;
+        stu.email = _stu.email;
+        stu.role = _stu.role;
+        stu.password = _stu.password;
         stu.phone = _stu.phone;
         stu.credit = _stu.credit;
         this.student = stu;
@@ -260,6 +262,7 @@ export class QuickOrderTicket implements OnInit{
     let diff = Math.abs(balance - priceToDec);
     console.log('user credit after ' + diff );
     this.student.credit = diff;
+    console.log(this.student);
     this.userPro.updateUser(this.student).then(
       res => console.log(res)
     );

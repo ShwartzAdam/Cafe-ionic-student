@@ -12,6 +12,7 @@ export class InfoOrderComponent implements OnInit{
   @Input() status: string;
   private userId: number;
   private orderList: OrderList[] = new Array();
+  public displayEmptyMessage: boolean = false;
 
   constructor(public userData: UserData,
               public orderListPro: OrderListProvider) {}
@@ -36,6 +37,10 @@ export class InfoOrderComponent implements OnInit{
           this.orderList = incoming;
           console.log(incoming);
           console.log(this.orderList);
+          let len = this.orderList.length;
+          if( len == 0 ) {
+            this.displayEmptyBookOrder();
+          }
 
         })
     } else if ( this.status == 'close') {
@@ -49,11 +54,20 @@ export class InfoOrderComponent implements OnInit{
           this.orderList = done;
           console.log(done);
           console.log(this.orderList);
+          let len = this.orderList.length;
+          if( len == 0 ) {
+            // display empty order book
+            this.displayEmptyBookOrder();
+          }
 
         })
     } else {
-      console.log('bad input for status')
+      console.log("bad input error using status")
     }
+  }
+
+  public displayEmptyBookOrder(){
+      this.displayEmptyMessage = true;
   }
 
 }

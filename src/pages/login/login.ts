@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController, IonicPage, LoadingController} from 'ionic-angular';
+import {NavController, IonicPage, LoadingController, AlertController} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
 import {UserData} from "../../providers/user-data/user-data";
 
@@ -16,7 +16,8 @@ export class LoginPage {
   constructor(public nav: NavController,
               public userProvider: UserProvider,
               public userData: UserData,
-              public loadingCtrl: LoadingController) {
+              public loadingCtrl: LoadingController,
+              public alertCtrl: AlertController) {
     this.userData.cleanCart();
     this.userData.clearStudent();
   }
@@ -63,8 +64,18 @@ export class LoginPage {
             console.log("bad input for loggin");
         }
 
+    }).catch( err => {
+         this.presentAlert();
     });
 
+  }
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Error Login!',
+      subTitle: 'Please insert your email and password again',
+      buttons: ['Got it...']
+    });
+    alert.present();
   }
 
 

@@ -14,6 +14,7 @@ import { UserData } from "../../providers/user-data/user-data";
   templateUrl: 'home.html'
 })
 export class HomePage{
+  private isEntered: boolean = false;
 
   userid: number;
   _student: Student = new Student;
@@ -29,24 +30,30 @@ export class HomePage{
 
   private initView(): void {
     //saving in local storage
-    this.userData.getUserId().then(
-      res => {
-        this.userid = res;
-        this.display();
-        this.userData.getItemsFromCart().then(
-          res => {
-            if(res){
-              this.countItems = res.length;
+    console.log(this.isEntered);
+    if(this.isEntered == false){
+      console.log(this.isEntered);
+      this.userData.getUserId().then(
+        res => {
+          this.userid = res;
+          this.display();
+          this.userData.getItemsFromCart().then(
+            res => {
+              if(res){
+                this.countItems = res.length;
+              }
             }
-          }
-        );
-      });
+          );
+          this.isEntered = true;
+        });
+    }
+
   }
 
   presentAlert() {
     let alert = this.alertCtrl.create({
       title: 'Hello Student !',
-      subTitle: 'We noticed you credit is 0 ,Please click on Wallet before making any purchase, Thank you AA',
+      subTitle: 'We noticed you credit is 0 ,Please enter the profile section and click on the Wallet segment before making any purchase in the application, Thank you AA',
       buttons: ['Got it...']
     });
     alert.present();

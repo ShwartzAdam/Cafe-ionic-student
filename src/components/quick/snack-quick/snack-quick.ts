@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { NavController, NavParams,ActionSheetController } from 'ionic-angular';
 import {ItemProvider} from '../../../providers/item/item';
 import {Item} from '../../../model/item';
@@ -14,6 +14,7 @@ import {QuickOrderTicket} from "../../../pages/quick-order/quick-order-ticket";
   templateUrl: 'snack-quick.html'
 })
 export class SnackQuickComponent implements OnInit{
+  @ViewChild('content') content:any;
   // choosen item
   private items: Item[] = new Array();
   // url for image
@@ -129,6 +130,8 @@ export class SnackQuickComponent implements OnInit{
       return;
     }
     else {
+      let dimensions = this.content.getContentDimensions();
+      this.content.scrollTo(0, dimensions.contentHeight+100, 100);
       // take item price and mul with quantity
       console.log(this.itemPrice);
       console.log(this.qDrink);

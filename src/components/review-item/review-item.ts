@@ -16,7 +16,7 @@ export class ReviewItemComponent implements OnInit{
   @Input() itemInput: number;
   public reviews: Review[] = new Array();
   public users: User = new User();
-
+  public displayEmptyMessage: boolean = false;
   constructor(public revPro: ReviewProvider,
               public revListPro: ReviewListProvider,
               public userPro: UserProvider)
@@ -28,11 +28,14 @@ export class ReviewItemComponent implements OnInit{
       res => {
           this.reviews = res;
           console.log(this.reviews);
+          let len = this.reviews.length;
+          if( len == 0 ) {
+            // display empty review meesage
+            this.displayEmptyMessage = true;
+          }
       });
     // get the reivewslist by item by id
     console.log(this.itemInput);
-
-
   }
 
 

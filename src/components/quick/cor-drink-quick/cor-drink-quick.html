@@ -14,7 +14,7 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding #content>
   <ion-grid class="quick-box-form">
     <ion-row>
       <ion-col>
@@ -70,11 +70,10 @@
         <button class="submit-btn" ion-button round (click)="calcOrder()">Calculate</button>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="displayFinalPrice">
-      <ion-col>
-        <ion-label><strong>You Received A Discount !!!</strong></ion-label>
-        <ion-label>Total Price : <span>{{this.totalPrice}} &#8362;</span></ion-label>
-      </ion-col>
+    <ion-row class="total-price" *ngIf="displayFinalPrice" text-wrap>
+      <ion-item>
+        <ion-label> <strong> Total Price : {{this.totalPrice}} &#8362;</strong></ion-label>
+      </ion-item>
     </ion-row>
   </ion-grid>
 </ion-content>

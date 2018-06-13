@@ -27,12 +27,16 @@ export class UserProvider {
   }
 
   public getUser(registerCredentials) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.http.post(this.url+'/users/login', JSON.stringify(registerCredentials), {
         headers: new HttpHeaders().set("Content-Type", 'application/json')
       })
         .subscribe(res => {
           resolve(res);
+          console.log(res);
+        }, (err) => {
+          reject(err);
+          console.log(err);
         });
     });
   }

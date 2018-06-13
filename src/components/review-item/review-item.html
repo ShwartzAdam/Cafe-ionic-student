@@ -11,3 +11,8 @@
     <ion-card-content>{{review.comment}}</ion-card-content>
   </ion-row>
 </ion-item>
+<ion-item class="message" *ngIf="displayEmptyMessage">
+    <ion-title>
+      <p ion-text>THERE IS NO REVIEWS FOR THIS ITEM</p>
+    </ion-title>
+</ion-item>

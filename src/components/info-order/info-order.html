@@ -5,3 +5,10 @@
                 [expanded]="index === 0">
   <info-order-details [orderListId]="order.olid" [orderList]="order"></info-order-details>
 </accordion-list>
+<ion-item *ngIf="displayEmptyMessage">
+  <ion-row>
+    <ion-title>
+      <p ion-text>EMPTY ORDER BOOK</p>
+    </ion-title>
+  </ion-row>
+</ion-item>

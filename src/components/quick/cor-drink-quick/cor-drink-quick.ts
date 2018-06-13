@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { NavController, NavParams,ActionSheetController } from 'ionic-angular';
 import {ItemProvider} from '../../../providers/item/item';
 import {Item} from '../../../model/item';
@@ -14,6 +14,7 @@ import {QuickOrderTicket} from "../../../pages/quick-order/quick-order-ticket";
   templateUrl: 'cor-drink-quick.html'
 })
 export class CorDrinkQuickComponent implements OnInit{
+  @ViewChild('content') content:any;
   // choosen item
   private itemsDrink: Item[] = new Array();
   private itemsFood: Item[] = new Array();
@@ -186,6 +187,8 @@ export class CorDrinkQuickComponent implements OnInit{
       console.log('no qunaitiy')
     }
     else {
+      let dimensions = this.content.getContentDimensions();
+      this.content.scrollTo(0, dimensions.contentHeight+100, 100);
       // calc
       let drinkSum = Math.imul(this.itemPriceDrink,this.qDrink);
       let foodSum = Math.imul(this.itemPriceFood,this.qFood);

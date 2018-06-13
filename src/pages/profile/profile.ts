@@ -85,6 +85,7 @@ export class ProfilePage implements OnInit{
   addCredit(): void {
     this.stu.credit = this.stu.credit + 100;
     console.log(this.stu);
+    // needs to have put call to update only one col
     this.userPro.updateUser(this.stu).then(
       res => {
         console.log(res);

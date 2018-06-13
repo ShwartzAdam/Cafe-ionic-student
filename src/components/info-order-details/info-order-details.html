@@ -4,7 +4,7 @@
       Order Status : {{this.orderList.status}}
     </p>
     <p ion-text>
-      Pick Up Time : {{this.orderList.ol_dttm | date: 'medium'}}
+      Pick Up Time : {{this.orderList.ol_dttm | date: 'medium' : 'UTC' }}
     </p>
   </ion-title>
 </ion-row>

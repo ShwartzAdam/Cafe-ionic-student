@@ -2,8 +2,6 @@ import {Component, ViewChild} from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
 import {Student} from "../../model/user";
-
-import {HttpEventType, HttpResponse} from "@angular/common/http";
 import { DomSanitizer } from '@angular/platform-browser';
 
 
@@ -13,27 +11,22 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
+  @ViewChild('selectedFile') selectedFileEl;
   private _userRegister: Student = new Student;
-
   borderAttMen: string = '5px solid #fff';
   borderAttWmn: string = '0px';
-
   maleClicked: boolean = true;
   femaleClicked: boolean = false;
   imageFileUpload: any;
   imageFileNameMen: any = "../../assets/profile/male.png";
   imageFileNameWoman: any = "../../assets/profile/female.png";
-
-  @ViewChild('selectedFile') selectedFileEl;
-
-
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
               private userPr: UserProvider,
               private sanitizer: DomSanitizer,
               public loadingCtrl: LoadingController){
     this._userRegister.role = "Student";
-    this._userRegister.url = "users/male.png";
+    this._userRegister.url = "profile/male.png";
   }
   public setUrl(s){
     if(s == 'M' && !this.maleClicked) {
@@ -42,13 +35,13 @@ export class RegisterPage {
       this.maleClicked = true;
       this.borderAttMen = '5px solid #fff';
       this.borderAttWmn = '0px';
-      this._userRegister.url = 'users/male.png'
+      this._userRegister.url = 'profile/male.png'
     } else if ( s == 'W' && !this.femaleClicked){
       this.maleClicked = false;
       this.femaleClicked = true;
       this.borderAttWmn = '5px solid #fff';
       this.borderAttMen = '0px';
-      this._userRegister.url = 'users/female.png'
+      this._userRegister.url = 'profile/female.png'
 
     } else {
       console.log('Clicked twice on the same image');

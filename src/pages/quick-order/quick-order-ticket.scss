@@ -1,5 +1,14 @@
 quick-order-ticket {
-
+  .successTime{
+    margin: 0 !important;
+    h3{
+      text-align: center !important;
+    }
+    p{
+      text-align: center !important;
+      font-size: 1.3em !important;
+    }
+  }
   .toolbar-header{
     margin-right: 40px;
   }
