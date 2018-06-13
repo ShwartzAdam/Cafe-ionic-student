@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { NavController, NavParams,ActionSheetController } from 'ionic-angular';
+import {NavController, NavParams, ActionSheetController, AlertController} from 'ionic-angular';
 import {ItemProvider} from '../../../providers/item/item';
 import {Item} from '../../../model/item';
 import {UserData} from "../../../providers/user-data/user-data";
@@ -55,7 +55,8 @@ export class CorDrinkQuickComponent implements OnInit{
               public navParams: NavParams,
               public actionSheetCtrl: ActionSheetController,
               public itemProv: ItemProvider,
-              public userData: UserData) {
+              public userData: UserData,
+              public alertCtrl: AlertController) {
     this.title = this.navParams.get('name');
     this.url = this.navParams.get('url');
     // hide time
@@ -182,9 +183,11 @@ export class CorDrinkQuickComponent implements OnInit{
     if(this.drinkId == -1 || this.foodId == -1){
       // drink wasnot choose and quaninty for order
       console.log('no drink or food were chosen');
+      this.presentAlert(null);
       return;
     } else if ( this.qDrink == 0 || this.qFood == 0) {
       console.log('no qunaitiy')
+      this.presentAlert('Q');
     }
     else {
       let dimensions = this.content.getContentDimensions();
@@ -225,6 +228,25 @@ export class CorDrinkQuickComponent implements OnInit{
       orderParam: orderArr,
       size: 2
     });
+  }
+
+  presentAlert(s) {
+    if(s == 'Q') {
+      let alert = this.alertCtrl.create({
+        title: 'Error - Quantity',
+        subTitle: 'Please choose the quantity you would like in order to proceed ',
+        buttons: ['Got it...']
+      });
+      alert.present();
+    } else {
+      let alert = this.alertCtrl.create({
+        title: 'Error - Item',
+        subTitle: 'Please choose an item in order to proceed ',
+        buttons: ['Got it...']
+      });
+      alert.present();
+    }
+
   }
 
   public gotoBasket(){
