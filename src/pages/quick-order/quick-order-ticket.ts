@@ -275,12 +275,11 @@ export class QuickOrderTicket implements OnInit{
       res => {
         console.log(res);
         let loading = this.loadingCtrl.create({
-          spinner: 'dots',
+          spinner: 'default',
           content: '<div class="custom-spinner-container">' +
           '        <div class="custom-spinner-box"></div> ' +
-          '        </div> ' +
           '        <div>Your order has been received by the Cafeteria !<br>'  +
-          '          Order number is ' + this.orderList.olid  + '<br>Please Check out the Open Orders section in your profile page </div> ' +
+          '          Order number is ' + this.orderList.olid  + ' </div> ' +
           '       </div>'
 
         });
