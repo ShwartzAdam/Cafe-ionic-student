@@ -32,11 +32,8 @@ export class InfoOrderComponent implements OnInit{
       this.orderList = new Array();
       this.orderListPro.getOrderListByUserId(this.userId).subscribe(
         res => {
-          console.log(res);
           const incoming = res.filter(order => (order.status === 'Incoming' || order.status === 'Active'));
           this.orderList = incoming;
-          console.log(incoming);
-          console.log(this.orderList);
           let len = this.orderList.length;
           if( len == 0 ) {
             this.displayEmptyBookOrder();
@@ -49,11 +46,8 @@ export class InfoOrderComponent implements OnInit{
       this.orderList = new Array();
       this.orderListPro.getOrderListByUserId(this.userId).subscribe(
         res => {
-          console.log(res);
           const done = res.filter(order => order.status === 'Complete');
           this.orderList = done;
-          console.log(done);
-          console.log(this.orderList);
           let len = this.orderList.length;
           if( len == 0 ) {
             // display empty order book

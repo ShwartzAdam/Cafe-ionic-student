@@ -4,13 +4,16 @@ import {ItemComponent} from "../../components/item/item";
 import {ItemProvider} from "../../providers/item/item";
 import {Item} from "../../model/item";
 import {UserData} from "../../providers/user-data/user-data";
+import {BasketPage} from "../basket/basket";
+import { ViewChild } from '@angular/core';
+import { Navbar } from 'ionic-angular';
 
 @Component({
   selector: 'page-menu-order-details',
   templateUrl: 'menu-order-details.html'
 })
 export class MenuOrderDetails {
-
+  @ViewChild(Navbar) navBar: Navbar;
   // varibles from quick-order page taken out with nav controller
   private title : string;
   private  url : string;
@@ -29,15 +32,18 @@ export class MenuOrderDetails {
     this.title = this.navParams.get('name');
     this.url = this.navParams.get('url');
     // update cart bedge
-    this.userData.getItemsFromCart().then(res => {
-      if(res){
-        this.countItems = res.length;
-        console.log(this.countItems);
-      }
-    });
     this.initView();
+    this.updateCart();
   }
-  private initView() {
+  ionViewDidLoad() {
+    this.navBar.backButtonClick = (e:UIEvent)=>{
+      // todo something
+      console.log('backed clicked updating cart - menu details');
+      this.updateCart();
+      this.navCtrl.pop();
+    }
+  }
+  initView() {
     // checking what king of items to show by Type
     if(this.title == "Dishes"){
       // call Rest API for items
@@ -63,10 +69,22 @@ export class MenuOrderDetails {
       });
   }
 
-  private getItemsByType(s: string) {
+  getItemsByType(s: string) {
     this.itemProv.getAllItemByType(s).then(
       (res : any[]) => {
         res.forEach(item => this.itemList.push(item))
       });
+  }
+  public gotoBasket(){
+    this.navCtrl.setRoot(BasketPage);
+  }
+
+  public updateCart(){
+    this.userData.getItemsFromCart().then(res => {
+      if(res){
+        this.countItems = res.length;
+        console.log(this.countItems);
+      }
+    });
   }
 }

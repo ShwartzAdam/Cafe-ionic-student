@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NavController, IonicPage, LoadingController, AlertController} from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import {UserProvider} from "../../providers/user/user";
 import {UserData} from "../../providers/user-data/user-data";
 
@@ -12,15 +13,17 @@ export class LoginPage {
   registerCredentials = { email: '', password: '', role: 'Student' };
   dataFromOtherPage = null;
   imageFileName: any = "../../assets/png/littlecafe.png";
-
+  options:NativeTransitionOptions;
   constructor(public nav: NavController,
               public userProvider: UserProvider,
               public userData: UserData,
               public loadingCtrl: LoadingController,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              private nativePageTransitions: NativePageTransitions) {
     this.userData.cleanCart();
     this.userData.clearStudent();
   }
+
 
   callback = data => {
     this.dataFromOtherPage = data;
@@ -53,6 +56,17 @@ export class LoginPage {
           });
           loading.present();
           setTimeout(() => {
+            this.options = {
+              direction: 'up',
+              duration: 500,
+              slowdownfactor: 3,
+              slidePixels: 20,
+              iosdelay: 100,
+              androiddelay: 150,
+              fixedPixelsTop: 0,
+              fixedPixelsBottom: 60
+            };
+            this.nativePageTransitions.flip(this.options);
             this.nav.setRoot("HomePage");
           }, 1000);
 

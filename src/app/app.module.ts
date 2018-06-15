@@ -48,6 +48,7 @@ import {AccordionListComponent} from "../components/accordion-list/accordion-lis
 import {CapitalizeFirstPipe} from "../pipes/capitalize-first/capitalize-first";
 import {Timer} from "../components/countdown-timer/timer";
 import {UserComponent} from "../components/user/user";
+import {NativePageTransitions} from "@ionic-native/native-page-transitions";
 
 
 @NgModule({
@@ -126,6 +127,7 @@ import {UserComponent} from "../components/user/user";
     ReviewListProvider,
     UserData,
     LoggerProvider,
+    NativePageTransitions,
   ]
 })
 export class AppModule {}

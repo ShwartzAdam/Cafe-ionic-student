@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import {Events} from "ionic-angular";
-import {Order} from "../../model/order";
 import {Student} from "../../model/user";
 
 @Injectable()
@@ -77,7 +76,7 @@ export class UserData {
 
   public removeItemFromCart(itemid): Promise<any>{
     return this.storage.get('cart').then((value) => {
-        let oldVal = value;
+        // let oldVal = value;
         let newVal = [];
         this.itemListNew = [];
         let itemcount = 1;

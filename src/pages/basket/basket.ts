@@ -146,7 +146,7 @@ export class BasketPage {
     for(let i = 0 ; i < this.items.length ; i++ ){
       this.ordersItem[i].qty = this.items[i].qty;
     }
-    const orderList = new OrderList();
+    let orderList = new OrderList();
     orderList.totalprice = this.totalPrice;
     orderList.userid = this.userid;
     console.log(this.ordersItem);

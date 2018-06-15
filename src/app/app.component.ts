@@ -8,7 +8,6 @@ import { MenuOrderPage } from '../pages/menu-order/menu-order';
 import { LoginPage } from "../pages/login/login";
 import { BasketPage } from "../pages/basket/basket";
 import { HomePage } from "../pages/home/home";
-import {QuickOrderActionPage} from "../pages/quick-order-action/quick-order-action";
 import {ProfilePage} from "../pages/profile/profile";
 // provider
 
@@ -18,7 +17,7 @@ import {ProfilePage} from "../pages/profile/profile";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  userLoggedIn: boolean = false;
+  // userLoggedIn: boolean = false;
   rootPage: any = LoginPage;
   sideMenuPages: Array<{ title: string, component: any, icon: string }>;
 
@@ -41,7 +40,6 @@ export class MyApp {
       {title: 'Profile' , component: ProfilePage , icon: 'person'},
       {title: 'Home' , component: HomePage , icon: 'home'},
       {title: 'Quick Order' , component: QuickOrderPage , icon: 'book'},
-      {title: 'Quick Order Action' , component: QuickOrderActionPage , icon: 'book'},
       {title: 'Menu Order' , component: MenuOrderPage , icon: 'map'},
       {title: 'Basket' , component: BasketPage , icon: 'cart'},
       {title: 'Sign-Out' , component: LoginPage , icon: 'power'}

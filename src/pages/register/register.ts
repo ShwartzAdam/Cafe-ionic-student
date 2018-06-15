@@ -2,7 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
 import {Student} from "../../model/user";
-import { DomSanitizer } from '@angular/platform-browser';
+// import { DomSanitizer } from '@angular/platform-browser';
 
 
 @IonicPage()
@@ -17,13 +17,13 @@ export class RegisterPage {
   borderAttWmn: string = '0px';
   maleClicked: boolean = true;
   femaleClicked: boolean = false;
-  imageFileUpload: any;
+  // imageFileUpload: any;
   imageFileNameMen: any = "../../assets/profile/male.png";
   imageFileNameWoman: any = "../../assets/profile/female.png";
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
               private userPr: UserProvider,
-              private sanitizer: DomSanitizer,
+              //private sanitizer: DomSanitizer,
               public loadingCtrl: LoadingController){
     this._userRegister.role = "Student";
     this._userRegister.url = "profile/male.png";

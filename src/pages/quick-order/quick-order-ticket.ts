@@ -132,8 +132,8 @@ export class QuickOrderTicket implements OnInit{
     //this.displayButtons = true;
     this.displaySuccessTime = true;
     // collect order time
-    let orderTimeStr = moment(new Date().getTime().toString(),'hh:mm:ss').add(3,'h').toISOString();
-    let pickUpTimeStr = moment(this.orderTime,'hh:mm:ss').add(3,'h').toISOString();
+    let orderTimeStr = moment(new Date().getTime().toString(),'hh:mm').add(3,'h').toISOString();
+    let pickUpTimeStr = moment(this.orderTime,'hh:mm').add(3,'h').toISOString();
     this.orderTime = pickUpTimeStr;
     this.pickUpTime = pickUpTimeStr;
     console.log(new Date().getTime().toString());
@@ -164,11 +164,10 @@ export class QuickOrderTicket implements OnInit{
             let timePrepItem = res.preptime;
             let quantity = this.order[i].qty;
             let prep: number = Math.imul(timePrepItem, quantity);
-            this.prepTotal = this.prepTotal + prep;
+            this.orderList.totalpreptime  = this.orderList.totalpreptime + prep;
             console.log(this.prepTotal);
           });
       }
-      this.orderList.totalpreptime = this.prepTotal;
       this.createOrder();
     }
 
@@ -209,7 +208,7 @@ export class QuickOrderTicket implements OnInit{
 
   doConfirm() {
     const alert = this.alertCtrl.create({
-      title: 'Confirm Alert',
+      title: 'Place Order Confirmation',
       message: 'Are you sure you want to place this order?',
       buttons: [
         {
@@ -275,7 +274,7 @@ export class QuickOrderTicket implements OnInit{
       res => {
         console.log(res);
         let loading = this.loadingCtrl.create({
-          spinner: 'default',
+          spinner: 'crescent',
           content: '<div class="custom-spinner-container">' +
           '        <div class="custom-spinner-box"></div> ' +
           '        <div>Your order has been received by the Cafeteria !<br>'  +
