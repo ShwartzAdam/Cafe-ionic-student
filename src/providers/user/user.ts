@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserProvider {
-  url = 'http://localhost:3000/api';
+  url = 'https://cafeappserver.herokuapp.com/api';
 
   constructor(private http: HttpClient) {}
 

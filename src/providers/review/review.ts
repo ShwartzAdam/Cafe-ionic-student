@@ -8,7 +8,7 @@ import {Review} from "../../model/review";
 @Injectable()
 export class ReviewProvider {
 
-  url = 'http://localhost:3000/api';
+  url = 'https://cafeappserver.herokuapp.com/api';
 
   constructor(public http: HttpClient) {}
 

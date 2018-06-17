@@ -8,7 +8,7 @@ import {OrderList} from "../../model/orderList";
 @Injectable()
 export class OrderListProvider {
 
-  url = 'http://localhost:3000/api';
+  url = 'https://cafeappserver.herokuapp.com/api';
 
   constructor(public http: HttpClient) {
     console.log('Hello OrderListProvider Provider');
@@ -16,7 +16,7 @@ export class OrderListProvider {
 
   public createOrderList(_orderList: OrderList){
     return new Promise((resolve, reject) => {
-      this.http.post(this.url+'/orderedlists', JSON.stringify(_orderList), {
+      this.http.post(this.url+'/orderedlist', JSON.stringify(_orderList), {
         headers: new HttpHeaders().set("Content-Type", 'application/json'),
       })
         .subscribe(res => {
@@ -41,16 +41,16 @@ export class OrderListProvider {
   }
 
   public getOrderListByUserId(id : number): Observable<OrderList[]> {
-    return this.http.get<OrderList[]>(this.url + '/orderedlists/userid/' + id );
+    return this.http.get<OrderList[]>(this.url + '/orderedlist/userid/' + id );
   }
   public getOrderListByOlid(id : number): Observable<OrderList> {
-    return this.http.get<OrderList>(this.url + '/orderedlists/' + id );
+    return this.http.get<OrderList>(this.url + '/orderedlist/' + id );
   }
 
   // delete order list by id
   public deleteOrderlistById(id: number){
     return new Promise((resolve, reject) => {
-      this.http.delete(this.url + '/orderedlists/' + id , {
+      this.http.delete(this.url + '/orderedlist/' + id , {
         headers: new HttpHeaders().set("Content-Type", 'application/json'),
       })
         .subscribe(res => {
@@ -63,7 +63,7 @@ export class OrderListProvider {
 
   public updateOrderList(_orderList: OrderList){
     return new Promise((resolve, reject) => {
-      this.http.put(this.url + '/orderedlists/' , JSON.stringify(_orderList) ,{
+      this.http.put(this.url + '/orderedlist/' , JSON.stringify(_orderList) ,{
         headers: new HttpHeaders().set("Content-Type", 'application/json')
       }).timeout(2000)
         .subscribe(res => {

@@ -9,7 +9,7 @@ import {Item} from "../../model/item";
 
 @Injectable()
 export class ItemProvider {
-  url = 'http://localhost:3000/api';
+  url = 'https://cafeappserver.herokuapp.com/api';
 
   constructor(public http: HttpClient) {
 
