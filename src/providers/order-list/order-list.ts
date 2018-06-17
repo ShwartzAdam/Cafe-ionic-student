@@ -29,7 +29,7 @@ export class OrderListProvider {
 
   public checkTimeOrderList(_orderList: OrderList){
     return new Promise((resolve, reject) => {
-      this.http.post(this.url+'/orderedlistsTime', JSON.stringify(_orderList), {
+      this.http.post(this.url+'/orderedlist/orderedlistsTime', JSON.stringify(_orderList), {
         headers: new HttpHeaders().set("Content-Type", 'application/json'),
       })
         .subscribe(res => {
