@@ -8,10 +8,9 @@ export class UserData {
   //public HAS_LOGGED_IN = 'hasLoggedIn';
   public itemList: any;
   public itemListNew: any;
-  public userid: number;
-  public stu: Student;
-  //public order: Order[];
-  //public orderlist: any[];
+  private userid: number;
+  private accessToken: string;
+  private stu: Student;
 
   constructor(public storage: Storage,
               public events: Events) {}
@@ -33,6 +32,29 @@ export class UserData {
     this.userid = userid;
     this.storage.set("userid", userid);
   }
+  public setToken(token: string): void {
+    this.accessToken = token;
+    this.storage.set('token',token );
+  }
+  public getToken(): Promise<string> {
+    if (this.accessToken) {
+      return Promise.resolve(this.accessToken);
+    }
+    else {
+      return this.storage.get('token').then((accessToken) => {
+        this.accessToken = accessToken;
+        return accessToken;
+      });
+    }
+  }
+
+  public setStudent(student: Student):void{
+    this.stu = student;
+  }
+  public getStudent(): Student {
+    return this.stu;
+  }
+
 
   public addItemToCart(itemid: number): void {
     this.itemList = [{itemid: itemid}];
@@ -118,19 +140,12 @@ export class UserData {
         //this.storage.set('cart', newVal);
     });
   };
-
-
-
-  public setStudent(student: Student):void{
-    this.stu = student;
-    console.log(this.stu);
-  }
-
   public clearStudent(): void{
     console.log(this.stu);
     this.stu = null;
     console.log(this.stu);
   }
+
 
 
 }

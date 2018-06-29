@@ -18,13 +18,13 @@ export class LoginPage {
               public userProvider: UserProvider,
               public userData: UserData,
               public loadingCtrl: LoadingController,
-              public alertCtrl: AlertController,
-              private nativePageTransitions: NativePageTransitions) {
+              public alertCtrl: AlertController) {
+    // WHEN LOGGING - DELETE CART AND STUDNET INFO
     this.userData.cleanCart();
     this.userData.clearStudent();
   }
 
-
+  // CALL BACK FROM REGISTER PAGE WITH EMAIL AND PASSWORD
   callback = data => {
     this.dataFromOtherPage = data;
     this.registerCredentials.email = data['email'];
@@ -32,24 +32,28 @@ export class LoginPage {
     console.log('data received from other page', this.dataFromOtherPage);
   };
 
+  // GO TO RGISTER PAGE
   createAccount() {
     this.nav.push('RegisterPage',{
       callback: this.callback
     });
   }
-
+  // GO TO FORGET PASSWORD PAGE
   forgotAccount(){
     this.nav.push('ForgotpassPage');
   }
 
-
+  // LOGIN FUNCTION
   login() {
+    // show the login vars - user,pass,role
     console.log(this.registerCredentials);
-    this.userProvider.getUser(this.registerCredentials).then( result => {
+    this.userProvider.login(this.registerCredentials).then( result => {
         if(result){
           console.log('Log In Successful, UID: ' + result["userid"] );
+          // SAVE USER ID AND TOKEN AT USER DATA SERVICE
           this.userData.setUserId(result["userid"]);
-
+          this.userData.setToken(result["token"]);
+          // LOADING CONTROL
           let loading = this.loadingCtrl.create({
             spinner: 'crescent',
             content: 'Please Wait...'
@@ -58,15 +62,8 @@ export class LoginPage {
           setTimeout(() => {
             this.options = {
               direction: 'up',
-              duration: 500,
-              slowdownfactor: 3,
-              slidePixels: 20,
-              iosdelay: 100,
-              androiddelay: 150,
-              fixedPixelsTop: 0,
-              fixedPixelsBottom: 60
+              duration: 500
             };
-            this.nativePageTransitions.flip(this.options);
             this.nav.setRoot("HomePage");
           }, 1000);
 

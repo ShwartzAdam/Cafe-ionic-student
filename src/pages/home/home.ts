@@ -15,9 +15,8 @@ import { UserData } from "../../providers/user-data/user-data";
 })
 export class HomePage{
   private isEntered: boolean = false;
-
-  userid: number;
-  _student: Student = new Student;
+  private userid: number;
+  public _student: Student = new Student;
   private countItems: number;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -29,24 +28,39 @@ export class HomePage{
   }
 
   private initView(): void {
-    //saving in local storage
-    console.log(this.isEntered);
-    if(this.isEntered == false){
-      console.log(this.isEntered);
+    if( !this.isEntered ) {
       this.userData.getUserId().then(
         res => {
           this.userid = res;
-          this.display();
-          this.userData.getItemsFromCart().then(
+          // SETTING THE TOKEN VALUE TO SERVICE
+          // this.userProvider.setToken();
+          // GET STUDENT INFO FOR HTML TEMPLATE
+          this.userProvider.getUserById(this.userid).subscribe(
             res => {
-              if(res){
-                this.countItems = res.length;
-              }
+              // SAVE THE STUDENT INFO IN USER DATA SERVICE
+              this.userData.setStudent(res);
+              this._student = res;
+            });
+          // CHECK USER BALANCE
+          this.userProvider.getUserCreditBalance(this.userid).then((result) => {
+            if( result['credit'] == 0) {
+              console.log('Student has no credit at all - please load up');
+              this.presentAlert();
             }
-          );
-          this.isEntered = true;
+          }, (err) => {
+            console.log(err);
+          });
         });
+      this.isEntered = true;
     }
+    // GET THE ITEMS IN CART
+    this.userData.getItemsFromCart().then(
+      res => {
+        if(res){
+          this.countItems = res.length;
+        }
+      }
+    );
 
   }
 
@@ -59,22 +73,6 @@ export class HomePage{
     alert.present();
   }
 
-  private display(){
-    this.userProvider.getUserById(this.userid).subscribe((res: Student)=> {
-      this._student = res;
-      this.userData.setStudent(this._student);
-      if(this._student.credit == 0){
-        console.log('student has no credit at all');
-        this.presentAlert();
-
-      }
-    });
-
-  }
-  // will shut off logged boolean and turn to false
-  // when the user log in successfuly we turn a boolean var so we could limit one user for access
-
-  // public so you can reach here from every corner in the app while you logged
   public gotoBasket(){
     this.navCtrl.setRoot(BasketPage);
   }

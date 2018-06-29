@@ -5,10 +5,10 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title class="toolbar-header">Profile</ion-title>
+    <ion-title class="toolbar-title">Profile</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding class="card-background-page">
+<ion-content padding class="card-background-page" #content>
   <div id="profile-bg" [ngStyle]="{'background-image': 'url(' + data.coverImage +')'}"></div>
   <div id="content">
     <div id="profile-info" padding>
@@ -46,10 +46,10 @@
       <info-order *ngIf="displayOpen" [status]="'open'"></info-order>
       <info-order *ngIf="displayComplete" [status]="'close'"></info-order>
       <div *ngIf="displayCredit" class="item-block">
-        <ion-item>
+        <ion-item text-wrap>
           <ion-card-title> Please Charge Your Account With Credit</ion-card-title>
           <ion-card-content>
-            <p ion-text>Click on the Ethereum button to recieve free coins</p>
+            <p ion-text>Click on the Ethereum button below to receive 100 tokens</p>
             <div (click)="addCredit()" id="button-bg" [ngStyle]="{'background-image': 'url(' + data.moneyButton +')'}"></div>
           </ion-card-content>
         </ion-item>

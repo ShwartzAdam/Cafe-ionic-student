@@ -15,12 +15,15 @@ import {Timer} from "../../components/countdown-timer/timer";
 import {ProfilePage} from "../profile/profile";
 
 
+
 @Component({
   selector: 'quick-order-ticket',
   templateUrl: 'quick-order-ticket.html',
 })
 export class QuickOrderTicket implements OnInit{
   @ViewChild(Timer) child : Timer;
+  @ViewChild('content') content:any;
+
   //new vars
   private orderList = new OrderList();
   private order = new Order();
@@ -30,6 +33,7 @@ export class QuickOrderTicket implements OnInit{
   // enable buttons
   public isenabled: boolean = false;
   public ischeckTimeEnable: boolean = false;
+  public ischeckTimeClicked: boolean = false;
   public isReturnOffer: boolean = false;
   public pickUpTime: any;
   public orderTime: any;
@@ -120,14 +124,36 @@ export class QuickOrderTicket implements OnInit{
   }
 
   dateChanged(){
-    this.ischeckTimeEnable = true;
+    if ( !this.ischeckTimeClicked ) {
+      this.ischeckTimeEnable = true;
+    } else {
+      this.ischeckTimeEnable = false;
+
+    }
   }
 
   checkTime(){
+    this.checkBalance().then(
+      res => {
+        if(res) {
+          console.log('has credit to continue the purchase')
+        } else{
+          console.log('has no credit , stop the proccess');
+          return;
+        }
+      });
     this.ischeckTimeEnable = false;
     this.isReturnOffer = true;
     // if the user clicking again on the checktime -> remove orderlist from tables by delete call
-    this.deleteOrder();
+    // is check time clicked alrady , is user have enough credit for it
+    if ( !this.ischeckTimeClicked ) {
+      // if the user doesnt clicked on the button -- first time
+      this.ischeckTimeClicked = true;
+      this.ischeckTimeEnable = false;
+    } else {
+      // user has already clicked
+      return;
+    }
     this.isenabled = true;
     //this.displayButtons = true;
     this.displaySuccessTime = true;
@@ -191,19 +217,32 @@ export class QuickOrderTicket implements OnInit{
             console.log(this.timeOffered);
             // present 1 minutes to decide if create orders items
             this.child.startTimer();
+            let dimensions = this.content.getContentDimensions();
+            this.content.scrollTo(0, dimensions.contentHeight+100, 100);
       });
 
 
   }
-  checkBalance(): boolean {
-    let balance: number = this.student.credit;
-    let priceToDec: number = this.orderList.totalprice;
-    let diff = Math.abs(balance - priceToDec);
-    if (diff > 0) {
-      return true;
-    } else {
-      return false;
-    }
+
+  checkBalance(): Promise<Boolean> {
+    return new Promise((resolve, reject) => {
+      this.userPro.getUserCreditBalance(this.orderList.userid).then(
+        (res:any) => {
+          let balance= res['credit'];
+          let priceToDec: number = this.orderList.totalprice;
+          let diff = Math.abs(balance - priceToDec);
+          console.log(diff);
+          if (diff > 0) {
+            this.student.credit = diff;
+            resolve(true)
+          } else {
+            resolve(false)
+          }
+        })
+        .catch((err) => {
+          reject(false);
+        });
+    });
   }
 
   doConfirm() {
@@ -235,9 +274,14 @@ export class QuickOrderTicket implements OnInit{
     if ( this.length == 1) {
       // if order is size of one
       this.order.olid = this.orderList.olid;
+      console.log(this.order);
       this.orderPro.createOrder(this.order).then(
         res => {
           console.log(res);
+          // remove the qty of item id from storage
+          this.itemPro.decItemQty(this.order.itemid,this.order.qty).then(
+            res => console.log(res)
+          )
         });
     } else {
       for ( let i = 0 ; i < this.length ; i++) {
@@ -245,24 +289,21 @@ export class QuickOrderTicket implements OnInit{
         this.orderPro.createOrder(this.order[i]).then(
           res => {
             console.log(res);
+            // remove the qty of item if from storage
+            this.itemPro.decItemQty(this.order[i].itemid,this.order[i].qty).then(
+              res => console.log(res)
+            )
           });
       }
     }
-    let hasCredit: boolean = this.checkBalance();
-    if(hasCredit) {
-      console.log('user has credit to procced')
-    } else {
-      console.log('user has no credit ');
-      return;
-    }
-    let balance: number = this.student.credit;
-    console.log('user credit before ' + balance );
-    let priceToDec: number = this.orderList.totalprice;
-    let diff = Math.abs(balance - priceToDec);
-    console.log('user credit after ' + diff );
-    this.student.credit = diff;
+
     console.log(this.student);
-    this.userPro.updateUser(this.student).then(
+    let usercredit = {
+      'userid' : this.orderList.userid,
+      'credit': this.student.credit
+    };
+    console.log(usercredit);
+    this.userPro.setUserCreditBalance(usercredit).then(
       res => console.log(res)
     );
     // clean cart
@@ -299,8 +340,4 @@ export class QuickOrderTicket implements OnInit{
     this.navCtrl.pop();
   }
 
-
-  private deleteOrder() {
-
-  }
 }

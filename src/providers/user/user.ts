@@ -1,20 +1,38 @@
 import {HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpEvent} from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {Student, User} from "../../model/user";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import {UserData} from "../user-data/user-data";
 
 
 @Injectable()
 export class UserProvider {
-  url = 'https://cafeappserver.herokuapp.com/api';
+  public urlProd = 'https://cafeappserver.herokuapp.com/api';
+  public urlDev = 'http://localhost:3000/api';
+  public headerConfig: any;
+  constructor(private http: HttpClient,
+              private userData:UserData) {
+    this.setToken();
+  }
 
-  constructor(private http: HttpClient) {}
+  setToken(){
+    console.log('User Provider - Setting Access Token');
+    this.userData.getToken().then(
+      res => {
+        let headers: HttpHeaders = new HttpHeaders();
+        headers = headers.append('Content-Type', 'application/json');
+        headers = headers.append('x-access-token', res);
+        this.headerConfig = headers;
+        console.log(this.headerConfig);
+      });
+  }
 
-  public createUser(_user: Student){
+  // create user in the db - signup
+  public signup(_user: Student){
     return new Promise((resolve, reject) => {
-      this.http.post(this.url+'/users/signup', JSON.stringify(_user), {
+      this.http.post(this.urlDev+ '/signup ', JSON.stringify(_user), {
         headers: new HttpHeaders().set("Content-Type", 'application/json'),
         responseType: 'text'
       })
@@ -25,12 +43,40 @@ export class UserProvider {
         });
     });
   }
-
-  public getUser(registerCredentials) {
+  // login user
+  public login(registerCredentials) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.url+'/users/login', JSON.stringify(registerCredentials), {
+      this.http.post(this.urlDev+'/login', JSON.stringify(registerCredentials), {
         headers: new HttpHeaders().set("Content-Type", 'application/json')
-      })
+      }).timeout(1000)
+        .subscribe(res => {
+          resolve(res);
+          console.log(res);
+        }, (err) => {
+          reject(err);
+          console.log(err);
+        });
+    });
+  }
+  // get user credit balance
+  public getUserCreditBalance(userid: number) {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.urlDev + '/users/credit/' + userid, { headers: this.headerConfig
+      }).timeout(1000)
+        .subscribe(res => {
+          resolve(res);
+          console.log(res);
+        }, (err) => {
+          reject(err);
+          console.log(err);
+        });
+    });
+  }
+  // set user credit balance
+  public setUserCreditBalance(userCredit) {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.urlDev+'/users/credit', JSON.stringify(userCredit), { headers: this.headerConfig
+      }).timeout(1000)
         .subscribe(res => {
           resolve(res);
           console.log(res);
@@ -41,21 +87,15 @@ export class UserProvider {
     });
   }
 
-  public getUserByEmail(email : string) :Observable<Student>{
-    return this.http.get<Student>(this.url + '/users/' + email );
-  }
-
   public getUserById(id : number) :Observable<Student>{
-    return this.http.get<Student>(this.url + '/users/' + id );
+    return this.http.get<Student>(this.urlDev + '/users/' + id ,{ headers: this.headerConfig
+    });
   }
-
 
   public updateUser(_user: User){
     return new Promise((resolve, reject) => {
-      this.http.put(this.url + '/users/' , JSON.stringify(_user) ,{
-        headers: new HttpHeaders().set("Content-Type", 'application/json')
-      }).timeout(2000)
-        .subscribe(res => {
+      this.http.put(this.urlDev + '/users/' , JSON.stringify(_user) ,{ headers: this.headerConfig
+      }).subscribe(res => {
           resolve(res);
         }, (err) => {
           reject(err);
@@ -77,9 +117,10 @@ export class UserProvider {
     const options = {
       params: params,
       reportProgress: true,
+      headers: this.headerConfig
     };
 
-    const req = new HttpRequest('POST', this.url + "/upload/users/", formData, options);
+    const req = new HttpRequest('POST', this.urlDev + "/upload/users/", formData, options);
     return this.http.request(req);
   }
 
@@ -91,12 +132,12 @@ export class UserProvider {
       reportProgress: true,
     };
 
-    const req = new HttpRequest('GET', this.url + "/download/" + file, options);
+    const req = new HttpRequest('GET', this.urlDev + "/download/" + file, options);
     return this.http.request(req);
   }
 
   public getImage(imageUrl: string): Observable<Blob> {
-    return this.http.get(this.url + "/download/" + imageUrl , {responseType: "blob"});
+    return this.http.get(this.urlDev + "/download/" + imageUrl , {responseType: "blob" , headers: this.headerConfig});
   }
 
 }

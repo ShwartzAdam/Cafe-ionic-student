@@ -52,7 +52,7 @@ export class RegisterPage {
     console.log(this._userRegister);
     // save user in Class
     if(this._userRegister){
-      this.userPr.createUser(this._userRegister).then((result) => {
+      this.userPr.signup(this._userRegister).then((result) => {
         console.log(result);
         if(result){
           console.log("Succesfuly created new user" + result);

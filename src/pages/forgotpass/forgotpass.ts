@@ -8,7 +8,7 @@ import { IonicPage, NavController} from 'ionic-angular';
 })
 export class ForgotpassPage {
   userEmail = { first : "" , second: "" };
-
+  imageFileName: any = "../../assets/png/littlecafe.png";
 
   constructor(public navCtrl: NavController) {
   }

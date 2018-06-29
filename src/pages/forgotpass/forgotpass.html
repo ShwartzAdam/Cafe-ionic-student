@@ -1,11 +1,11 @@
 <ion-header>
   <ion-navbar color="second">
-    <ion-title>Forgot Password</ion-title>
+    <ion-title class="toolbar-title">Forgot Password</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content class="forgotpass-content" padding>
   <ion-row class="logo-row">
-    <img class='logo-image' src="../../assets/png/cropped-littlebird-square-logo.png">
+    <img class='logo-image' [src]="imageFileName">
   </ion-row>
   <div class="forgotpass-box">
     <form (ngSubmit)="forgotPass()" #registerForm="ngForm">
@@ -21,7 +21,6 @@
           </ion-list>
         </ion-col>
       </ion-row>
-
       <ion-row>
         <ion-col class="forgotpass-col">
           <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Submit</button>

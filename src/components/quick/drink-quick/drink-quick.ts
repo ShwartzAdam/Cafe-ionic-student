@@ -25,7 +25,7 @@ export class DrinkQuickComponent implements OnInit{
   public itemPrice: number;
   public displayDesc: boolean = false;
   // array of items
-  public qDrink: number = 0;
+  public qDrink: number = 1;
   public drinkId: number = -1;
   // varibles from quick-order page taken out with nav controller
   public title : string;
@@ -78,6 +78,8 @@ export class DrinkQuickComponent implements OnInit{
   }
   clearOrder(){
     this.totalPrice = 0;
+    this.drinkId = 0;
+    this.qDrink = 1;
     this.displayFinalPrice = false;
     this.isenabled = false;
   }

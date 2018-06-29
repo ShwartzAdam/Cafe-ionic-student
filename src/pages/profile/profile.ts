@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {UserData} from "../../providers/user-data/user-data";
 import {UserProvider} from "../../providers/user/user";
@@ -12,6 +12,7 @@ import {OrderListProvider} from "../../providers/order-list/order-list";
   templateUrl: 'profile.html',
 })
 export class ProfilePage implements OnInit{
+  @ViewChild('content') content:any;
   private userId: number;
   private stu: Student = new Student();
   public rootComponent = 'Open';
@@ -33,14 +34,10 @@ export class ProfilePage implements OnInit{
               public orderListPro: OrderListProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
-  }
-
   ngOnInit(): void {
-    // root segment
+    // ROOT SEGEMNTS OPEN ORDERS
     this.selectedSeg('O');
-
+    // GET USER DATA FOR TEMPLATE
     this.userData.getUserId().then(
       res => {
         this.userId = res;
@@ -48,17 +45,14 @@ export class ProfilePage implements OnInit{
           res => {
             this.stu = res;
             this.userUrl = "../../assets/" + this.stu.url;
-            console.log(this.stu);
           });
+        // GET ALL ORDERS BY USER ID FOR PROFILE PAGE
         this.orderListPro.getOrderListByUserId(this.userId).subscribe(
           res => {
-            console.log(res);
            const incoming = res.filter(order => (order.status === 'Incoming' || order.status === 'Active'));
            this.data.openOrder = incoming.length;
-           console.log(incoming);
            const done = res.filter(order => order.status === 'Complete');
            this.data.closeOrder = done.length;
-           console.log(done);
 
           })
       });
@@ -70,28 +64,45 @@ export class ProfilePage implements OnInit{
       this.displayCredit = false;
       this.displayOpen = false;
     } else if ( s == 'O') {
+      // OPEN ORDERS
       this.displayOpen = true;
       this.displayCredit = false;
       this.displayComplete = false;
     } else if ( s == 'CT' ) {
+      // CREDIT SEGMENT
       this.displayCredit = true;
       this.displayOpen = false;
       this.displayComplete = false;
     } else {
       console.log('bad input when switch');
     }
+    // SCROLL DOWN
+    let dimensions = this.content.getContentDimensions();
+    this.content.scrollTo(0, dimensions.contentHeight+100, 100);
   }
 
   addCredit(): void {
-    this.stu.credit = this.stu.credit + 100;
-    console.log(this.stu);
-    // needs to have put call to update only one col
-    this.userPro.updateUser(this.stu).then(
+    // GET USER CREDIT
+    this.userPro.getUserCreditBalance(this.userId).then(
       res => {
-        console.log(res);
-        this.presentToast();
+        // ADD 100 TO HIS ACCOUNTS CREDIT
+        let addition: number = res['credit'];
+        addition = addition + 100;
+        let jsonCredit = {
+          'userid' : this.userId,
+          'credit' : addition
+        };
+        this.userPro.setUserCreditBalance(jsonCredit).then(
+          res => {
+            console.log(res);
+            // PRESENT TOAST
+            this.presentToast();
+            // UPDATE DISPLAY
+            this.stu.credit = addition;
+        })
+
       }
-    )
+    );
   }
   presentToast() {
     let toast = this.toastCtrl.create({
@@ -99,11 +110,8 @@ export class ProfilePage implements OnInit{
       duration: 3000,
       position: 'bottom'
     });
-
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
     });
-
     toast.present();
   }
 

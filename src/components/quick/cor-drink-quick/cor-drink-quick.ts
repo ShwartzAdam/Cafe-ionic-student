@@ -31,8 +31,8 @@ export class CorDrinkQuickComponent implements OnInit{
   public displayDescDrink: boolean = false;
   public displayDescFood: boolean = false;
   // array of items
-  public qDrink: number = 0;
-  public qFood: number = 0;
+  public qDrink: number = 1;
+  public qFood: number = 1;
   public drinkId: number = -1;
   public foodId: number = -1;
   // varibles from quick-order page taken out with nav controller
@@ -85,8 +85,8 @@ export class CorDrinkQuickComponent implements OnInit{
     }
   }
   clearOrder(){
-    this.foodId = 0;
-    this.qFood = 0;
+    this.foodId = 1;
+    this.qFood = 1;
     this.drinkId = 0;
     this.qDrink = 0;
     this.totalPrice = 0;
