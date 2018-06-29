@@ -142,7 +142,7 @@ export class UserData {
   };
   public clearStudent(): void{
     console.log(this.stu);
-    this.stu = null;
+    this.stu = new Student();
     console.log(this.stu);
   }
 
