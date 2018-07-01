@@ -53,7 +53,6 @@ export class LoginPage {
           // SAVE USER ID AND TOKEN AT USER DATA SERVICE
           this.userData.setUserId(result["userid"]);
           this.userData.setToken(result["token"]);
-          this.us
           // LOADING CONTROL
           let loading = this.loadingCtrl.create({
             spinner: 'crescent',
