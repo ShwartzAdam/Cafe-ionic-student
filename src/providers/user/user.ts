@@ -14,6 +14,9 @@ export class UserProvider {
   public headerConfig: any;
   constructor(private http: HttpClient) {
     //this.setToken();
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    this.headerConfig = headers;
   }
   /*
   setToken(){
