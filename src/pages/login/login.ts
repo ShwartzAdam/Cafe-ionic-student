@@ -52,7 +52,7 @@ export class LoginPage {
           console.log('Log In Successful, UID: ' + result["userid"] );
           // SAVE USER ID AND TOKEN AT USER DATA SERVICE
           this.userData.setUserId(result["userid"]);
-          this.userData.setToken(result["token"]);
+          // this.userData.setToken(result["token"]);
           // LOADING CONTROL
           let loading = this.loadingCtrl.create({
             spinner: 'crescent',

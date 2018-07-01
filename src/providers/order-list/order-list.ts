@@ -12,10 +12,10 @@ export class OrderListProvider {
   public urlDev = 'http://localhost:3000/api';
   public headerConfig: any;
 
-  constructor(public http: HttpClient,
-              private userData:UserData) {
-    this.setToken();
+  constructor(public http: HttpClient) {
+    //this.setToken();
   }
+  /*
   setToken(){
     console.log('Order List Provider - Setting Access Token');
     this.userData.getToken().then(
@@ -27,6 +27,7 @@ export class OrderListProvider {
         console.log(this.headerConfig);
       });
   }
+  */
   // CREATE ORDER LIST
   public createOrderList(_orderList: OrderList){
     return new Promise((resolve, reject) => {

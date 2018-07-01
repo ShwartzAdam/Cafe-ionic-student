@@ -11,11 +11,10 @@ export class ReviewListProvider {
   public url = 'https://cafeappserver.herokuapp.com/api';
   public urlEnv = 'http://localhost:3000/api';
   public headerConfig: any;
-  constructor(private http: HttpClient,
-              private userData:UserData) {
-    this.setToken();
+  constructor(private http: HttpClient) {
+    //this.setToken();
   }
-
+  /*
   setToken(){
     console.log('Review List Provider - Setting Access Token');
     this.userData.getToken().then(
@@ -27,6 +26,7 @@ export class ReviewListProvider {
         console.log(this.headerConfig);
       });
   }
+  */
   // CREATE REVIEW LIST
   public createReviewList(_reviewList: ReviewList){
     return new Promise((resolve, reject) => {

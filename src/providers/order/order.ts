@@ -11,11 +11,10 @@ export class OrderProvider {
   public url = 'https://cafeappserver.herokuapp.com/api';
   public urlEnv = 'http://localhost:3000/api';
   public headerConfig: any;
-  constructor(private http: HttpClient,
-              private userData:UserData) {
-    this.setToken();
+  constructor(private http: HttpClient) {
+    //this.setToken();
   }
-
+  /*
   setToken(){
     console.log('Order Provider - Setting Access Token');
     this.userData.getToken().then(
@@ -27,6 +26,7 @@ export class OrderProvider {
         console.log(this.headerConfig);
       });
   }
+  */
   // CREATE ORDER
   public createOrder(_order: Order){
     return new Promise((resolve, reject) => {

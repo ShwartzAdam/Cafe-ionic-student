@@ -12,11 +12,10 @@ export class UserProvider {
   public url = 'https://cafeappserver.herokuapp.com/api';
   public urlDev = 'http://localhost:3000/api';
   public headerConfig: any;
-  constructor(private http: HttpClient,
-              private userData:UserData) {
-    this.setToken();
+  constructor(private http: HttpClient) {
+    //this.setToken();
   }
-
+  /*
   setToken(){
     console.log('User Provider - Setting Access Token');
     this.userData.getToken().then(
@@ -28,7 +27,7 @@ export class UserProvider {
         console.log(this.headerConfig);
       });
   }
-
+  */
   // create user in the db - signup
   public signup(_user: Student){
     return new Promise((resolve, reject) => {
