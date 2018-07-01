@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {NavController, IonicPage, LoadingController, AlertController} from 'ionic-angular';
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import { NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import {UserProvider} from "../../providers/user/user";
 import {UserData} from "../../providers/user-data/user-data";
 

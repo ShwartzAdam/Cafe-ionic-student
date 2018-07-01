@@ -8,8 +8,8 @@ import {UserData} from "../user-data/user-data";
 
 @Injectable()
 export class ReviewProvider {
-  public urlProd = 'https://cafeappserver.herokuapp.com/api';
-  public url = 'http://localhost:3000/api';
+  public url = 'https://cafeappserver.herokuapp.com/api';
+  public urlDev = 'http://localhost:3000/api';
   public headerConfig: any;
   constructor(private http: HttpClient,
               private userData:UserData) {
