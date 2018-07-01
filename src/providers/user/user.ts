@@ -48,8 +48,7 @@ export class UserProvider {
     return new Promise((resolve, reject) => {
       this.http.post(this.url+'/login', JSON.stringify(registerCredentials), {
         headers: new HttpHeaders().set("Content-Type", 'application/json')
-      }).timeout(1000)
-        .subscribe(res => {
+      }).subscribe(res => {
           resolve(res);
           console.log(res);
         }, (err) => {
@@ -62,8 +61,7 @@ export class UserProvider {
   public getUserCreditBalance(userid: number) {
     return new Promise((resolve, reject) => {
       this.http.get(this.url + '/users/credit/' + userid, { headers: this.headerConfig
-      }).timeout(1000)
-        .subscribe(res => {
+      }).subscribe(res => {
           resolve(res);
           console.log(res);
         }, (err) => {
@@ -76,8 +74,7 @@ export class UserProvider {
   public setUserCreditBalance(userCredit) {
     return new Promise((resolve, reject) => {
       this.http.put(this.url+'/users/credit', JSON.stringify(userCredit), { headers: this.headerConfig
-      }).timeout(1000)
-        .subscribe(res => {
+      }).subscribe(res => {
           resolve(res);
           console.log(res);
         }, (err) => {
