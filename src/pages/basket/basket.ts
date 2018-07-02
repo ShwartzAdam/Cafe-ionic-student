@@ -39,6 +39,7 @@ export class BasketPage {
       this.items = [];
       this.totalPrice = 0;
       this.initView();
+      this.event.publish('cart:price');
     });
     // event listen to a change in cart price
     this.event.subscribe('cart:price' , () => {
@@ -104,6 +105,7 @@ export class BasketPage {
   initView(){
     this.userData.getItemsFromCart().then(
       res => {
+        console.log(res);
         if(res == null ){
           this.updateView(null);
         }else{
@@ -143,6 +145,7 @@ export class BasketPage {
 
   checkOut():void{
     console.log(this.items);
+    console.log(this.ordersItem);
     for(let i = 0 ; i < this.items.length ; i++ ){
       this.ordersItem[i].qty = this.items[i].qty;
     }

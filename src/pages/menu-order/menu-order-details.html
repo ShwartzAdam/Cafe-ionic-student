@@ -19,8 +19,11 @@
     <div class="card-background-page">
       <ion-card button *ngFor="let item of itemList" (click)="pushItem(item)">
         <img src="../../{{this.url}}"/>
-        <div class="card-title">{{item.name}}</div>
-        <div class="card-subtitle">Price: {{item.price}} &#8362;  </div>
+        <div class="card-subtitle">
+          <div class="card-title">{{item.name}}
+        </div>
+          Price: {{item.price}} &#8362;
+        </div>
       </ion-card>
     </div>
   </ion-grid>

@@ -55,27 +55,49 @@ export class UserData {
     return this.stu;
   }
 
+  public addItemToCart(itemid: number): Promise<Boolean> {
+    return new Promise((resolve, reject) => {
+      this.itemList = [{itemid: itemid}];
+      this.storage.get('cart')
+        .then((value) => {
+          if(value != null){
+            // if item exist in the storage dont add it , and present a popup
+            let len = value['length'];
+            let isExists: boolean = false;
+            for (let i = 0 ; i < len ; i ++ ){
+              if(value[i]['itemid'] == itemid ) {
+                console.log('true - exist in cart');
+                reject(false);
+                isExists = true;
+              }
+            }
+            if(!isExists) {
+              let theVal = [];
+              theVal = value;
+              theVal.push(this.itemList[0]);
+              this.storage.set('cart', theVal);
+              console.log("item id -> added");
+              console.log( theVal );
+              resolve(true);
+            }
+          }
+          else{
+            // first item in the cart
+            let newVal = this.itemList;
+            this.storage.set('cart', newVal);
+            console.log(this.itemList);
+            console.log("first item id -> added");
+            console.log(newVal);
+            resolve(true);
+          }
+        })
+        .catch((err) => {
+          reject(err);
+        });
 
-  public addItemToCart(itemid: number): void {
-    this.itemList = [{itemid: itemid}];
-    this.storage.get('cart').then((value) => {
-      if(value != null){
-        let theVal = [];
-        theVal = value;
-        console.log(theVal);
-        console.log(this.itemList);
-        console.log(this.itemList[0]);
-        theVal.push(this.itemList[0]);
-        this.storage.set('cart', theVal);
-        console.log("item id : " + theVal+ "added");
-      }
-      else{
-        let newVal = this.itemList;
-        this.storage.set('cart', newVal);
-        console.log("first item id : " + newVal+ " added");
-      }
     });
   };
+
   public getItemsFromCart(): Promise<string> {
     return this.storage.get('cart').then((value) => {
       if(value)
@@ -103,6 +125,7 @@ export class UserData {
         this.itemListNew = [];
         let itemcount = 1;
         console.log(value.length);
+        // if null -> clean cart totaly
         if(value.length == null) {
           this.storage.remove('cart');
           return "empty cart";
@@ -110,21 +133,31 @@ export class UserData {
           this.storage.remove('cart');
           return "empty cart";
         } else{
+          console.log(value.length);
           for(let i = 0; i < value.length ; i++ ){
             if(value[i]["itemid"] == itemid) {
+              // if it is the itemid - continue and dont save it
               console.log("equal");
               console.log(value[i]);
             }else{
+              // else ,, lets store it
               console.log("diff");
               console.log(value[i]);
+              // if only one item set storage to it
+              console.log(itemcount);
             if(itemcount == 1){
                 this.itemListNew = [{itemid : value[i]["itemid"]}];
-                newVal = value[i]["itemid"];
-                this.storage.set('cart', newVal);
-              }else{
+                // newVal = value[i]["itemid"];
+                this.storage.set('cart', this.itemListNew );
+                // display me the vars before storage
+                console.log(this.itemListNew);
+                console.log(newVal);
+            }else{
                 let theVal = this.itemListNew;
                 theVal.push(value[i]);
                 this.storage.set('cart', theVal);
+                console.log(theVal);
+                console.log(this.itemListNew);
               }
               itemcount++;
               console.log(itemcount);

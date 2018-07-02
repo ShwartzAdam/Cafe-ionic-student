@@ -20,10 +20,10 @@ export class ItemComponent implements OnInit{
   // review on the item
   reviews : any ;
   // if clicked on button hide reviews, buttons
-  displayReviews : boolean ;
-  displayButton : boolean;
-  displayTime : boolean;
-  displayBottomNav : boolean;
+  displayReviews : boolean = true;
+  displayButton : boolean = true;
+  displayTime : boolean = false;
+  displayBottomNav : boolean = true;
   // input
   qItem : string;
   date : string;
@@ -39,32 +39,23 @@ export class ItemComponent implements OnInit{
               public events: Events,
               private toastCtrl: ToastController){
     this.item = this.navParams.get('item');
-
-    // present review and button for order
-    this.displayReviews = true;
-    this.displayButton = true;
-    // hide time
-    this.displayTime = false;
-    this.displayBottomNav = true;
-
-    // init cart
-    this.userData.getItemsFromCart().then( res => {
-          if(res){
-            this.countItems = res.length;
-          }
-      });
     this.events.subscribe('cart:update', () => {
-          this.userData.getItemsFromCart().then(res => {
-              if(res == null) {
-                this.countItems = 1;
-              }else{
-                this.countItems = res.length + 1;
-              }
-
-          });
+      this.userData.getItemsFromCart().then(res => {
+          this.countItems = res['length'];
       });
+    });
   }
   ngOnInit(): void {
+    // GET THE ITEMS IN CART
+    this.userData.getItemsFromCart().then(
+      res => {
+        console.log(res);
+        if(res){
+          this.countItems = res.length;
+        }
+      }
+    );
+
     if(this.rootComponent == 'Information') {
       this.selectedInformation();
     } else {
@@ -84,25 +75,42 @@ export class ItemComponent implements OnInit{
 
   addToCart(item){
     console.log(item.itemid);
-    this.userData.addItemToCart(item.itemid);
-    this.events.publish('cart:update');
-    this.presentToast(item.name);
+    this.userData.addItemToCart(item.itemid).then(
+      res => {
+        // if it succed insert item - publish event
+        console.log(res);
+        this.events.publish('cart:update');
+        this.presentToast(item.name , 'S');
+      }).catch(reason => this.presentToast(item.name, 'F'));
   }
   public gotoBasket(){
     this.navCtrl.setRoot(BasketPage);
   }
-  presentToast(item: string) {
-    let toast = this.toastCtrl.create({
-      message: item + ' has been added to your cart ',
-      duration: 3000,
-      position: 'bottom'
-    });
+  presentToast(item: string, mesg: string) {
+    if( mesg == 'F'){
+      let toast = this.toastCtrl.create({
+        message: item + ' is already in your cart ',
+        duration: 3000,
+        position: 'bottom'
+      });
 
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
 
-    toast.present();
+      toast.present();
+    } else {
+      let toast = this.toastCtrl.create({
+        message: item + ' has been added to your cart ',
+        duration: 3000,
+        position: 'bottom'
+      });
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+      toast.present();
+    }
+
   }
 
 }

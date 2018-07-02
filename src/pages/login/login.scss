@@ -1,15 +1,5 @@
 page-login {
-  ion-title{
-    text-align: center;
-  }
-  .logo-image{
-    width: 200px;
-    margin: auto;
-    background-color: transparent !important;
-  }
-
   .login-content {
-  background: $background-color-first;
 
   .logo-row {
     padding-top: 20px;
@@ -18,8 +8,14 @@ page-login {
 
   .login-box {
     display: block;
+    position: absolute;
+    bottom:0;
+    left:0;
     width: 90%;
-    margin: auto;
+    height:50%;
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-bottom:40px;
     background: $background-color-fifth;
     padding: 20px 20px 0px 20px;
     border-radius: 20px;
@@ -28,6 +24,10 @@ page-login {
   ion-row {
     align-items: center;
     text-align: center;
+  }
+  ion-col{
+    position:relative;
+    display:block;
   }
 
   ion-item {
@@ -38,11 +38,6 @@ page-login {
     border: 1px solid #ffffff;
     border-bottom: 0px !important;
     box-shadow: none !important;
-  }
-
-  .signup-col {
-    margin: 0px 16px 0px 16px;
-    padding-bottom: 20px;
   }
 
   .item-inner {

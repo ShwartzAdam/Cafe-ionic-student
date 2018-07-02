@@ -1,6 +1,8 @@
 page-register {
+  .toolbar-title{
+    margin-right:20%
+  }
   .register-content {
-    background: $background-color-first;
 
     ion-avatar img{
         height: 20%;
@@ -25,11 +27,17 @@ page-register {
     }
 
     .register-box {
+      display: block;
+      // position: absolute;
+      // bottom:0;
+      // left:0;
+      width: 90%;
+      margin-right: 5%;
+      margin-left: 5%;
+      margin-bottom:10px;
       background: $background-color-fifth;
       padding: 20px 20px 0px 20px;
       border-radius: 20px;
-      margin: auto;
-      width: 90%;
     }
 
     ion-row {

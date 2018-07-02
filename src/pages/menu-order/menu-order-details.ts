@@ -34,27 +34,27 @@ export class MenuOrderDetails {
     // update cart bedge
     this.initView();
     this.updateCart();
+
+    // event incase the cart had been updated
+    this.events.subscribe('cart:update', () => {
+      this.userData.getItemsFromCart().then(res => {
+        this.countItems = res['length'];
+      });
+    });
   }
-  ionViewDidLoad() {
-    this.navBar.backButtonClick = (e:UIEvent)=>{
-      // todo something
-      console.log('backed clicked updating cart - menu details');
-      this.updateCart();
-      this.navCtrl.pop();
-    }
-  }
+
   initView() {
     // checking what king of items to show by Type
     if(this.title == "Dishes"){
       // call Rest API for items
       this.getItemsByType("Dish");
       console.log("Food Menu")
-    } else if (this.title == "Drink") {
+    } else if (this.title == "Drinks") {
       this.getItemsByType("Drink");
       console.log("Drinks Menu")
-    } else if (this.title == "Snack") {
+    } else if (this.title == "Snacks") {
         this.getItemsByType('Snack');
-    } else if (this.title == "Pastry") {
+    } else if (this.title == "Pastries") {
         this.getItemsByType('Pastry');
       console.log("Drinks Menu")
     } else {

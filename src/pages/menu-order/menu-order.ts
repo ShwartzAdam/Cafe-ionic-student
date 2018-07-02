@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import { MenuOrderDetails } from "./menu-order-details";
 import {UserData} from "../../providers/user-data/user-data";
 import {BasketPage} from "../basket/basket";
@@ -16,8 +16,16 @@ export class MenuOrderPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public userData: UserData) {
+              public userData: UserData,
+              public events: Events) {
     this.initView();
+    // event incase the cart had been updated
+    this.events.subscribe('cart:update', () => {
+      this.userData.getItemsFromCart().then(res => {
+        console.log(res);
+        this.countItems = res['length'];
+      });
+    });
   }
 
   public pushPage(item) {
@@ -37,10 +45,10 @@ export class MenuOrderPage {
     });
     this.items = [
       {name : "Dishes", src : "assets/order-images/dishes.jpg"},
-      {name : "Drink",  src : "assets/order-images/cafe.jpg" },
-      {name : "Pastry",  src : "assets/order-images/pastery.png" },
-      {name : "Sandwich" ,  src : "assets/order-images/sandwich.jpg" },
-      {name : "Snack" ,  src : "assets/order-images/snack.jpg" }
+      {name : "Drinks",  src : "assets/order-images/cafe.jpg" },
+      {name : "Pastries",  src : "assets/order-images/pastery.png" },
+      {name : "Sandwiches" ,  src : "assets/order-images/sandwich.jpg" },
+      {name : "Snacks" ,  src : "assets/order-images/snack.jpg" }
     ];
   }
   public gotoBasket(){

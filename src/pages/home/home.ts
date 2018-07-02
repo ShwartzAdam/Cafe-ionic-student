@@ -56,7 +56,6 @@ export class HomePage{
     // GET THE ITEMS IN CART
     this.userData.getItemsFromCart().then(
       res => {
-        // got an error about length size
         console.log(res);
         if(res){
           this.countItems = res.length;

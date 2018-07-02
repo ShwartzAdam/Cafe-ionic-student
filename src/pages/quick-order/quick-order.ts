@@ -26,10 +26,10 @@ export class QuickOrderPage {
 
   initQuickOrderMenu(){
     this.Items = [
-      {name : "Drink And Croissant", src : "assets/order-images/cafe-cor.jpg"},
-      {name : "Drink",  src : "assets/order-images/cafe.jpg" },
-      {name : "Sandwich" ,  src : "assets/order-images/sandwich.jpg" },
-      {name : "Snack" ,  src : "assets/order-images/snack.jpg" }
+      {name : "Drinks And Croissants", src : "assets/order-images/cafe-cor.jpg"},
+      {name : "Drinks",  src : "assets/order-images/cafe.jpg" },
+      {name : "Sandwiches" ,  src : "assets/order-images/sandwich.jpg" },
+      {name : "Snacks" ,  src : "assets/order-images/snack.jpg" }
     ];
     //saving in local storage
     this.userData.getUserId().then(
@@ -38,7 +38,7 @@ export class QuickOrderPage {
         this.userData.getItemsFromCart().then(
           res => {
             if(res){
-              this.countItems = res.length;
+              this.countItems = res['length'];
             }
           }
         );
@@ -46,22 +46,22 @@ export class QuickOrderPage {
   }
   pushPage(item){
     let type = item.name;
-    if(type == 'Drink'){
+    if(type == 'Drinks'){
       this.navCtrl.push(DrinkQuickComponent,{
         name : item.name,
         url : item.src
       });
-    } else if ( type == 'Drink And Croissant' ) {
+    } else if ( type == 'Drinks And Croissants' ) {
         this.navCtrl.push(CorDrinkQuickComponent,{
           name : item.name,
           url : item.src
         });
-    } else if ( type == 'Sandwich') {
+    } else if ( type == 'Sandwiches') {
         this.navCtrl.push(SandQuickComponent,{
           name : item.name,
           url : item.src
         });
-    } else if ( type == 'Snack') {
+    } else if ( type == 'Snacks') {
         this.navCtrl.push(SnackQuickComponent,{
           name : item.name,
           url : item.src
