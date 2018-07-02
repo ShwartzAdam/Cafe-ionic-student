@@ -157,6 +157,8 @@ export class DrinkQuickComponent implements OnInit{
     let order = new Order();
     order.qty = this.qDrink;
     order.itemid = this.drinkId;
+    console.log(orderList);
+    console.log(order);
     this.navCtrl.push(QuickOrderTicket,{
       orderListParam: orderList,
       orderParam: order,

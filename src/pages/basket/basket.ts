@@ -146,19 +146,33 @@ export class BasketPage {
   checkOut():void{
     console.log(this.items);
     console.log(this.ordersItem);
-    for(let i = 0 ; i < this.items.length ; i++ ){
-      this.ordersItem[i].qty = this.items[i].qty;
-    }
     let orderList = new OrderList();
     orderList.totalprice = this.totalPrice;
     orderList.userid = this.userid;
+    if( this.items.length == 1 ){
+      let order = new Order();
+      order.qty = this.items[0].qty;
+      order.itemid = this.items[0].itemid;
+      console.log(order);
+      this.navCtrl.push(QuickOrderTicket, {
+        orderListParam: orderList,
+        orderParam: order,
+        size: this.items.length
+      });
+    } else {
+      for(let i = 0 ; i < this.items.length ; i++ ){
+        this.ordersItem[i].qty = this.items[i].qty;
+      }
+      this.navCtrl.push(QuickOrderTicket, {
+        orderListParam: orderList,
+        orderParam: this.ordersItem,
+        size: this.items.length
+      });
+    }
+
     console.log(this.ordersItem);
     console.log(orderList);
-    this.navCtrl.push(QuickOrderTicket, {
-          orderListParam: orderList,
-          orderParam: this.ordersItem,
-          size: this.items.length
-      });
+
   }
 
   quantity(_itemid,_action):void{
