@@ -1,6 +1,9 @@
 page-login {
   .login-content {
-
+    background-image: url('../../assets/imgs/backimage.jpg');
+    // background: url('../../img/getstart.png');
+    background-repeat: no-repeat;
+    background-size:cover;
   .logo-row {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -8,13 +11,13 @@ page-login {
 
   .login-box {
     display: block;
-    position: absolute;
-    bottom:0;
-    left:0;
-    width: 90%;
-    height:50%;
-    margin-right: 5%;
-    margin-left: 5%;
+    //position: absolute;
+     position: fixed;
+     bottom:0;
+    //left:0;
+     width: 90%;
+     margin: auto;
+    // margin-left: 5%;
     margin-bottom:40px;
     background: $background-color-fifth;
     padding: 20px 20px 0px 20px;
