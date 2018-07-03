@@ -174,9 +174,7 @@ export class UserData {
     });
   };
   public clearStudent(): void{
-    console.log(this.stu);
     this.stu = new Student();
-    console.log(this.stu);
   }
 
 
