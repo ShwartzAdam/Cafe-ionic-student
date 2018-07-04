@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController} from 'ionic-angular';
+import {UserProvider} from "../../providers/user/user";
 
 @IonicPage()
 @Component({
@@ -8,13 +9,58 @@ import { IonicPage, NavController} from 'ionic-angular';
 })
 export class ForgotpassPage {
   userEmail = { first : "" , second: "" };
+  userJson = { email : ""};
   imageFileName: any = "../../assets/png/littlecafe.png";
 
-  constructor(public navCtrl: NavController) {
-  }
+  constructor(private navCtrl: NavController,
+              private userPr: UserProvider,
+              public loadingCtrl: LoadingController,
+              public alertCtrl: AlertController) {}
 
-  forgotPass(){
-    // match between the mail the post request for email sending with password.
+  public forgotPassword(){
+    // console.log(this._userRegister);
+    // save user in Class
+    if(this.userEmail.first === this.userEmail.second ){
+      this.userJson.email = this.userEmail.first;
+      this.userPr.forgotPassword(this.userJson).then((result) => {
+         // console.log(result);
+        if(result){
+          // console.log("Succesfuly created new user" + result);
+
+          let loading = this.loadingCtrl.create({
+            spinner: 'crescent',
+            content: 'Succesfully changed and sent to your Email'
+          });
+          loading.present();
+
+          setTimeout(() => {
+            this.navCtrl.pop();
+          }, 1000);
+
+          setTimeout(() => {
+            loading.dismiss();
+          }, 3000);
+
+        }
+      }, (err) => {
+        // console.log(err);
+      });
+    } else {
+      // present error
+      this.presentAlert('F');
+    }
+
+  }
+  presentAlert(s) {
+    if( s == 'F') {
+      let alert = this.alertCtrl.create({
+        title: 'Error Input!',
+        subTitle: 'Please insert your email twice',
+        buttons: ['Got it...']
+      });
+      alert.present();
+    }
+
   }
 
 }

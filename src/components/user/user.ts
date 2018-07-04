@@ -15,7 +15,7 @@ export class UserComponent implements OnInit{
     this.userPro.getUserById(this.userId).subscribe(
       res => {
         this.user = res;
-        console.log(this.user);
+        // console.log(this.user);
       });
 
   }

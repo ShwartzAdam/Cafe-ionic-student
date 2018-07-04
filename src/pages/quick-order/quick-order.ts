@@ -67,7 +67,7 @@ export class QuickOrderPage {
           url : item.src
         });
     } else {
-        console.log('bad Input for quick menu');
+        // console.log('bad Input for quick menu');
     }
 
   }

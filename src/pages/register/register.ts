@@ -44,18 +44,18 @@ export class RegisterPage {
       this._userRegister.url = 'profile/female.png'
 
     } else {
-      console.log('Clicked twice on the same image');
+      // console.log('Clicked twice on the same image');
     }
   }
 
   public register(){
-    console.log(this._userRegister);
+    // console.log(this._userRegister);
     // save user in Class
     if(this._userRegister){
       this.userPr.signup(this._userRegister).then((result) => {
-        console.log(result);
+        // console.log(result);
         if(result){
-          console.log("Succesfuly created new user" + result);
+          // console.log("Succesfuly created new user" + result);
 
           let loading = this.loadingCtrl.create({
             spinner: 'crescent',
@@ -74,7 +74,7 @@ export class RegisterPage {
 
         }
       }, (err) => {
-        console.log(err);
+        // console.log(err);
       });
     }
 

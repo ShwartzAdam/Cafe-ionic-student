@@ -9,7 +9,7 @@ import {UserData} from "../user-data/user-data";
 @Injectable()
 export class OrderProvider {
   public url = 'https://cafeappserver.herokuapp.com/api';
-  public urlEnv = 'http://localhost:3000/api';
+  public urlDev = 'http://localhost:3000/api';
   public headerConfig: any;
   constructor(private http: HttpClient) {
     //this.setToken();

@@ -12,8 +12,10 @@
   <div id="profile-bg" [ngStyle]="{'background-image': 'url(' + data.coverImage +')'}"></div>
   <div id="content">
     <div id="profile-info" padding>
-      <img id="profile-image" [src]="this.userUrl">
-      <h3 id="profile-name">{{this.stu.firstname | capitalizeFirst}} {{this.stu.lastname | capitalizeFirst}}</h3>
+      <img id="profile-image" *ngIf="userUrl" [src]="userUrl">
+      <h3 id="profile-name">{{this.stu.firstname | capitalizeFirst}} {{this.stu.lastname | capitalizeFirst}}
+        <ion-icon name="key" (click)="this.passwordReset()"></ion-icon>
+      </h3>
     </div>
     <hr/>
     <ion-row class="profile-numbers">

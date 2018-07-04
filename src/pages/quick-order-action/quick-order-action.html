@@ -8,11 +8,11 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-card>
-    <ion-card-header>
-    </ion-card-header>
-    <ion-card-content>
-      <button ion-button color="light" block (click)="doConfirm()">Confirm Alert</button>
-    </ion-card-content>
-  </ion-card>
+  <accordion-list *ngFor="let type of menuType; let index = index"
+                  [title]="type.name"
+                  textColor="#FFF"
+                  hasMargin="false"
+                  [expanded]="index === 0">
+    <item-menu [type]="type.name"></item-menu>
+  </accordion-list>
 </ion-content>

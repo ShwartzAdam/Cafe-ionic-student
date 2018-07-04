@@ -11,7 +11,7 @@ import {UserData} from "../user-data/user-data";
 @Injectable()
 export class ItemProvider {
   public url = 'https://cafeappserver.herokuapp.com/api';
-  public urlDev = 'http://localhost:3000/api';
+  public urlEnv = 'http://localhost:3000/api';
   public headerConfig: any;
   constructor(private http: HttpClient,
               private userData:UserData) {
@@ -40,7 +40,7 @@ export class ItemProvider {
        }).subscribe(data => {
          resolve(data);
        }, err => {
-         console.log(err);
+         // console.log(err);
        });
      });
    }
@@ -51,7 +51,7 @@ export class ItemProvider {
        }).subscribe(data => {
          resolve(data);
        }, err => {
-         console.log(err);
+         // console.log(err);
        });
      });
    }
@@ -62,10 +62,10 @@ export class ItemProvider {
           {},{headers: this.headerConfig}
         ).subscribe(res => {
             resolve(res);
-            console.log(res);
+            //console.log(res);
           }, (err) => {
             reject(err);
-            console.log(err);
+            // console.log(err);
           });
       });
     }

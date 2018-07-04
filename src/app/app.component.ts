@@ -9,6 +9,7 @@ import { LoginPage } from "../pages/login/login";
 import { BasketPage } from "../pages/basket/basket";
 import { HomePage } from "../pages/home/home";
 import {ProfilePage} from "../pages/profile/profile";
+import {QuickOrderActionPage} from "../pages/quick-order-action/quick-order-action";
 // provider
 
 @Component({

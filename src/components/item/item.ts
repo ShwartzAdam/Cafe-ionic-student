@@ -49,7 +49,7 @@ export class ItemComponent implements OnInit{
     // GET THE ITEMS IN CART
     this.userData.getItemsFromCart().then(
       res => {
-        console.log(res);
+        // console.log(res);
         if(res){
           this.countItems = res.length;
         }
@@ -74,11 +74,11 @@ export class ItemComponent implements OnInit{
   }
 
   addToCart(item){
-    console.log(item.itemid);
+    // console.log(item.itemid);
     this.userData.addItemToCart(item.itemid).then(
       res => {
         // if it succed insert item - publish event
-        console.log(res);
+        // console.log(res);
         this.events.publish('cart:update');
         this.presentToast(item.name , 'S');
       }).catch(reason => this.presentToast(item.name, 'F'));
@@ -95,7 +95,7 @@ export class ItemComponent implements OnInit{
       });
 
       toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
+        // console.log('Dismissed toast');
       });
 
       toast.present();
@@ -106,7 +106,7 @@ export class ItemComponent implements OnInit{
         position: 'bottom'
       });
       toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
+        // console.log('Dismissed toast');
       });
       toast.present();
     }

@@ -76,11 +76,11 @@ export class CorDrinkQuickComponent implements OnInit{
   }
   ionViewDidEnter() {
     if(this.entered == 0) {
-      console.log("First Enter to Page - Quick Order Details");
+      // console.log("First Enter to Page - Quick Order Details");
       this.entered = 1;
     }
     else{
-      console.log("Second Enter to Page - Quick Order Details");
+      // console.log("Second Enter to Page - Quick Order Details");
       this.clearOrder();
     }
   }
@@ -111,7 +111,7 @@ export class CorDrinkQuickComponent implements OnInit{
       // present action sheet of Pastery
       this.presentActionSheet('Pastry');
     } else {
-      console.log('bad input');
+      // console.log('bad input');
     }
 
   }
@@ -141,7 +141,7 @@ export class CorDrinkQuickComponent implements OnInit{
           text: this.itemsDrink[index].name + '  ' + this.itemsDrink[index].price + ' NIS',
           //icon: this.possibleButtons[index].icon,
           handler: () => {
-            console.log('choosen item id ' + this.itemsDrink[index].itemid);
+            // console.log('choosen item id ' + this.itemsDrink[index].itemid);
             this.drinkId = this.itemsDrink[index].itemid;
             this.itemChoosenDrink = this.itemsDrink[index].name + '  ' + this.itemsDrink[index].price + ' NIS';
             this.itemDescDrink = this.itemsDrink[index].description;
@@ -161,7 +161,7 @@ export class CorDrinkQuickComponent implements OnInit{
           text: this.itemsFood[index].name + '  ' + this.itemsFood[index].price + ' NIS',
           //icon: this.possibleButtons[index].icon,
           handler: () => {
-            console.log('choosen item id ' + this.itemsFood[index].itemid);
+            // console.log('choosen item id ' + this.itemsFood[index].itemid);
             this.foodId = this.itemsFood[index].itemid;
             this.itemChoosenFood = this.itemsFood[index].name + '  ' + this.itemsFood[index].price + ' NIS';
             this.itemDescFood = this.itemsFood[index].description;
@@ -182,11 +182,11 @@ export class CorDrinkQuickComponent implements OnInit{
   calcOrder() {
     if(this.drinkId == -1 || this.foodId == -1){
       // drink wasnot choose and quaninty for order
-      console.log('no drink or food were chosen');
+      // console.log('no drink or food were chosen');
       this.presentAlert(null);
       return;
     } else if ( this.qDrink == 0 || this.qFood == 0) {
-      console.log('no qunaitiy')
+      // console.log('no qunaitiy')
       this.presentAlert('Q');
     }
     else {
@@ -196,10 +196,10 @@ export class CorDrinkQuickComponent implements OnInit{
       let drinkSum = Math.imul(this.itemPriceDrink,this.qDrink);
       let foodSum = Math.imul(this.itemPriceFood,this.qFood);
       // sum it
-      console.log(drinkSum);
-      console.log(foodSum);
+      // console.log(drinkSum);
+      // console.log(foodSum);
       this.totalPrice = drinkSum + foodSum;
-      console.log(this.totalPrice);
+      // console.log(this.totalPrice);
       // present full price for student
       this.displayFinalPrice = true;
       this.isenabled = true;
@@ -222,7 +222,7 @@ export class CorDrinkQuickComponent implements OnInit{
     let orderArr: Order[] = new Array();
     orderArr.push(orderDrink);
     orderArr.push(orderFood);
-    console.log(orderArr);
+    // console.log(orderArr);
     this.navCtrl.push(QuickOrderTicket,{
       orderListParam: orderList,
       orderParam: orderArr,

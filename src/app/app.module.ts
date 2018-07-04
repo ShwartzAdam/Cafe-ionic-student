@@ -11,7 +11,6 @@ import { LoginPage } from '../pages/login/login';
 import { QuickOrderPage } from '../pages/quick-order/quick-order';
 import { MenuOrderPage } from '../pages/menu-order/menu-order';
 // components
-import { MenuOrderDetails } from '../pages/menu-order/menu-order-details';
 import { ItemComponent } from '../components/item/item';
 import { QuickOrderTicket } from "../pages/quick-order/quick-order-ticket";
 // services
@@ -49,6 +48,8 @@ import {CapitalizeFirstPipe} from "../pipes/capitalize-first/capitalize-first";
 import {Timer} from "../components/countdown-timer/timer";
 import {UserComponent} from "../components/user/user";
 import {NativePageTransitions} from "@ionic-native/native-page-transitions";
+import {PasswordResetPage} from "../components/password/password";
+import {ItemMenuComponent} from "../components/item-menu/item-menu";
 
 
 @NgModule({
@@ -59,7 +60,6 @@ import {NativePageTransitions} from "@ionic-native/native-page-transitions";
     QuickOrderPage,
     QuickOrderTicket,
     MenuOrderPage,
-    MenuOrderDetails,
     ItemComponent,
     ReviewComponent,
     ReviewItemComponent,
@@ -76,7 +76,9 @@ import {NativePageTransitions} from "@ionic-native/native-page-transitions";
     ProfilePage,
     CapitalizeFirstPipe,
     Timer,
-    UserComponent
+    UserComponent,
+    PasswordResetPage,
+    ItemMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +100,6 @@ import {NativePageTransitions} from "@ionic-native/native-page-transitions";
     QuickOrderPage,
     QuickOrderTicket,
     MenuOrderPage,
-    MenuOrderDetails,
     ItemComponent,
     ReviewComponent,
     ReviewItemComponent,
@@ -114,6 +115,8 @@ import {NativePageTransitions} from "@ionic-native/native-page-transitions";
     ProfilePage,
     Timer,
     UserComponent,
+    PasswordResetPage,
+    ItemMenuComponent
   ],
   providers: [
     StatusBar,

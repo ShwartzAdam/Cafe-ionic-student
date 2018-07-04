@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
-import { MenuOrderDetails } from "./menu-order-details";
 import {UserData} from "../../providers/user-data/user-data";
 import {BasketPage} from "../basket/basket";
 
@@ -11,8 +10,8 @@ import {BasketPage} from "../basket/basket";
 })
 @IonicPage()
 export class MenuOrderPage {
-  private items : any ;
-  private countItems: number;
+  public menuType : any ;
+  public countItems: number;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -22,18 +21,9 @@ export class MenuOrderPage {
     // event incase the cart had been updated
     this.events.subscribe('cart:update', () => {
       this.userData.getItemsFromCart().then(res => {
-        console.log(res);
+        // console.log(res);
         this.countItems = res['length'];
       });
-    });
-  }
-
-  public pushPage(item) {
-    let name = item.name;
-    console.log("Open page with " + name + "type");
-    this.navCtrl.push(MenuOrderDetails,{
-      name : name,
-      url : item.src
     });
   }
 
@@ -43,7 +33,7 @@ export class MenuOrderPage {
         this.countItems = res.length;
       }
     });
-    this.items = [
+    this.menuType = [
       {name : "Dishes", src : "assets/order-images/dishes.jpg"},
       {name : "Drinks",  src : "assets/order-images/cafe.jpg" },
       {name : "Pastries",  src : "assets/order-images/pastery.png" },
@@ -53,14 +43,6 @@ export class MenuOrderPage {
   }
   public gotoBasket(){
     this.navCtrl.setRoot(BasketPage);
-  }
-  public updateCart(){
-    this.userData.getItemsFromCart().then(res => {
-      if(res){
-        this.countItems = res.length;
-        console.log(this.countItems);
-      }
-    });
   }
 
 }

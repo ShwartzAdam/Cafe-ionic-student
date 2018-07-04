@@ -44,11 +44,11 @@ export class HomePage{
           // CHECK USER BALANCE
           this.userProvider.getUserCreditBalance(this.userid).then((result) => {
             if( result['credit'] == 0) {
-              console.log('Student has no credit at all - please load up');
+              // console.log('Student has no credit at all - please load up');
               this.presentAlert();
             }
           }, (err) => {
-            console.log(err);
+            //console.log(err);
           });
         });
       this.isEntered = true;
@@ -56,7 +56,7 @@ export class HomePage{
     // GET THE ITEMS IN CART
     this.userData.getItemsFromCart().then(
       res => {
-        console.log(res);
+        // console.log(res);
         if(res){
           this.countItems = res.length;
         }

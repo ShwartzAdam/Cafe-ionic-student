@@ -4,6 +4,7 @@ import {UserData} from "../../providers/user-data/user-data";
 import {UserProvider} from "../../providers/user/user";
 import {Student} from "../../model/user";
 import {OrderListProvider} from "../../providers/order-list/order-list";
+import {PasswordResetPage} from "../../components/password/password";
 
 
 @IonicPage()
@@ -74,7 +75,7 @@ export class ProfilePage implements OnInit{
       this.displayOpen = false;
       this.displayComplete = false;
     } else {
-      console.log('bad input when switch');
+      // console.log('bad input when switch');
     }
     // SCROLL DOWN
     let dimensions = this.content.getContentDimensions();
@@ -94,7 +95,7 @@ export class ProfilePage implements OnInit{
         };
         this.userPro.setUserCreditBalance(jsonCredit).then(
           res => {
-            console.log(res);
+            // console.log(res);
             // PRESENT TOAST
             this.presentToast();
             // UPDATE DISPLAY
@@ -103,6 +104,9 @@ export class ProfilePage implements OnInit{
 
       }
     );
+  }
+  passwordReset() {
+    this.navCtrl.push(PasswordResetPage)
   }
   presentToast() {
     let toast = this.toastCtrl.create({

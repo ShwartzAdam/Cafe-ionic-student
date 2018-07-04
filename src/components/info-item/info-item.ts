@@ -14,7 +14,7 @@ export class InfoItemComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log(this.itemInput);
+    // console.log(this.itemInput);
     this.itemPro.getItemById(this.itemInput).subscribe(
       res => this.item = res
     )

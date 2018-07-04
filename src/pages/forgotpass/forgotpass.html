@@ -8,15 +8,15 @@
     <img class='logo-image' [src]="imageFileName">
   </ion-row>
   <div class="forgotpass-box">
-    <form (ngSubmit)="forgotPass()" #registerForm="ngForm">
+    <form (ngSubmit)="forgotPassword()" #registerForm="ngForm">
       <ion-row>
         <ion-col>
           <ion-list inset>
             <ion-item>
-              <ion-input type="text" placeholder="Email" name="first" [(ngModel)]="userEmail.first" required></ion-input>
+              <ion-input type="email" placeholder="Email" name="first" [(ngModel)]="userEmail.first" email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input type="text" placeholder="Repeat Email" name="second" [(ngModel)]="userEmail.second" required></ion-input>
+              <ion-input type="email" placeholder="Repeat Email" name="second" [(ngModel)]="userEmail.second" email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -26,7 +26,6 @@
           <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Submit</button>
         </ion-col>
       </ion-row>
-
     </form>
   </div>
 </ion-content>

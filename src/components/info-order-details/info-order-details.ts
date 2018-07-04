@@ -42,9 +42,9 @@ export class InfoOrderDetailsComponent implements OnInit{
       } else if ( this.orderList.status == 'Incoming' || this.orderList.status == 'Active' ) {
         // dont show review option
         this.displayReview = false;
-        console.log('enter no review option');
+        // console.log('enter no review option');
       } else {
-        console.log('no valid status for orderlist');
+        // console.log('no valid status for orderlist');
       }
     });
   }

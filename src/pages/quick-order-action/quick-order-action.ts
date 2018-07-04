@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Events} from 'ionic-angular';
+import {UserData} from "../../providers/user-data/user-data";
+import {BasketPage} from "../basket/basket";
 
 
 @IonicPage()
@@ -9,32 +11,39 @@ import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angul
 })
 export class QuickOrderActionPage{
 
+  public menuType : any ;
+  private countItems: number;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public alertCtrl: AlertController) {}
-
-
-  doConfirm() {
-    const alert = this.alertCtrl.create({
-      title: 'Use this lightsaber?',
-      message: 'Do you agree to use this lightsaber to do good across the intergalactic galaxy?',
-      buttons: [
-        {
-          text: 'Disagree',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
-          text: 'Agree',
-          handler: () => {
-            console.log('Agree clicked');
-          }
-        }
-      ]
+              public userData: UserData,
+              public events: Events) {
+    this.initView();
+    // event incase the cart had been updated
+    this.events.subscribe('cart:update', () => {
+      this.userData.getItemsFromCart().then(res => {
+        // console.log(res);
+        this.countItems = res['length'];
+      });
     });
+  }
 
-    alert.present();
+  private initView(): void {
+    this.userData.getItemsFromCart().then(res => {
+      if(res){
+        this.countItems = res.length;
+      }
+    });
+    this.menuType = [
+      {name : "Dishes", src : "assets/order-images/dishes.jpg"},
+      {name : "Drinks",  src : "assets/order-images/cafe.jpg" },
+      {name : "Pastries",  src : "assets/order-images/pastery.png" },
+      {name : "Sandwiches" ,  src : "assets/order-images/sandwich.jpg" },
+      {name : "Snacks" ,  src : "assets/order-images/snack.jpg" }
+    ];
+  }
+  public gotoBasket(){
+    this.navCtrl.setRoot(BasketPage);
   }
 
 }

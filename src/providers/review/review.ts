@@ -4,7 +4,6 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/timeout";
 //models
 import {Review} from "../../model/review";
-import {UserData} from "../user-data/user-data";
 
 @Injectable()
 export class ReviewProvider {

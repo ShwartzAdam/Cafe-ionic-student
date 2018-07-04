@@ -29,7 +29,7 @@ export class LoginPage {
     this.dataFromOtherPage = data;
     this.registerCredentials.email = data['email'];
     this.registerCredentials.password = data['password'];
-    console.log('data received from other page', this.dataFromOtherPage);
+    // console.log('data received from other page', this.dataFromOtherPage);
   };
 
   // GO TO RGISTER PAGE
@@ -46,10 +46,10 @@ export class LoginPage {
   // LOGIN FUNCTION
   login() {
     // show the login vars - user,pass,role
-    console.log(this.registerCredentials);
+    // console.log(this.registerCredentials);
     this.userProvider.login(this.registerCredentials).then( result => {
         if(result){
-          console.log('Log In Successful, UID: ' + result["userid"] );
+          // console.log('Log In Successful, UID: ' + result["userid"] );
           // SAVE USER ID AND TOKEN AT USER DATA SERVICE
           this.userData.setUserId(result["userid"]);
           // this.userData.setToken(result["token"]);
@@ -72,7 +72,7 @@ export class LoginPage {
           }, 3000);
 
         } else{
-            console.log("bad input for loggin");
+            // console.log("bad input for loggin");
         }
 
     }).catch( err => {

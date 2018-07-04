@@ -66,7 +66,7 @@ export class UserData {
             let isExists: boolean = false;
             for (let i = 0 ; i < len ; i ++ ){
               if(value[i]['itemid'] == itemid ) {
-                console.log('true - exist in cart');
+                // console.log('true - exist in cart');
                 reject(false);
                 isExists = true;
               }
@@ -76,8 +76,8 @@ export class UserData {
               theVal = value;
               theVal.push(this.itemList[0]);
               this.storage.set('cart', theVal);
-              console.log("item id -> added");
-              console.log( theVal );
+              // console.log("item id -> added");
+              // console.log( theVal );
               resolve(true);
             }
           }
@@ -85,9 +85,9 @@ export class UserData {
             // first item in the cart
             let newVal = this.itemList;
             this.storage.set('cart', newVal);
-            console.log(this.itemList);
-            console.log("first item id -> added");
-            console.log(newVal);
+            // console.log(this.itemList);
+            // console.log("first item id -> added");
+            // console.log(newVal);
             resolve(true);
           }
         })
@@ -124,7 +124,7 @@ export class UserData {
         let newVal = [];
         this.itemListNew = [];
         let itemcount = 1;
-        console.log(value.length);
+        // console.log(value.length);
         // if null -> clean cart totaly
         if(value.length == null) {
           this.storage.remove('cart');
@@ -133,34 +133,34 @@ export class UserData {
           this.storage.remove('cart');
           return "empty cart";
         } else{
-          console.log(value.length);
+          // console.log(value.length);
           for(let i = 0; i < value.length ; i++ ){
             if(value[i]["itemid"] == itemid) {
               // if it is the itemid - continue and dont save it
-              console.log("equal");
-              console.log(value[i]);
+              // console.log("equal");
+              // console.log(value[i]);
             }else{
               // else ,, lets store it
-              console.log("diff");
-              console.log(value[i]);
+              // console.log("diff");
+              // console.log(value[i]);
               // if only one item set storage to it
-              console.log(itemcount);
+              // console.log(itemcount);
             if(itemcount == 1){
                 this.itemListNew = [{itemid : value[i]["itemid"]}];
                 // newVal = value[i]["itemid"];
                 this.storage.set('cart', this.itemListNew );
                 // display me the vars before storage
-                console.log(this.itemListNew);
-                console.log(newVal);
+                // console.log(this.itemListNew);
+                // console.log(newVal);
             }else{
                 let theVal = this.itemListNew;
                 theVal.push(value[i]);
                 this.storage.set('cart', theVal);
-                console.log(theVal);
-                console.log(this.itemListNew);
+                // console.log(theVal);
+                // console.log(this.itemListNew);
               }
               itemcount++;
-              console.log(itemcount);
+              // console.log(itemcount);
               //console.log(newVal);
               //
               //this.addItemToCart(value[i]["itemid"]);

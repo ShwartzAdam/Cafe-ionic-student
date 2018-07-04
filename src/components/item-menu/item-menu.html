@@ -1,0 +1,10 @@
+<ion-item-sliding *ngFor="let item of itemList">
+  <ion-item (click)="pushItem(item)">
+    <ion-thumbnail item-start>
+      <img class="image-box" img-preloader="{{this.item.url}}" alt="">
+    </ion-thumbnail>
+    <h2>{{item.name}}</h2>
+    <p text-wrap>{{item.description | slice:0:75}} ...</p>
+    <h5 float-end>{{item.price}} &#8362;</h5>
+  </ion-item>
+</ion-item-sliding>

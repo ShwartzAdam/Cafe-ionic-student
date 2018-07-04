@@ -61,11 +61,11 @@ export class QuickOrderTicket implements OnInit{
     this.orderList = this.navParams.get('orderListParam');
     this.order = this.navParams.get('orderParam');
     this.length = this.navParams.get('size');
-    console.log(this.length);
+    // console.log(this.length);
 
     this.totalPrice = this.orderList.totalprice;
-    console.log(this.orderList);
-    console.log(this.order);
+    // console.log(this.orderList);
+    // console.log(this.order);
 
     // set min time to order
     this.startDatetimeMin = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString();// set the current date time
@@ -86,10 +86,10 @@ export class QuickOrderTicket implements OnInit{
       });
     // loop on orders for items
     if(this.length == 1){
-      console.log('one item to checkout');
+      // console.log('one item to checkout');
       this.itemPro.getItemById(this.order.itemid).subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           let item: Item = new Item;
           item.qty = this.order.qty;
           item.name = res.name;
@@ -98,11 +98,11 @@ export class QuickOrderTicket implements OnInit{
         });
 
     } else {
-      console.log('two or more item to checkout');
+      // console.log('two or more item to checkout');
       for (let i = 0 ; i < this.length ; i++) {
         this.itemPro.getItemById(this.order[i].itemid).subscribe(
           res => {
-            console.log(res);
+            // console.log(res);
             let item: Item = new Item;
             item.qty = this.order[i].qty;
             item.name = res.name;
@@ -112,13 +112,13 @@ export class QuickOrderTicket implements OnInit{
       }
 
     }
-   console.log(this.items);
+   // console.log(this.items);
 
 
   }
   public onChange(e){
     if(e == true) {
-      console.log('time count down has finished');
+      //console.log('time count down has finished');
       this.navCtrl.pop();
     }
   }
@@ -136,9 +136,9 @@ export class QuickOrderTicket implements OnInit{
     this.checkBalance().then(
       res => {
         if(res) {
-          console.log('has credit to continue the purchase')
+          // console.log('has credit to continue the purchase')
         } else{
-          console.log('has no credit , stop the proccess');
+          // console.log('has no credit , stop the proccess');
           return;
         }
       });
@@ -162,13 +162,13 @@ export class QuickOrderTicket implements OnInit{
     let pickUpTimeStr = moment(this.orderTime,'hh:mm').add(3,'h').toISOString();
     this.orderTime = pickUpTimeStr;
     this.pickUpTime = pickUpTimeStr;
-    console.log(new Date().getTime().toString());
-    console.log(orderTimeStr);
-    console.log(pickUpTimeStr);
+    // console.log(new Date().getTime().toString());
+    // console.log(orderTimeStr);
+    // console.log(pickUpTimeStr);
     this.orderTimeExtended = orderTimeStr;
     //this.orderList.ol_dttm_real = this.orderTimeExtended;
     this.orderList.ol_dttm = this.orderTime;
-    console.log(this.orderList);
+    // console.log(this.orderList);
     // set orderlist status to none
     this.orderList.status = '';
     // get item for prep time
@@ -179,7 +179,7 @@ export class QuickOrderTicket implements OnInit{
           let quantity = this.order.qty;
           let prep: number = Math.imul(timePrepItem, quantity);
           this.prepTotal = prep;
-          console.log(this.prepTotal);
+          // console.log(this.prepTotal);
           this.orderList.totalpreptime = this.prepTotal;
           this.createOrder();
         });
@@ -191,7 +191,7 @@ export class QuickOrderTicket implements OnInit{
             let quantity = this.order[i].qty;
             let prep: number = Math.imul(timePrepItem, quantity);
             this.orderList.totalpreptime  = this.orderList.totalpreptime + prep;
-            console.log(this.prepTotal);
+            // console.log(this.prepTotal);
           });
       }
       this.createOrder();
@@ -204,17 +204,17 @@ export class QuickOrderTicket implements OnInit{
     // if order is size of one
     // then do this
     // else create to order
-    console.log(this.orderList);
+    // console.log(this.orderList);
     this.orderLPro.checkTimeOrderList(this.orderList).then(
       res => {
-            console.log(res);
+            // console.log(res);
             this.orderList.olid = res['olid'];
-            console.log(this.orderList);
+            // console.log(this.orderList);
             let time = res['ol_dttm'];
-            console.log('Succesfuly offer this time');
-            console.log(time);
+            // console.log('Succesfuly offer this time');
+            // console.log(time);
             this.timeOffered = time;
-            console.log(this.timeOffered);
+            // console.log(this.timeOffered);
             // present 1 minutes to decide if create orders items
             this.child.startTimer();
             let dimensions = this.content.getContentDimensions();
@@ -231,7 +231,7 @@ export class QuickOrderTicket implements OnInit{
           let balance= res['credit'];
           let priceToDec: number = this.orderList.totalprice;
           let diff = Math.abs(balance - priceToDec);
-          console.log(diff);
+          // console.log(diff);
           if (diff > 0) {
             this.student.credit = diff;
             resolve(true)
@@ -253,14 +253,14 @@ export class QuickOrderTicket implements OnInit{
         {
           text: 'Disagree',
           handler: () => {
-            console.log('Disagree clicked');
+            // console.log('Disagree clicked');
             return;
           }
         },
         {
           text: 'Agree',
           handler: () => {
-            console.log('Agree clicked');
+            // console.log('Agree clicked');
             this.placeOrder();
           }
         }
@@ -274,13 +274,13 @@ export class QuickOrderTicket implements OnInit{
     if ( this.length == 1) {
       // if order is size of one
       this.order.olid = this.orderList.olid;
-      console.log(this.order);
+      // console.log(this.order);
       this.orderPro.createOrder(this.order).then(
         res => {
-          console.log(res);
+          // console.log(res);
           // remove the qty of item id from storage
           this.itemPro.decItemQty(this.order.itemid,this.order.qty).then(
-            res => console.log(res)
+            res => {}
           )
         });
     } else {
@@ -288,10 +288,10 @@ export class QuickOrderTicket implements OnInit{
         this.order[i].olid = this.orderList.olid;
         this.orderPro.createOrder(this.order[i]).then(
           res => {
-            console.log(res);
+            // console.log(res);
             // remove the qty of item if from storage
             this.itemPro.decItemQty(this.order[i].itemid,this.order[i].qty).then(
-              res => console.log(res)
+              res => {}
             )
           });
       }
@@ -304,16 +304,16 @@ export class QuickOrderTicket implements OnInit{
     };
     console.log(usercredit);
     this.userPro.setUserCreditBalance(usercredit).then(
-      res => console.log(res)
+      res => {}
     );
     // clean cart
     this.userData.cleanCart().then(
-      res => console.log(res)
+      res => {}
     );
     this.orderList.status = "Incoming";
     this.orderLPro.updateOrderList(this.orderList).then(
       res => {
-        console.log(res);
+        // console.log(res);
         let loading = this.loadingCtrl.create({
           spinner: 'crescent',
           content: '<div class="custom-spinner-container">' +

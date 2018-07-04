@@ -30,7 +30,7 @@ export class BasketPage {
     this.userData.getUserId().then(
       res => {
                 this.userid = res;
-                console.log(this.userid);
+                // console.log(this.userid);
           }
     );
 
@@ -53,7 +53,7 @@ export class BasketPage {
   //
   updateView(res){
     if(res == null){
-      console.log("Empty Cart");
+      // console.log("Empty Cart");
       this.items = new Array();
       this.totalPrice = 0;
     }else if(res.length > 1 ){
@@ -105,28 +105,28 @@ export class BasketPage {
   initView(){
     this.userData.getItemsFromCart().then(
       res => {
-        console.log(res);
+        // console.log(res);
         if(res == null ){
           this.updateView(null);
         }else{
           this.updateView(res);
           // clac for each
-          console.log(res);
+          // console.log(res);
           this.ordersItem = new Array();
           for(let i = 0 ; i < res.length ; i++)
           {
             let order: Order = new Order;
             (order as any).itemid = res[i]["itemid"];
             (order as any).qty = 1;
-            console.log(order);
+            // console.log(order);
             this.ordersItem.push(order);
-            console.log(this.items);
+            // console.log(this.items);
           }
-          console.log(this.ordersItem);
-          console.log(this.items);
+          // console.log(this.ordersItem);
+          // console.log(this.items);
         }
       }
-    ).catch(reason => console.log(reason));
+    ).catch();
 
   }
 
@@ -134,18 +134,18 @@ export class BasketPage {
     // print the item id you want to remove
     // user data holds var and the cart itself , sending id of the item
     // will remove it from his local storage
-    console.log("Delete item id = " + _itemid);
+    // console.log("Delete item id = " + _itemid);
     this.userData.removeItemFromCart(_itemid).then(
       () => {
-        console.log("Succesfuly remove item id = " + _itemid);
+        //console.log("Succesfuly remove item id = " + _itemid);
         this.event.publish('cart:delete');
       });
 
   }
 
   checkOut():void{
-    console.log(this.items);
-    console.log(this.ordersItem);
+    // console.log(this.items);
+    // console.log(this.ordersItem);
     let orderList = new OrderList();
     orderList.totalprice = this.totalPrice;
     orderList.userid = this.userid;
@@ -153,7 +153,7 @@ export class BasketPage {
       let order = new Order();
       order.qty = this.items[0].qty;
       order.itemid = this.items[0].itemid;
-      console.log(order);
+      // console.log(order);
       this.navCtrl.push(QuickOrderTicket, {
         orderListParam: orderList,
         orderParam: order,
@@ -170,33 +170,33 @@ export class BasketPage {
       });
     }
 
-    console.log(this.ordersItem);
-    console.log(orderList);
+    // console.log(this.ordersItem);
+    // console.log(orderList);
 
   }
 
   quantity(_itemid,_action):void{
     if(_action == "Plus") {
         // inc
-      console.log("itemid = " + _itemid + " action = " +_action);
+      // console.log("itemid = " + _itemid + " action = " +_action);
       this.items.forEach(item => {
           if(item.itemid == _itemid){
             item.qty++;
-            console.log("item id -> quantity inc successfuly");
+            // console.log("item id -> quantity inc successfuly");
           }
         });
     }else{
         // dec
-        console.log("itemid = " + _itemid + " action = " +_action);
+        // console.log("itemid = " + _itemid + " action = " +_action);
         this.items.forEach(item => {
           if(item.itemid == _itemid){
             item.qty--;
             if(item.qty == 0){
               // delete item
               this.deleteItem(_itemid);
-              console.log("item id -> deleted < 1")
+              // console.log("item id -> deleted < 1")
             }
-            console.log("item id -> quantity inc successfuly");
+            // console.log("item id -> quantity inc successfuly");
           }
         });
     }

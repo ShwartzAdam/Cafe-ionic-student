@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import {Student, User} from "../../model/user";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import {UserData} from "../user-data/user-data";
 
 
 @Injectable()
@@ -52,11 +51,25 @@ export class UserProvider {
         headers: new HttpHeaders().set("Content-Type", 'application/json')
       }).subscribe(res => {
           resolve(res);
-          console.log(res);
+          // console.log(res);
         }, (err) => {
           reject(err);
-          console.log(err);
+          // console.log(err);
         });
+    });
+  }
+  // forget password
+  public forgotPassword(email) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url+'/forgetpassword', JSON.stringify(email), {
+        headers: new HttpHeaders().set("Content-Type", 'application/json')
+      }).subscribe(res => {
+        resolve(res);
+        // console.log(res);
+      }, (err) => {
+        reject(err);
+        // console.log(err);
+      });
     });
   }
   // get user credit balance
@@ -65,10 +78,10 @@ export class UserProvider {
       this.http.get(this.url + '/users/credit/' + userid, { headers: this.headerConfig
       }).subscribe(res => {
           resolve(res);
-          console.log(res);
+          // console.log(res);
         }, (err) => {
           reject(err);
-          console.log(err);
+          // console.log(err);
         });
     });
   }
@@ -78,10 +91,10 @@ export class UserProvider {
       this.http.put(this.url+'/users/credit', JSON.stringify(userCredit), { headers: this.headerConfig
       }).subscribe(res => {
           resolve(res);
-          console.log(res);
+          // console.log(res);
         }, (err) => {
           reject(err);
-          console.log(err);
+          // console.log(err);
         });
     });
   }

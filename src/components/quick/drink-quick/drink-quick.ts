@@ -68,11 +68,11 @@ export class DrinkQuickComponent implements OnInit{
   }
   ionViewDidEnter() {
     if(this.entered == 0) {
-      console.log("First Enter to Page - Quick Order Details");
+      // console.log("First Enter to Page - Quick Order Details");
       this.entered = 1;
     }
     else{
-      console.log("Second Enter to Page - Quick Order Details");
+      // console.log("Second Enter to Page - Quick Order Details");
       this.clearOrder();
     }
   }
@@ -88,7 +88,7 @@ export class DrinkQuickComponent implements OnInit{
       (_items: Item[]) => {
         _items.forEach(item => this.items.push(item));
       });
-    console.log(this.items);
+    // console.log(this.items);
   }
   chooseDrink(){
     this.presentActionSheet();
@@ -109,7 +109,7 @@ export class DrinkQuickComponent implements OnInit{
         text: this.items[index].name + '  ' + this.items[index].price + ' NIS',
         //icon: this.possibleButtons[index].icon,
         handler: () => {
-          console.log('choosen item id ' + this.items[index].itemid);
+          // console.log('choosen item id ' + this.items[index].itemid);
           this.drinkId = this.items[index].itemid;
           this.itemChoosen = this.items[index].name + '  ' + this.items[index].price + ' NIS';
           this.itemDesc = this.items[index].description;
@@ -135,12 +135,12 @@ export class DrinkQuickComponent implements OnInit{
       let dimensions = this.content.getContentDimensions();
       this.content.scrollTo(0, dimensions.contentHeight+100, 100);
       // take item price and mul with quantity
-      console.log(this.itemPrice);
-      console.log(this.qDrink);
+      // console.log(this.itemPrice);
+      // console.log(this.qDrink);
       // calc
       this.totalPrice = Math.imul(this.itemPrice,this.qDrink);
       // sum it
-      console.log(this.totalPrice);
+      // console.log(this.totalPrice);
       // present full price for student
       this.displayFinalPrice = true;
       this.isenabled = true;
@@ -157,8 +157,8 @@ export class DrinkQuickComponent implements OnInit{
     let order = new Order();
     order.qty = this.qDrink;
     order.itemid = this.drinkId;
-    console.log(orderList);
-    console.log(order);
+    // console.log(orderList);
+    // console.log(order);
     this.navCtrl.push(QuickOrderTicket,{
       orderListParam: orderList,
       orderParam: order,

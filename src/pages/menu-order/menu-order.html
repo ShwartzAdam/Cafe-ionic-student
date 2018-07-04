@@ -5,7 +5,7 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title class="toolbar-title-second">Menu Order</ion-title>
+    <ion-title class="toolbar-title">Menu Order</ion-title>
     <ion-buttons right>
       <button ion-button icon-only color="white" clear (click)="gotoBasket()">
         <ion-icon name="cart"></ion-icon>
@@ -14,10 +14,13 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content padding class="card-background-page">
-  <ion-card button *ngFor="let item of items" (click)="pushPage(item)" >
-    <img src="../../{{item.src}}"/>
-    <div class="card-title">{{item.name}}</div>
-  </ion-card>
+<ion-content padding>
+  <accordion-list *ngFor="let type of menuType; let index = index"
+                  [title]="type.name"
+                  textColor="#FFF"
+                  hasMargin="false"
+                  [expanded]="index === 0">
+    <item-menu [type]="type.name"></item-menu>
+  </accordion-list>
 </ion-content>
 

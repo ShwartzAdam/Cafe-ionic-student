@@ -68,11 +68,11 @@ export class SandQuickComponent implements OnInit{
   }
   ionViewDidEnter() {
     if(this.entered == 0) {
-      console.log("First Enter to Page - Quick Order Sandwich details");
+      // console.log("First Enter to Page - Quick Order Sandwich details");
       this.entered = 1;
     }
     else{
-      console.log("Second Enter to Page - Quick Order Sandwich Details");
+      // console.log("Second Enter to Page - Quick Order Sandwich Details");
       this.clearOrder();
     }
   }
@@ -88,7 +88,7 @@ export class SandQuickComponent implements OnInit{
       (_items: Item[]) => {
         _items.forEach(item => this.items.push(item));
       });
-    console.log(this.items);
+    // console.log(this.items);
   }
   chooseDrink(){
     this.presentActionSheet();
@@ -127,7 +127,7 @@ export class SandQuickComponent implements OnInit{
   calcOrder() {
     if(this.drinkId == -1 || this.qDrink == 0){
       // drink wasnot choose and quaninty for order
-      console.log('error input');
+      // console.log('error input');
       this.presentAlert();
       return;
     }
@@ -135,12 +135,12 @@ export class SandQuickComponent implements OnInit{
       let dimensions = this.content.getContentDimensions();
       this.content.scrollTo(0, dimensions.contentHeight+100, 100);
       // take item price and mul with quantity
-      console.log(this.itemPrice);
-      console.log(this.qDrink);
+      // console.log(this.itemPrice);
+      // console.log(this.qDrink);
       // calc
       this.totalPrice = Math.imul(this.itemPrice,this.qDrink);
       // sum it
-      console.log(this.totalPrice);
+      // console.log(this.totalPrice);
       // present full price for student
       this.displayFinalPrice = true;
       this.isenabled = true;
