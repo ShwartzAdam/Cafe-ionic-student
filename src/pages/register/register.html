@@ -22,6 +22,7 @@
     </ion-col>
   </ion-row>
   <div class="register-box">
+    <!--
     <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-row>
         <ion-col>
@@ -52,6 +53,75 @@
       <ion-row>
         <ion-col class="register-col">
           <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Register</button>
+        </ion-col>
+      </ion-row>
+    </form>
+    -->
+    <form [formGroup]="formGroup" (ngSubmit)="register()">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-label color="forth" stacked>First Name</ion-label>
+              <ion-input type="text" placeholder="Israel" formControlName="firstName" [(ngModel)]="_userRegister.firstname" ></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.firstName" >
+                <div class="error-message" *ngIf="formGroup.get('firstName').hasError(validation.type) && (formGroup.get('firstName').dirty || formGroup.get('firstName').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+            <ion-item>
+              <ion-label color="forth" stacked>Last Name</ion-label>
+              <ion-input type="text" placeholder="Israeli" formControlName="lastName" [(ngModel)]="_userRegister.lastname"></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.lastName" >
+                <div class="error-message" *ngIf="formGroup.get('lastName').hasError(validation.type) && (formGroup.get('lastName').dirty || formGroup.get('lastName').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+            <ion-item>
+              <ion-label color="forth" stacked>Email</ion-label>
+              <ion-input type="email" placeholder="Israel@shenkar.com" formControlName="email" [(ngModel)]="_userRegister.email"></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.email" >
+                <div class="error-message" *ngIf="formGroup.get('email').hasError(validation.type) && (formGroup.get('email').dirty || formGroup.get('email').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+            <ion-item>
+              <ion-label color="forth" stacked>Phone Number</ion-label>
+              <ion-input type="number" placeholder="0542783331" formControlName="phone" [(ngModel)]="_userRegister.phone"></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.phone" >
+                <div class="error-message" *ngIf="formGroup.get('phone').hasError(validation.type) && (formGroup.get('phone').dirty || formGroup.get('phone').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+            <ion-item>
+              <ion-label color="forth" stacked>Password</ion-label>
+              <ion-input type="password" placeholder="1234 Or Better ..."  formControlName="password" [(ngModel)]="_userRegister.password"></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.password" >
+                <div class="error-message" *ngIf="formGroup.get('password').hasError(validation.type) && (formGroup.get('password').dirty || formGroup.get('password').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="register-col">
+          <button ion-button class="submit-btn" full [disabled]="!formGroup.valid" >Submit</button>
         </ion-col>
       </ion-row>
     </form>

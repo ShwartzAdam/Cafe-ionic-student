@@ -50,6 +50,7 @@ import {UserComponent} from "../components/user/user";
 import {NativePageTransitions} from "@ionic-native/native-page-transitions";
 import {PasswordResetPage} from "../components/password/password";
 import {ItemMenuComponent} from "../components/item-menu/item-menu";
+import {ItemBasketComponent} from "../components/item-basket/item-basket";
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import {ItemMenuComponent} from "../components/item-menu/item-menu";
     Timer,
     UserComponent,
     PasswordResetPage,
-    ItemMenuComponent
+    ItemMenuComponent,
+    ItemBasketComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +118,8 @@ import {ItemMenuComponent} from "../components/item-menu/item-menu";
     Timer,
     UserComponent,
     PasswordResetPage,
-    ItemMenuComponent
+    ItemMenuComponent,
+    ItemBasketComponent
   ],
   providers: [
     StatusBar,

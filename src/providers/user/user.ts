@@ -8,8 +8,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserProvider {
-  public url = 'https://cafeappserver.herokuapp.com/api';
-  public urlDev = 'http://localhost:3000/api';
+  public urlPrd = 'https://cafeappserver.herokuapp.com/api';
+  public url = 'http://localhost:3000/api';
   public headerConfig: any;
   constructor(private http: HttpClient) {
     //this.setToken();

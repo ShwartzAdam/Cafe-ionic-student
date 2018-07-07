@@ -84,7 +84,7 @@ export class SandQuickComponent implements OnInit{
     this.isenabled = false;
   }
   ngOnInit(): void {
-    this.itemProv.getAllItemByType('Sandwich').then(
+    this.itemProv.getAllItemByType('Sandwiches').then(
       (_items: Item[]) => {
         _items.forEach(item => this.items.push(item));
       });

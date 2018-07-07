@@ -94,11 +94,11 @@ export class CorDrinkQuickComponent implements OnInit{
     this.isenabled = false;
   }
   ngOnInit(): void {
-    this.itemProv.getAllItemByType('Drink').then(
+    this.itemProv.getAllItemByType('Drinks').then(
       (_items: Item[]) => {
         _items.forEach(item => this.itemsDrink.push(item));
       });
-    this.itemProv.getAllItemByType('Pastry').then(
+    this.itemProv.getAllItemByType('Pastries').then(
       (_items: Item[]) => {
         _items.forEach(item => this.itemsFood.push(item));
       });

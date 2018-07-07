@@ -297,12 +297,12 @@ export class QuickOrderTicket implements OnInit{
       }
     }
 
-    console.log(this.student);
+    //console.log(this.student);
     let usercredit = {
       'userid' : this.orderList.userid,
       'credit': this.student.credit
     };
-    console.log(usercredit);
+    //console.log(usercredit);
     this.userPro.setUserCreditBalance(usercredit).then(
       res => {}
     );

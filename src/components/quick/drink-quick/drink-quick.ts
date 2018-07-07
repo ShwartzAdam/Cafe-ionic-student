@@ -84,7 +84,7 @@ export class DrinkQuickComponent implements OnInit{
     this.isenabled = false;
   }
   ngOnInit(): void {
-    this.itemProv.getAllItemByType('Drink').then(
+    this.itemProv.getAllItemByType('Drinks').then(
       (_items: Item[]) => {
         _items.forEach(item => this.items.push(item));
       });

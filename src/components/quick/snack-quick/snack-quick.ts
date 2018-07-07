@@ -84,7 +84,7 @@ export class SnackQuickComponent implements OnInit{
     this.isenabled = false;
   }
   ngOnInit(): void {
-    this.itemProv.getAllItemByType('Snack').then(
+    this.itemProv.getAllItemByType('Snacks').then(
       (_items: Item[]) => {
         _items.forEach(item => this.items.push(item));
       });
