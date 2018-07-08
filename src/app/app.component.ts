@@ -1,7 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import {MenuController, Nav, Platform} from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 // pages
 import { QuickOrderPage } from '../pages/quick-order/quick-order';
 import { MenuOrderPage } from '../pages/menu-order/menu-order';
@@ -9,8 +7,7 @@ import { LoginPage } from "../pages/login/login";
 import { BasketPage } from "../pages/basket/basket";
 import { HomePage } from "../pages/home/home";
 import {ProfilePage} from "../pages/profile/profile";
-import {QuickOrderActionPage} from "../pages/quick-order-action/quick-order-action";
-// provider
+
 
 @Component({
   templateUrl: 'app.html'
@@ -22,8 +19,6 @@ export class MyApp {
   sideMenuPages: Array<{ title: string, component: any, icon: string }>;
 
   constructor(public platform: Platform,
-              public statusBar: StatusBar,
-              public splashScreen: SplashScreen,
               public menuCtrl: MenuController){
     this.initializeApp();
   }
@@ -54,8 +49,8 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      // this.statusBar.styleDefault();
+      // this.splashScreen.hide();
     });
   }
 

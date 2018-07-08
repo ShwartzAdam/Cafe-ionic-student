@@ -7,8 +7,8 @@ import {ReviewList} from "../../model/reviewList";
 
 @Injectable()
 export class ReviewListProvider {
-  public urlPrd = 'https://cafeappserver.herokuapp.com/api';
-  public url = 'http://localhost:3000/api';
+  public url = 'https://cafeappserver.herokuapp.com/api';
+  public urlEnv = 'http://localhost:3000/api';
   public headerConfig: any;
   constructor(private http: HttpClient) {
     //this.setToken();

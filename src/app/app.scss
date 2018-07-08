@@ -22,7 +22,7 @@ ion-header {
       box-shadow: none;
     }
     .toolbar-title {
-      font-size: 1.1em;
+      font-size: 1em;
       display: -webkit-flex;
       display: flex;
       -webkit-flex-direction: row;
@@ -33,7 +33,7 @@ ion-header {
       justify-content: center;
     }
     .toolbar-title-second {
-      font-size:1.1em;
+      font-size: 1em;
       display: -webkit-flex;
       display: flex;
       -webkit-flex-direction: row;
@@ -42,7 +42,6 @@ ion-header {
       align-items: center;
       -webkit-justify-content: center;
       justify-content: center;
-      margin-right: 18% !important;
     }
     ion-buttons{
       padding:2.5%;
@@ -74,12 +73,78 @@ ion-footer {
 @media (min-width: 1281px) {
 
   //CSS
+  .toolbar-title {
+    font-size: 1.5em !important;
+  }
+  .toolbar-title-second{
+    margin-right:10%;
+    font-size:1.5em !important;
+  }
   // LOGIN
   .logo-img{
     width: 20%;
     margin: auto;
     background-color: transparent !important;
   }
+  .login-box {
+      display: block;
+      position: fixed;
+      width: 50%;
+      margin: 20px auto;
+      bottom: 0;
+      left: 25%;
+      background: $background-color-fifth;
+      padding: 20px 20px 0px 20px;
+      border-radius: 20px;
+  }
+  // REGISTER
+  .register-box {
+    display: block;
+    position: fixed;
+    margin: 20px auto;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    background: $background-color-fifth;
+    padding: 20px 20px 0px 20px;
+    border-radius: 20px;
+  }
+  .register-img{
+    width: 30%;
+    background-color: transparent !important;
+    border-radius: 50% !important;
+  }
+  // ITEM
+  .image-box{
+    image-rendering: pixelated;
+    width: 30%;
+  }
+  // MENU - ITEM INFO
+  item-menu{
+    h2{
+      margin-top: 5px !important;
+      font-size: 1.4em !important;
+    }
+    .item-price{
+      font-size: 1.5em !important;
+    }
+    .item-decs{
+      font-size: 1em !important;
+    }
+    .item-qty{
+      font-size: 1.2em !important;
+    }
+  }
+  // ITEM - TEXT
+  info-item{
+    .title{
+      font-size:1.5em !important;
+    }
+    .content{
+      font-size:1em !important;
+    }
+  }
+
 
 }
 
@@ -91,12 +156,71 @@ ion-footer {
 @media (min-width: 1025px) and (max-width: 1280px) {
 
   //CSS
+  .toolbar-title {
+    font-size: 1.5em !important;;
+  }
+  .toolbar-title-second{
+    margin-right:10%;
+    font-size:1.5em !important;
+  }
   // LOGIN
   .logo-img{
     width: 25%;
     margin: auto;
     background-color: transparent !important;
   }
+  .login-box {
+    display: block;
+    position: fixed;
+    width: 50%;
+    margin: 20px auto;
+    bottom: 0;
+    left: 25%;
+    background: #5DC7A7;
+    padding: 20px 20px 0px 20px;
+    border-radius: 20px;
+  }
+  // REGISTER
+  .register-box {
+    display: block;
+    position: fixed;
+    margin: 20px auto;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    background: $background-color-fifth;
+    padding: 20px 20px 0px 20px;
+    border-radius: 20px;
+  }
+  .register-img{
+    width: 30%;
+    background-color: transparent !important;
+    border-radius: 50% !important;
+  }
+  // ITEM
+  .image-box{
+    image-rendering: pixelated;
+    width: 30%;
+  }
+  // MENU - ITEM INFO
+  item-menu{
+    h2{
+      margin-top: 5px !important;
+      font-size: 1.4em !important;
+    }
+    .item-price{
+      font-size: 1.5em !important;
+    }
+    .item-decs{
+      font-size: 1em !important;
+    }
+    .item-qty{
+      font-size: 1.2em !important;
+    }
+  }
+  // ITEM - TEXT
+
+
 
 }
 
@@ -104,12 +228,77 @@ ion-footer {
 @media (min-width: 768px) and (max-width: 1024px) {
 
   //CSS
+  .toolbar-title {
+    font-size: 1.5em !important;;
+  }
+  .toolbar-title-second{
+    margin-right:10%;
+    font-size:1.5em !important;
+  }
   // LOGIN
   .logo-img{
     width: 30%;
     margin: auto;
     background-color: transparent !important;
   }
+  .login-box {
+    display: block;
+    position: fixed;
+    width: 50%;
+    margin: 20px auto;
+    bottom: 0;
+    left: 25%;
+    background: #5DC7A7;
+    padding: 20px 20px 0px 20px;
+    border-radius: 20px;
+  }
+  // REGISTER
+  .register-box {
+    display: block;
+    position: fixed;
+    margin: 20px auto;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    background: $background-color-fifth;
+    padding: 20px 20px 0px 20px;
+    border-radius: 20px;
+  }
+  .register-img{
+    width: 50%;
+    background-color: transparent !important;
+    border-radius: 50% !important;
+  }
+  // ITEM
+  .image-box{
+    image-rendering: pixelated;
+    width: 30%;
+  }
+  item-menu{
+    h2{
+      margin-top: 5px !important;
+      font-size: 1.4em !important;
+    }
+    .item-price{
+      font-size: 1.5em !important;
+    }
+    .item-decs{
+      font-size: 1em !important;
+    }
+    .item-qty{
+      font-size: 1.2em !important;
+    }
+  }
+  // ITEM - TEXT
+  info-item{
+    .title{
+      font-size:1.5em !important;
+    }
+    .content{
+      font-size:1em !important;
+    }
+  }
+
 
 }
 
@@ -121,12 +310,75 @@ ion-footer {
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 
   //CSS
+  .toolbar-title {
+    font-size: 1.5em !important;;
+  }
+  .toolbar-title-second{
+    margin-right:10%;
+    font-size:1.5em !important;
+  }
   // LOGIN
   .logo-img{
     width: 45%;
     margin: auto;
     background-color: transparent !important;
   }
+  .login-box {
+    display: block;
+    position: fixed;
+    width: 50%;
+    margin: 20px auto;
+    bottom: 0;
+    left: 25%;
+    background: #5DC7A7;
+    padding: 20px 20px 0px 20px;
+    border-radius: 20px;
+  }
+  // REGISTER
+  .register-box {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 10px;
+    background: #5DC7A7;
+    padding: 20px 20px 0px 20px;
+    border-radius: 20px;
+
+  }
+  .register-img{
+    width: 30%;
+    background-color: transparent !important;
+    border-radius: 50% !important;
+  }
+  // ITEM
+  .image-box{
+    image-rendering: pixelated;
+    width: 30%;
+  }
+  item-menu{
+    h2{
+      margin-top: 5px !important;
+      font-size: 1.2em !important;
+    }
+    .item-price{
+      font-size: 1.3em !important;
+    }
+    .item-decs{
+      font-size: 0.7em !important;
+    }
+    .item-qty{
+      font-size: 0.9em !important;
+    }
+  }
+  // ITEM - TEXT
+  info-item{
+    .title{
+      font-size:1.5em !important;
+    }
+    .content{
+      font-size:1em !important;
+    }
+  }
+
 
 }
 
@@ -139,10 +391,74 @@ ion-footer {
 
   //CSS
   // LOGIN
+  .toolbar-title {
+    font-size: 1.1em !important;;
+  }
+  .toolbar-title-second{
+    margin-right:14%;
+    font-size:1.1em !important;
+  }
   .logo-img{
     width: 45%;
     margin: auto;
     background-color: transparent !important;
+  }
+  .login-box {
+    display: block;
+    position: fixed;
+    width: 75%;
+    margin: 20px auto;
+    bottom: 0;
+    left: 12.5%;
+    background: #5DC7A7;
+    padding: 20px 20px 0px 20px;
+    border-radius: 20px;
+  }
+  // REGISTER
+  .register-box {
+    display: block;
+    position: fixed;
+    width: 75%;
+    margin: 20px auto;
+    left: 12.5%;
+    bottom: 0;
+    background: $background-color-fifth;
+    padding: 20px 20px 0px 20px;
+    border-radius: 20px;
+  }
+  .register-img{
+    width: 50%;
+    background-color: transparent !important;
+    border-radius: 50% !important;
+  }
+  // ITEM
+  .image-box{
+    image-rendering: pixelated;
+    width: 40%;
+  }
+  item-menu{
+    h2{
+      margin-top: 5px !important;
+      font-size: 1.2em !important;
+    }
+    .item-price{
+      font-size: 1.3em !important;
+    }
+    .item-decs{
+      font-size: 0.7em !important;
+    }
+    .item-qty{
+      font-size: 0.9em !important;
+    }
+  }
+  // ITEM - TEXT
+  info-item{
+    .title{
+      font-size:1.3em !important;
+    }
+    .content{
+      font-size:0.9em !important;
+    }
   }
 }
 
@@ -151,14 +467,83 @@ ion-footer {
   ##Screen = B/w 320px to 479px
 */
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 250px) and (max-width: 480px) {
 
   //CSS
+  .toolbar-title {
+    font-size: 1.1em !important;
+  }
+  .toolbar-title-second{
+    margin-right:14%;
+    font-size:1.1em !important;
+  }
   // LOGIN
   .logo-img{
     width: 70%;
     margin: auto;
     background-color: transparent !important;
+  }
+  .login-box {
+    display: block;
+    position: relative;
+    //position: fixed;
+    //bottom:0;
+    //left:0;
+    width: 90%;
+    margin: auto;
+    // margin-left: 5%;
+    // margin-bottom:40px;
+    background: $background-color-fifth;
+    padding: 20px 20px 0px 20px;
+    border-radius: 20px;
+  }
+  // REGISTER
+  .register-box {
+    display: block;
+    position: relative;
+    // bottom:0;
+    // left:0;
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-bottom:10px;
+    background: $background-color-fifth;
+    padding: 20px 20px 0px 20px;
+    border-radius: 20px;
+  }
+  .register-img{
+    width: 50%;
+    margin: auto;
+    background-color: transparent !important;
+  }
+  .image-box{
+    image-rendering: pixelated;
+    width: 50%;
+  }
+  // ITEM - MENU
+  item-menu{
+    h2{
+      margin-top: 5px !important;
+      font-size: 1em !important;
+    }
+    .item-price{
+      font-size: 0.9em !important;
+    }
+    .item-decs{
+      font-size: 0.4em !important;
+    }
+    .item-qty{
+      font-size: 0.6em !important;
+    }
+  }
+  // ITEM - TEXT
+  info-item{
+    .title{
+      font-size:1.1em !important;
+    }
+    .content{
+      font-size:0.8em !important;
+    }
   }
 
 

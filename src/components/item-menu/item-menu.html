@@ -4,7 +4,8 @@
       <img class="image-box" img-preloader="{{this.item.url}}" alt="">
     </ion-thumbnail>
     <h2>{{item.name}}</h2>
-    <p text-wrap>{{item.description | slice:0:75}} ...</p>
-    <h5 float-end>{{item.price}} &#8362;</h5>
+    <p class="item-desc" text-wrap>{{item.description | slice:0:75}} ...</p>
+    <p class="item-qty">{{item.qty}} <span>In Stock</span></p>
+    <p class="item-price" float-end>{{item.price}} &#8362;</p>
   </ion-item>
 </ion-item-sliding>

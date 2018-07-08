@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 // main App
 import { MyApp } from './app.component';
 // pages
@@ -122,8 +120,6 @@ import {ItemBasketComponent} from "../components/item-basket/item-basket";
     ItemBasketComponent
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
     ItemProvider,

@@ -5,19 +5,19 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title class="toolbar-title">Register</ion-title>
+    <ion-title class="toolbar-title-second">Register</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content class="register-content" padding>
   <ion-row class="logo-row">
     <ion-col>
       <ion-avatar>
-        <img [ngStyle]="{'border': borderAttMen}" class="logo-img" [src]="imageFileNameMen" (click)="setUrl('M')">
+        <img [ngStyle]="{'border': borderAttMen}" class="register-img" [src]="imageFileNameMen" (click)="setUrl('M')">
       </ion-avatar>
     </ion-col>
     <ion-col>
       <ion-avatar>
-        <img [ngStyle]="{'border': borderAttWmn}" class="logo-img" [src]="imageFileNameWoman" (click)="setUrl('W')">
+        <img [ngStyle]="{'border': borderAttWmn}" class="register-img" [src]="imageFileNameWoman" (click)="setUrl('W')">
       </ion-avatar>
     </ion-col>
   </ion-row>

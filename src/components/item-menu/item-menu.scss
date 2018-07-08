@@ -4,10 +4,17 @@ item-menu{
     max-height: 10.6rem !important;
     border-radius: 5px;
   }
-  p {
-    font-size: 0.6em !important;
-  }
+
   ion-item {
     margin-bottom:20px !important;
+  }
+  .item-price{
+    display:inline-block;
+    margin-top: 10px;
+  }
+  .item-qty{
+    color:red;
+    display: inline-block;
+    margin-top:10px;
   }
 }
