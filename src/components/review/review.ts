@@ -102,6 +102,7 @@ export class ReviewComponent {
   public sendReview(item,index){
     console.log(item);
     console.log(index);
+
     if(this.comment[index] == '' || this.stars[index] == -1) {
       console.log("no comment or stars were choose");
     } else{
@@ -116,6 +117,14 @@ export class ReviewComponent {
       this.reviewList.itemid =  item.itemid;
       this.revListPro.getReviewListForItem(item.itemid).then(
         res => {
+          let loading = this.loadingCtrl.create({
+            spinner: 'crescent',
+            content: 'Please Wait...'
+          });
+          loading.present();
+          setTimeout(() => {
+            loading.dismiss();
+          }, 5000);
           if( res['rlid'] == -1) {
             // there is no review list for this item
             this.revListPro.createReviewList(this.reviewList).then(
