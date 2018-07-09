@@ -55,7 +55,7 @@ export class ReviewProvider {
     return this.http.get<Review[]>(this.url + '/reviews/item/' + id , { headers: this.headerConfig
     } );
   }
-  // UPDATE REVIEW
+  // UPDATE REVIEW /item/gethonestreviews/:itemid
   public updateReview(_review: Review){
     return new Promise((resolve, reject) => {
       this.http.put(this.url+'/reviews', JSON.stringify(_review), { headers: this.headerConfig
@@ -64,6 +64,16 @@ export class ReviewProvider {
         }, (err) => {
           reject(err);
         });
+    });
+  }
+  public getReviewByItem(id: number){
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url+'/reviews/item/gethonestreviews/' + id, { headers: this.headerConfig
+      }).subscribe(res => {
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      });
     });
   }
 

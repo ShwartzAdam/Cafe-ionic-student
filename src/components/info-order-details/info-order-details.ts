@@ -38,7 +38,7 @@ export class InfoOrderDetailsComponent implements OnInit{
       if(this.orderList.status == 'Complete' && this.orderList.hasreview == false){
         // display review button and let them know they need to leave a review
         this.displayReview = true;
-        console.log('enter review option');
+        // console.log('enter review option');
       } else if ( this.orderList.status == 'Incoming' || this.orderList.status == 'Active' ) {
         // dont show review option
         this.displayReview = false;

@@ -73,6 +73,17 @@ export class ReviewListProvider {
         });
     });
   }
+  // GET ITEM ID REVIEWLIST
+  public getReviewListForItem(itemid: number){
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + '/reviewlists/item/' + itemid ,{ headers: this.headerConfig
+      }).subscribe(res => {
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      });
+    });
+  }
 
 
 

@@ -1,5 +1,10 @@
 review {
-
+  .button-review{
+    border-radius: 30px !important;
+    ion-icon{
+      font-size:3em;
+    }
+  }
   .image-box{
     display: block;
     margin-left: auto;
