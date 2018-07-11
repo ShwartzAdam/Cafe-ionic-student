@@ -207,10 +207,11 @@ export class QuickOrderTicket implements OnInit{
     // console.log(this.orderList);
     this.orderLPro.checkTimeOrderList(this.orderList).then(
       res => {
-            // console.log(res);
+            console.log(res);
             this.orderList.olid = res['olid'];
             // console.log(this.orderList);
-            let time = res['ol_dttm'];
+            this.orderList.ol_dttm = res['ol_dttm'];
+            const time = res['ol_dttm'];
             // console.log('Succesfuly offer this time');
             // console.log(time);
             this.timeOffered = time;
@@ -311,6 +312,7 @@ export class QuickOrderTicket implements OnInit{
       res => {}
     );
     this.orderList.status = "Incoming";
+    console.log(this.orderList);
     this.orderLPro.updateOrderList(this.orderList).then(
       res => {
         // console.log(res);
