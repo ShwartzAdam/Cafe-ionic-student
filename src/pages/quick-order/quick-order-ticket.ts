@@ -312,7 +312,7 @@ export class QuickOrderTicket implements OnInit{
       res => {}
     );
     this.orderList.status = "Incoming";
-    console.log(this.orderList);
+    // console.log(this.orderList);
     this.orderLPro.updateOrderList(this.orderList).then(
       res => {
         // console.log(res);

@@ -109,7 +109,7 @@ export class SandQuickComponent implements OnInit{
         text: this.items[index].name + '  ' + this.items[index].price + ' NIS',
         //icon: this.possibleButtons[index].icon,
         handler: () => {
-          console.log('choosen item id ' + this.items[index].itemid);
+          // console.log('choosen item id ' + this.items[index].itemid);
           this.drinkId = this.items[index].itemid;
           this.itemChoosen = this.items[index].name + '  ' + this.items[index].price + ' NIS';
           this.itemDesc = this.items[index].description;
