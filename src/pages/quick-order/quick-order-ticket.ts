@@ -207,13 +207,13 @@ export class QuickOrderTicket implements OnInit{
     // console.log(this.orderList);
     this.orderLPro.checkTimeOrderList(this.orderList).then(
       res => {
-            console.log(res);
+            // console.log(res);
             this.orderList.olid = res['olid'];
             // console.log(this.orderList);
             this.orderList.ol_dttm = res['ol_dttm'];
             const time = res['ol_dttm'];
             // console.log('Succesfuly offer this time');
-            console.log(time);
+            // console.log(time);
             this.timeOffered = time;
             // console.log(this.timeOffered);
             // present 1 minutes to decide if create orders items
