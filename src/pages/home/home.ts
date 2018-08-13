@@ -19,10 +19,8 @@ export class HomePage{
   public _student: Student = new Student;
   private countItems: number;
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
               public userProvider: UserProvider,
               public userData: UserData,
-              public events: Events,
               public alertCtrl: AlertController) {
     this.initView();
   }
