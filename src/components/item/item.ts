@@ -44,7 +44,7 @@ export class ItemComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-    // GET THE ITEMS IN CART
+    // fetch the items from the cart and store
     this.userData.getItemsFromCart().then(
       res => {
         if(res){
@@ -82,6 +82,7 @@ export class ItemComponent implements OnInit{
     this.navCtrl.setRoot(BasketPage);
   }
   presentToast(item: string, mesg: string) {
+    // item in the basket already
     if( mesg == 'F'){
       let toast = this.toastCtrl.create({
         message: item + ' is already in your cart ',
