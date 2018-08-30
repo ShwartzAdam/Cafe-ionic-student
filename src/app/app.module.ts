@@ -32,7 +32,6 @@ import {ImagePreloader} from "../directives/img-preload/img-preload";
 import {ReviewComponent} from "../components/review/review";
 import {ReviewItemComponent} from "../components/review-item/review-item";
 import {Ionic2RatingModule} from "ionic2-rating";
-import {QuickOrderActionPage} from "../pages/quick-order-action/quick-order-action";
 import {DrinkQuickComponent} from "../components/quick/drink-quick/drink-quick";
 import {SnackQuickComponent} from "../components/quick/snack-quick/snack-quick";
 import {SandQuickComponent} from "../components/quick/sand-quick/sand-quick";
@@ -55,7 +54,6 @@ import {ItemBasketComponent} from "../components/item-basket/item-basket";
   declarations: [
     MyApp,
     LoginPage,
-    QuickOrderActionPage,
     QuickOrderPage,
     QuickOrderTicket,
     MenuOrderPage,
@@ -96,7 +94,6 @@ import {ItemBasketComponent} from "../components/item-basket/item-basket";
     MyApp,
     LoginPage,
     HomePage,
-    QuickOrderActionPage,
     QuickOrderPage,
     QuickOrderTicket,
     MenuOrderPage,
@@ -128,7 +125,6 @@ import {ItemBasketComponent} from "../components/item-basket/item-basket";
     ReviewProvider,
     ReviewListProvider,
     UserData,
-    LoggerProvider,
     NativePageTransitions,
   ]
 })

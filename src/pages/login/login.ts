@@ -1,3 +1,6 @@
+// login component - let user login with email and password, can also access
+// forgot password or register views
+
 import { Component } from '@angular/core';
 import {NavController, IonicPage, LoadingController, AlertController} from 'ionic-angular';
 import { NativeTransitionOptions } from '@ionic-native/native-page-transitions';
@@ -19,41 +22,36 @@ export class LoginPage {
               public userData: UserData,
               public loadingCtrl: LoadingController,
               public alertCtrl: AlertController) {
-    // WHEN LOGGING - DELETE CART AND STUDNET INFO
+    // When logging - delete cart and studnet info
     this.userData.cleanCart();
     this.userData.clearStudent();
   }
 
-  // CALL BACK FROM REGISTER PAGE WITH EMAIL AND PASSWORD
+  // Call back from register page with email and password
   callback = data => {
     this.dataFromOtherPage = data;
     this.registerCredentials.email = data['email'];
     this.registerCredentials.password = data['password'];
-    // console.log('data received from other page', this.dataFromOtherPage);
   };
 
-  // GO TO RGISTER PAGE
+  //  Go to register page
   createAccount() {
     this.nav.push('RegisterPage',{
       callback: this.callback
     });
   }
-  // GO TO FORGET PASSWORD PAGE
+  // Go to forget password page
   forgotAccount(){
     this.nav.push('ForgotpassPage');
   }
 
-  // LOGIN FUNCTION
   login() {
-    // show the login vars - user,pass,role
-    // console.log(this.registerCredentials);
+    // Show the login vars - user,pass,role
     this.userProvider.login(this.registerCredentials).then( result => {
         if(result){
-          // console.log('Log In Successful, UID: ' + result["userid"] );
-          // SAVE USER ID AND TOKEN AT USER DATA SERVICE
+          // Save user id and token at user data service
           this.userData.setUserId(result["userid"]);
           // this.userData.setToken(result["token"]);
-          // LOADING CONTROL
           let loading = this.loadingCtrl.create({
             spinner: 'crescent',
             content: 'Please Wait...'
@@ -71,8 +69,6 @@ export class LoginPage {
             loading.dismiss();
           }, 3000);
 
-        } else{
-            // console.log("bad input for loggin");
         }
 
     }).catch( err => {

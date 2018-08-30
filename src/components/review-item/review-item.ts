@@ -23,11 +23,9 @@ export class ReviewItemComponent implements OnInit{
   {}
 
   ngOnInit(): void {
-    // console.log(this.itemInput);
     this.revPro.getReviewByItemId(this.itemInput).subscribe(
       res => {
           this.reviews = res;
-          // console.log(this.reviews);
           let len = this.reviews.length;
           if( len == 0 ) {
             // display empty review meesage
@@ -35,7 +33,6 @@ export class ReviewItemComponent implements OnInit{
           }
       });
     // get the reivewslist by item by id
-    // console.log(this.itemInput);
   }
 
 

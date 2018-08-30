@@ -1,3 +1,5 @@
+// Quick order page display 4 quick menus to chose from
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {UserData} from "../../providers/user-data/user-data";
@@ -13,14 +15,12 @@ import {SnackQuickComponent} from "../../components/quick/snack-quick/snack-quic
   templateUrl: 'quick-order.html',
 })
 export class QuickOrderPage {
-  // items for ngfor list with icons
   private Items : any ;
   private userid: number;
   private countItems: number;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public userData: UserData){
-
    this.initQuickOrderMenu()
   }
 
@@ -31,7 +31,7 @@ export class QuickOrderPage {
       {name : "Sandwiches" ,  src : "assets/order-images/sandwich.jpg" },
       {name : "Snacks" ,  src : "assets/order-images/snack.jpg" }
     ];
-    //saving in local storage
+    // saving in local storage
     this.userData.getUserId().then(
       res => {
         this.userid = res;
@@ -66,8 +66,6 @@ export class QuickOrderPage {
           name : item.name,
           url : item.src
         });
-    } else {
-        // console.log('bad Input for quick menu');
     }
 
   }

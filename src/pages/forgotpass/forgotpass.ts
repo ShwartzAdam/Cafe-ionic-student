@@ -1,3 +1,4 @@
+// Forgot password component - use email for a password reset
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, LoadingController, NavController} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
@@ -18,15 +19,12 @@ export class ForgotpassPage {
               public alertCtrl: AlertController) {}
 
   public forgotPassword(){
-    // console.log(this._userRegister);
-    // save user in Class
+    // If email is equal
     if(this.userEmail.first === this.userEmail.second ){
+      // Keep the first email in json and call the service
       this.userJson.email = this.userEmail.first;
       this.userPr.forgotPassword(this.userJson).then((result) => {
-         // console.log(result);
         if(result){
-          // console.log("Succesfuly created new user" + result);
-
           let loading = this.loadingCtrl.create({
             spinner: 'crescent',
             content: 'Succesfully changed and sent to your Email'
@@ -42,11 +40,9 @@ export class ForgotpassPage {
           }, 3000);
 
         }
-      }, (err) => {
-        // console.log(err);
-      });
+      }, () => {});
     } else {
-      // present error
+      // Presnet error
       this.presentAlert('F');
     }
 

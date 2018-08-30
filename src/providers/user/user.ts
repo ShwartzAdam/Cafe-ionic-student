@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import {Student, User} from "../../model/user";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import {UserData} from "../user-data/user-data";
 
 
 @Injectable()
@@ -11,25 +12,24 @@ export class UserProvider {
   public url = 'https://cafeappserver.herokuapp.com/api';
   public urlEnv = 'http://localhost:3000/api';
   public headerConfig: any;
-  constructor(private http: HttpClient) {
-    //this.setToken();
+  constructor(private http: HttpClient,
+              private userData:UserData) {
+    this.setToken();
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     this.headerConfig = headers;
   }
-  /*
+
   setToken(){
-    console.log('User Provider - Setting Access Token');
     this.userData.getToken().then(
       res => {
         let headers: HttpHeaders = new HttpHeaders();
         headers = headers.append('Content-Type', 'application/json');
         headers = headers.append('x-access-token', res);
         this.headerConfig = headers;
-        console.log(this.headerConfig);
       });
   }
-  */
+
   // create user in the db - signup
   public signup(_user: Student){
     return new Promise((resolve, reject) => {
@@ -51,10 +51,8 @@ export class UserProvider {
         headers: new HttpHeaders().set("Content-Type", 'application/json')
       }).subscribe(res => {
           resolve(res);
-          // console.log(res);
         }, (err) => {
           reject(err);
-          // console.log(err);
         });
     });
   }

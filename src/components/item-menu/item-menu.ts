@@ -27,7 +27,6 @@ export class ItemMenuComponent implements OnInit{
     );
   }
   pushItem(item) {
-    // console.log(item);
     this.navCtrl.push(ItemComponent,
       {
         item: item
@@ -46,7 +45,6 @@ export class ItemMenuComponent implements OnInit{
       });
 
       toast.onDidDismiss(() => {
-        // console.log('Dismissed toast');
       });
 
       toast.present();
@@ -57,7 +55,6 @@ export class ItemMenuComponent implements OnInit{
         position: 'bottom'
       });
       toast.onDidDismiss(() => {
-        // console.log('Dismissed toast');
       });
       toast.present();
     }

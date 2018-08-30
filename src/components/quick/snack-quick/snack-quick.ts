@@ -127,7 +127,6 @@ export class SnackQuickComponent implements OnInit{
   calcOrder() {
     if(this.drinkId == -1 || this.qDrink == 0){
       // drink wasnot choose and quaninty for order
-      // console.log('error input');
       this.presentAlert();
       return;
     }
@@ -135,12 +134,9 @@ export class SnackQuickComponent implements OnInit{
       let dimensions = this.content.getContentDimensions();
       this.content.scrollTo(0, dimensions.contentHeight+100, 100);
       // take item price and mul with quantity
-      // console.log(this.itemPrice);
-      // console.log(this.qDrink);
       // calc
       this.totalPrice = Math.imul(this.itemPrice,this.qDrink);
       // sum it
-      // console.log(this.totalPrice);
       // present full price for student
       this.displayFinalPrice = true;
       this.isenabled = true;

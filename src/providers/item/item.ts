@@ -13,8 +13,9 @@ export class ItemProvider {
   public url = 'https://cafeappserver.herokuapp.com/api';
   public urlEnv = 'http://localhost:3000/api';
   public headerConfig: any;
-  constructor(private http: HttpClient,
-              private userData:UserData) {
+  private http: HttpClient;
+  private userData:UserData;
+  constructor() {
     //this.setToken();
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
@@ -33,43 +34,39 @@ export class ItemProvider {
       });
   }
   */
-  // GET ALL ITEM
+   // Get all items
    public getAllItem(){
      return new Promise(resolve => {
        this.http.get(this.url + "/items" , { headers: this.headerConfig
        }).subscribe(data => {
          resolve(data);
        }, err => {
-         // console.log(err);
        });
      });
    }
-   // GET ALL ITEMS BY TYPE
+   // Get all items by type
     public getAllItemByType(type){
      return new Promise(resolve => {
        this.http.get(this.url + "/items/type/" + type ,{ headers: this.headerConfig
        }).subscribe(data => {
          resolve(data);
        }, err => {
-         // console.log(err);
        });
      });
-   }
-   // DEC ITEM QTY BY ITEMID
+    }
+    // dec item qty by id and number
     public decItemQty(itemid :number, itemQty:number) {
       return new Promise((resolve, reject) => {
         this.http.put(this.url + "/items/deduction/" + itemid + '/' + itemQty,
           {},{headers: this.headerConfig}
         ).subscribe(res => {
             resolve(res);
-            //console.log(res);
           }, (err) => {
             reject(err);
-            // console.log(err);
           });
       });
     }
-    // GET ITEM BY ID
+    // get item id
     public getItemById(id): Observable<Item> {
       return this.http.get<Item>(this.url + '/items/' + id ,{ headers: this.headerConfig
       });

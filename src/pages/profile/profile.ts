@@ -1,3 +1,5 @@
+// profile page - displaying completed orders , incoming orders , and charge money to account
+
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {UserData} from "../../providers/user-data/user-data";
@@ -36,9 +38,9 @@ export class ProfilePage implements OnInit{
   }
 
   ngOnInit(): void {
-    // ROOT SEGEMNTS OPEN ORDERS
+    // Root segemnts open orders
     this.selectedSeg('O');
-    // GET USER DATA FOR TEMPLATE
+    //  Get user data for template
     this.userData.getUserId().then(
       res => {
         this.userId = res;
@@ -47,7 +49,7 @@ export class ProfilePage implements OnInit{
             this.stu = res;
             this.userUrl = "../../assets/" + this.stu.url;
           });
-        // GET ALL ORDERS BY USER ID FOR PROFILE PAGE
+        // Get all orders by user id for profile page
         this.orderListPro.getOrderListByUserId(this.userId).subscribe(
           res => {
            const incoming = res.filter(order => (order.status === 'Incoming' || order.status === 'Active'));
@@ -60,33 +62,31 @@ export class ProfilePage implements OnInit{
   }
   selectedSeg(s){
     if( s == 'C'){
-      // COMPLETE ORDERS
+      // Complete orders
       this.displayComplete = true;
       this.displayCredit = false;
       this.displayOpen = false;
     } else if ( s == 'O') {
-      // OPEN ORDERS
+      // Open orders
       this.displayOpen = true;
       this.displayCredit = false;
       this.displayComplete = false;
     } else if ( s == 'CT' ) {
-      // CREDIT SEGMENT
+      // credit segment
       this.displayCredit = true;
       this.displayOpen = false;
       this.displayComplete = false;
-    } else {
-      // console.log('bad input when switch');
     }
-    // SCROLL DOWN
+    // Scroll down
     let dimensions = this.content.getContentDimensions();
     this.content.scrollTo(0, dimensions.contentHeight+100, 100);
   }
 
   addCredit(): void {
-    // GET USER CREDIT
+    // Get user credit
     this.userPro.getUserCreditBalance(this.userId).then(
       res => {
-        // ADD 100 TO HIS ACCOUNTS CREDIT
+        // add 100 to his account
         let addition: number = res['credit'];
         addition = addition + 100;
         let jsonCredit = {
@@ -95,10 +95,8 @@ export class ProfilePage implements OnInit{
         };
         this.userPro.setUserCreditBalance(jsonCredit).then(
           res => {
-            // console.log(res);
-            // PRESENT TOAST
             this.presentToast();
-            // UPDATE DISPLAY
+            // Update display
             this.stu.credit = addition;
         })
 

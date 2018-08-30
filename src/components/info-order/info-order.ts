@@ -55,8 +55,6 @@ export class InfoOrderComponent implements OnInit{
           }
 
         })
-    } else {
-      // console.log("bad input error using status")
     }
   }
 

@@ -22,13 +22,11 @@ export class ImagePreloader implements OnInit {
     //First set the final image to some default image while we prepare our preloader:
 
     this.downloadingImage = new Image();  // create image object
-    // console.log(this.targetSource);
     if(!this.targetSource){
       this.finalImage = this.defaultImage
     } else{
       this.userPro.getImage(this.targetSource).subscribe(res => {
         if(res != null){
-          // console.log("image exist");
           this.createImageFromBlob(res);
         }
       },err => {this.finalImage = this.defaultImage});

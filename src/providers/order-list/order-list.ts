@@ -11,27 +11,25 @@ export class OrderListProvider {
   public url = 'https://cafeappserver.herokuapp.com/api';
   public urlEnv = 'http://localhost:3000/api';
   public headerConfig: any;
-
-  constructor(public http: HttpClient) {
+  public http: HttpClient;
+  public userData: UserData;
+  constructor() {
     //this.setToken();
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     this.headerConfig = headers;
   }
-  /*
+
   setToken(){
-    console.log('Order List Provider - Setting Access Token');
     this.userData.getToken().then(
       res => {
         let headers: HttpHeaders = new HttpHeaders();
         headers = headers.append('Content-Type', 'application/json');
         headers = headers.append('x-access-token', res);
         this.headerConfig = headers;
-        console.log(this.headerConfig);
       });
   }
-  */
-  // CREATE ORDER LIST
+  // Create order list
   public createOrderList(_orderList: OrderList){
     return new Promise((resolve, reject) => {
       this.http.post(this.url+'/orderedlist', JSON.stringify(_orderList), {
@@ -44,7 +42,7 @@ export class OrderListProvider {
         });
     });
   }
-  // CHECK TIME SLOT FOR PENDING ORDER LIST
+  // Check time slot for pending order list
   public checkTimeOrderList(_orderList: OrderList){
     return new Promise((resolve, reject) => {
       this.http.post(this.url+'/orderedlist/orderedlistsTime', JSON.stringify(_orderList), {
@@ -58,16 +56,16 @@ export class OrderListProvider {
     });
   }
 
-  // GET ARRAY OF ORDER LIST BY USER ID
+  // Get array of order list by user id
   public getOrderListByUserId(id : number): Observable<OrderList[]> {
     return this.http.get<OrderList[]>(this.url + '/orderedlist/userid/' + id , {headers: this.headerConfig} );
   }
-  // GET ARRAY OF ORDERLIST BY ORDERLIST ID
+  // Get array of orderlist by orderlist id
   public getOrderListByOlid(id : number): Observable<OrderList> {
     return this.http.get<OrderList>(this.url + '/orderedlist/' + id , {headers: this.headerConfig} );
   }
 
-  // UPDATE ORDER LIST
+  // Update order list
   public updateOrderList(_orderList: OrderList){
     return new Promise((resolve, reject) => {
       this.http.put(this.url + '/orderedlist/' , JSON.stringify(_orderList) ,{headers: this.headerConfig})

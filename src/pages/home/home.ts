@@ -1,10 +1,11 @@
+// HOME COMPONENT - AFTER SUCCESSFULL LOGIN , THIS PAGE IS ACTING AS THE MAIN PAGE
+// FROM HERE , YOU CAN ACCESS ALL OTHER PAGES IN THE APPLICAION
+
 import { Component } from '@angular/core';
-import {NavController, NavParams, IonicPage, Events} from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 import { BasketPage } from "../basket/basket";
 import { AlertController } from 'ionic-angular';
-// providers
 import { UserProvider } from "../../providers/user/user";
-// model
 import { Student } from "../../model/user";
 import { UserData } from "../../providers/user-data/user-data";
 
@@ -30,31 +31,28 @@ export class HomePage{
       this.userData.getUserId().then(
         res => {
           this.userid = res;
-          // SETTING THE TOKEN VALUE TO SERVICE
-          // this.userProvider.setToken();
-          // GET STUDENT INFO FOR HTML TEMPLATE
+          // Setting the token value to service
+          //  this.userProvider.setToken();
+          // Get student info for html template
           this.userProvider.getUserById(this.userid).subscribe(
             res => {
-              // SAVE THE STUDENT INFO IN USER DATA SERVICE
+              // Save the student info in user data service
               this.userData.setStudent(res);
               this._student = res;
             });
-          // CHECK USER BALANCE
+          // Check user balance
           this.userProvider.getUserCreditBalance(this.userid).then((result) => {
             if( result['credit'] == 0) {
-              // console.log('Student has no credit at all - please load up');
               this.presentAlert();
             }
           }, (err) => {
-            //console.log(err);
           });
         });
       this.isEntered = true;
     }
-    // GET THE ITEMS IN CART
+    // Get the items in cart
     this.userData.getItemsFromCart().then(
       res => {
-        // console.log(res);
         if(res){
           this.countItems = res.length;
         }

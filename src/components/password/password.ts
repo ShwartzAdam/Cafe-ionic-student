@@ -41,16 +41,13 @@ export class PasswordResetPage {
   }
 
   public passwordReset(){
-    // console.log(this._userRegister);
     // save user in Class
     console.log(this.userPassword);
     if(this.userPassword.newPassFirst === this.userPassword.newPassSec ){
       this.userJson.oldpassword = this.userPassword.oldPass;
       this.userJson.newpassword = this.userPassword.newPassFirst;
       this.userPr.forgotPassword(this.userJson).then((result) => {
-        // console.log(result);
         if(result){
-          // console.log("Succesfuly created new user" + result);
           let loading = this.loadingCtrl.create({
             spinner: 'crescent',
             content: 'Successfully changed your password, and sent to your private email'
@@ -67,7 +64,6 @@ export class PasswordResetPage {
 
         }
       }, (err) => {
-        // console.log(err);
       });
     } else {
       // present error

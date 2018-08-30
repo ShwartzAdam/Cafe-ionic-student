@@ -73,15 +73,11 @@ export class ReviewComponent {
         console.log(res['length']);
         const len = res['length'];
         if( len == 0){
-          // console.log('No done reviews at all in this order');
           // display all items for reviews
         } else {
-          console.log('There is an open review to finish');
           for(let index = 0 ; index < len ; index++ ){
-            console.log('need to remove item id ' + res[index]['itemid']);
             let removeItem = res[index]['itemid'];
             this.items = this.items.filter(item => item.itemid !== removeItem);
-            console.log(this.items);
           }
 
         }
@@ -100,15 +96,9 @@ export class ReviewComponent {
   }
 
   public sendReview(item,index){
-    console.log(item);
-    console.log(index);
 
     if(this.comment[index] == '' || this.stars[index] == -1) {
-      console.log("no comment or stars were choose");
     } else{
-      console.log(this.comment[index]);
-      console.log(this.stars[index]);
-      console.log(this.review);
       // create review entity for post call
       this.review.comment = this.comment[index];
       this.review.stars = this.stars[index];
@@ -129,65 +119,36 @@ export class ReviewComponent {
             // there is no review list for this item
             this.revListPro.createReviewList(this.reviewList).then(
               res => {
-                console.log(res);
                 this.review.rlid = res['rlid'];
-                console.log(this.review.rlid);
                 this.revPro.createReview(this.review).then(
                   res => {
-                    console.log("created succesfuly new review with id ..")
-                    console.log(res);
                     this.removeItemFromForm(item);
                     this.review = new Review();
                   }).catch(err => {console.log(err)})
               })
           } else {
             this.review.rlid = res['rlid'];
-            console.log(this.review.rlid);
             this.revPro.createReview(this.review).then(
               res => {
-                console.log("created succesfuly new review with id ..")
-                console.log(res);
                 this.removeItemFromForm(item);
                 this.review = new Review();
-              }).catch(err => {console.log(err)})
+              }).catch(err => {})
           }
         });
-      // console.log(this.reviewList);
-      /*
-      this.revListPro.createReviewList(this.reviewList).then(
-        res =>  {
-          // review list id
-          console.log(res);
-          this.review.rlid = res['rlid'];
-          console.log(this.review.rlid);
-          this.revPro.createReview(this.review).then(
-            res => {
-                console.log("created succesfuly new review with id ..")
-                 console.log(res);
-                this.removeItemFromForm(item);
-                this.review = new Review();
-            }).catch(err => {console.log(err)})
-        }
-      ).catch(err => console.log(err))
-      */
 
     }
 
   }
   private removeItemFromForm(_item): any {
     this.items = this.items.filter(item => item.itemid !== _item.itemid);
-    // console.log(this.items);
     if( this.items.length == 0 ) {
-      // console.log('no more items for reviews');
       // api call to changed has review to True
       this.orderListPro.getOrderListByOlid(this.orderListId).subscribe(
         res => {
-            // console.log(res);
             this.orderList = res;
             this.orderList.hasreview = true;
             this.orderListPro.updateOrderList(this.orderList).then(
               res => {
-                // console.log(res);
                 let loading = this.loadingCtrl.create({
                   spinner: 'crescent',
                   content: 'Please Wait...'
@@ -205,8 +166,6 @@ export class ReviewComponent {
 
               });
         });
-    } else{
-      // console.log('there are still items to review');
     }
 
   }

@@ -4,32 +4,33 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/timeout";
 //models
 import {ReviewList} from "../../model/reviewList";
+import {UserData} from "../user-data/user-data";
 
 @Injectable()
 export class ReviewListProvider {
   public url = 'https://cafeappserver.herokuapp.com/api';
   public urlEnv = 'http://localhost:3000/api';
   public headerConfig: any;
-  constructor(private http: HttpClient) {
-    //this.setToken();
+  private http: HttpClient;
+  private userData:UserData;
+  constructor() {
+    // this.setToken();
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     this.headerConfig = headers;
   }
-  /*
+
   setToken(){
-    console.log('Review List Provider - Setting Access Token');
     this.userData.getToken().then(
       res => {
         let headers: HttpHeaders = new HttpHeaders();
         headers = headers.append('Content-Type', 'application/json');
         headers = headers.append('x-access-token', res);
         this.headerConfig = headers;
-        console.log(this.headerConfig);
       });
   }
-  */
-  // CREATE REVIEW LIST
+
+  // Create review list
   public createReviewList(_reviewList: ReviewList){
     return new Promise((resolve, reject) => {
       this.http.post(this.url + '/reviewlists' , JSON.stringify(_reviewList),
@@ -41,17 +42,17 @@ export class ReviewListProvider {
         });
     });
   }
-  // GET ALL REVIEW LIST
+  // Get all review list
   public getAllReviewList(): Observable<ReviewList[]> {
     return this.http.get<ReviewList[]>(this.url + '/reviewlists' , { headers: this.headerConfig
     });
   }
-  // GET  REVIEW LIST BY ID
+  // Get review list by id
   public getReviewListById(id : number): Observable<ReviewList> {
     return this.http.get<ReviewList>(this.url + '/reviewlists/' + id, { headers: this.headerConfig
     } );
   }
-  // UPDATE REVIEW LIST
+  // Update review list
   public updateReviewList(_reviewList: ReviewList){
     return new Promise((resolve, reject) => {
       this.http.put(this.url+'/reviewlists', JSON.stringify(_reviewList), { headers: this.headerConfig
@@ -62,7 +63,7 @@ export class ReviewListProvider {
         });
     });
   }
-  // GET ITEM REVIEW FOR USERS
+  // Get item review for user
   public getItemRevUser(userid: number, orderlistid: number){
     return new Promise((resolve, reject) => {
       this.http.get(this.url + '/reviewlists/' + userid + '/' + orderlistid ,{ headers: this.headerConfig
@@ -73,7 +74,7 @@ export class ReviewListProvider {
         });
     });
   }
-  // GET ITEM ID REVIEWLIST
+  //  Get review list for item
   public getReviewListForItem(itemid: number){
     return new Promise((resolve, reject) => {
       this.http.get(this.url + '/reviewlists/item/' + itemid ,{ headers: this.headerConfig
