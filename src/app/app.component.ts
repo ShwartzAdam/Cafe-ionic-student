@@ -6,7 +6,7 @@ import { MenuOrderPage } from '../pages/menu-order/menu-order';
 import { LoginPage } from "../pages/login/login";
 import { BasketPage } from "../pages/basket/basket";
 import { HomePage } from "../pages/home/home";
-import {ProfilePage} from "../pages/profile/profile";
+import { ProfilePage } from "../pages/profile/profile";
 
 
 @Component({
@@ -14,7 +14,6 @@ import {ProfilePage} from "../pages/profile/profile";
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  // userLoggedIn: boolean = false;
   rootPage: any = LoginPage;
   sideMenuPages: Array<{ title: string, component: any, icon: string }>;
 
@@ -39,18 +38,7 @@ export class MyApp {
       {title: 'Basket' , component: BasketPage , icon: 'cart'},
       {title: 'Sign-Out' , component: LoginPage , icon: 'power'}
     ];
-    /*
-    if(this.oauthService.hasValidIdToken()){
-      this.rootPage = HomePage;
-    } else{
-      this.rootPage = LoginPage;
-    }
-    */
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      // this.statusBar.styleDefault();
-      // this.splashScreen.hide();
     });
   }
 

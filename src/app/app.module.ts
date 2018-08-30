@@ -8,9 +8,25 @@ import { HomePage } from "../pages/home/home";
 import { LoginPage } from '../pages/login/login';
 import { QuickOrderPage } from '../pages/quick-order/quick-order';
 import { MenuOrderPage } from '../pages/menu-order/menu-order';
+import {PasswordResetPage} from "../components/password/password";
+import {ProfilePage} from "../pages/profile/profile";
 // components
 import { ItemComponent } from '../components/item/item';
 import { QuickOrderTicket } from "../pages/quick-order/quick-order-ticket";
+import { ItemMenuComponent }  from "../components/item-menu/item-menu";
+import { ItemBasketComponent } from "../components/item-basket/item-basket";
+import { SideNavComponent } from "../components/side-nav/side-nav";
+import { UserComponent } from "../components/user/user";
+import { ReviewComponent } from "../components/review/review";
+import { ReviewItemComponent } from "../components/review-item/review-item";
+import { InfoOrderComponent } from "../components/info-order/info-order";
+import { InfoOrderDetailsComponent } from "../components/info-order-details/info-order-details";
+import { AccordionListComponent } from "../components/accordion-list/accordion-list";
+import { DrinkQuickComponent } from "../components/quick/drink-quick/drink-quick";
+import { SnackQuickComponent } from "../components/quick/snack-quick/snack-quick";
+import { SandQuickComponent } from "../components/quick/sand-quick/sand-quick";
+import { CorDrinkQuickComponent } from "../components/quick/cor-drink-quick/cor-drink-quick";
+import { InfoItemComponent } from "../components/info-item/info-item";
 // services
 import { UserProvider } from '../providers/user/user';
 import { ItemProvider } from '../providers/item/item';
@@ -26,28 +42,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule } from "@angular/common/http";
 import { IonicStorageModule } from "@ionic/storage";
 import { BasketPageModule } from "../pages/basket/basket.module";
-import { LoggerProvider } from '../providers/logger/logger';
-import {SideNavComponent} from "../components/side-nav/side-nav";
-import {ImagePreloader} from "../directives/img-preload/img-preload";
-import {ReviewComponent} from "../components/review/review";
-import {ReviewItemComponent} from "../components/review-item/review-item";
-import {Ionic2RatingModule} from "ionic2-rating";
-import {DrinkQuickComponent} from "../components/quick/drink-quick/drink-quick";
-import {SnackQuickComponent} from "../components/quick/snack-quick/snack-quick";
-import {SandQuickComponent} from "../components/quick/sand-quick/sand-quick";
-import {CorDrinkQuickComponent} from "../components/quick/cor-drink-quick/cor-drink-quick";
-import {InfoItemComponent} from "../components/info-item/info-item";
-import {ProfilePage} from "../pages/profile/profile";
-import {InfoOrderComponent} from "../components/info-order/info-order";
-import {InfoOrderDetailsComponent} from "../components/info-order-details/info-order-details";
-import {AccordionListComponent} from "../components/accordion-list/accordion-list";
-import {CapitalizeFirstPipe} from "../pipes/capitalize-first/capitalize-first";
-import {Timer} from "../components/countdown-timer/timer";
-import {UserComponent} from "../components/user/user";
-import {NativePageTransitions} from "@ionic-native/native-page-transitions";
-import {PasswordResetPage} from "../components/password/password";
-import {ItemMenuComponent} from "../components/item-menu/item-menu";
-import {ItemBasketComponent} from "../components/item-basket/item-basket";
+import { ImagePreloader } from "../directives/img-preload/img-preload";
+import { Ionic2RatingModule } from "ionic2-rating";
+import { CapitalizeFirstPipe } from "../pipes/capitalize-first/capitalize-first";
+import { Timer } from "../components/countdown-timer/timer";
+import { NativePageTransitions } from "@ionic-native/native-page-transitions";
+
+
 
 
 @NgModule({
