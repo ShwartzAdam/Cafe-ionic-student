@@ -1,3 +1,7 @@
+/**
+ * Main Application
+ *
+ */
 import { Component, ViewChild } from '@angular/core';
 import {MenuController, Nav, Platform} from 'ionic-angular';
 // pages
@@ -13,8 +17,11 @@ import { ProfilePage } from "../pages/profile/profile";
   templateUrl: 'app.html'
 })
 export class MyApp {
+  // nav global
   @ViewChild(Nav) nav: Nav;
+  // root page
   rootPage: any = LoginPage;
+  // side menu pages
   sideMenuPages: Array<{ title: string, component: any, icon: string }>;
 
   constructor(public platform: Platform,
@@ -30,6 +37,7 @@ export class MyApp {
   }
 
   initializeApp() {
+    // side menu pages
     this.sideMenuPages = [
       {title: 'Profile' , component: ProfilePage , icon: 'person'},
       {title: 'Home' , component: HomePage , icon: 'home'},
@@ -43,8 +51,6 @@ export class MyApp {
   }
 
   openPage(sideMenuPages) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(sideMenuPages.component);
   }
 

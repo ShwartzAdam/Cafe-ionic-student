@@ -1,5 +1,8 @@
-// ticket component - calc and make all needed data to orderlist and order entities
-
+//
+/**
+ * Ticket component - calc and make all needed data to orderlist and order entities
+ *
+ */
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {AlertController, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {OrderList} from "../../model/orderList";

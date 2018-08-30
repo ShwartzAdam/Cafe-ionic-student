@@ -1,3 +1,7 @@
+/**
+ * According component - use in profile page to display orderlist tracking
+ *
+ */
 import { Component, ElementRef, Input, Renderer, ViewChild } from '@angular/core';
 
 @Component({

@@ -1,3 +1,7 @@
+/**
+ * Item provider - api calls to web service
+ *
+ */
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -5,8 +9,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
 import {Item} from "../../model/item";
-import {UserData} from "../user-data/user-data";
-
 
 @Injectable()
 export class ItemProvider {
@@ -14,24 +16,10 @@ export class ItemProvider {
   public urlEnv = 'http://localhost:3000/api';
   public headerConfig: any;
   private http: HttpClient;
-  private userData:UserData;
   constructor() {
-    this.setToken();
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     this.headerConfig = headers;
-  }
-
-  setToken(){
-    console.log('Item Provider - Setting Access Token');
-    this.userData.getToken().then(
-      res => {
-        let headers: HttpHeaders = new HttpHeaders();
-        headers = headers.append('Content-Type', 'application/json');
-        headers = headers.append('x-access-token', res);
-        this.headerConfig = headers;
-        console.log(this.headerConfig);
-      });
   }
    // Get all items
    public getAllItem(){

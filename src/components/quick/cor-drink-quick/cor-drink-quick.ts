@@ -1,3 +1,8 @@
+/**
+ * Quick order component - drink and food
+ *
+ */
+
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NavController, NavParams, ActionSheetController, AlertController} from 'ionic-angular';
 import {ItemProvider} from '../../../providers/item/item';
@@ -76,11 +81,11 @@ export class CorDrinkQuickComponent implements OnInit{
   }
   ionViewDidEnter() {
     if(this.entered == 0) {
-      // console.log("First Enter to Page - Quick Order Details");
+      //First Enter to Page
       this.entered = 1;
     }
     else{
-      // console.log("Second Enter to Page - Quick Order Details");
+      //Second Enter to Page
       this.clearOrder();
     }
   }

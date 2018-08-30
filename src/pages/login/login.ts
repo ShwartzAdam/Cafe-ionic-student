@@ -1,11 +1,12 @@
-// login component - let user login with email and password, can also access
-// forgot password or register views
-
+/**
+ * login component - let user login with email and password, can also access
+ * forgot password or register views
+ */
 import { Component } from '@angular/core';
-import {NavController, IonicPage, LoadingController, AlertController} from 'ionic-angular';
+import { NavController, IonicPage, LoadingController, AlertController } from 'ionic-angular';
 import { NativeTransitionOptions } from '@ionic-native/native-page-transitions';
-import {UserProvider} from "../../providers/user/user";
-import {UserData} from "../../providers/user-data/user-data";
+import { UserProvider } from "../../providers/user/user";
+import { UserData } from "../../providers/user-data/user-data";
 
 @IonicPage()
 @Component({
@@ -51,7 +52,6 @@ export class LoginPage {
         if(result){
           // Save user id and token at user data service
           this.userData.setUserId(result["userid"]);
-          // this.userData.setToken(result["token"]);
           let loading = this.loadingCtrl.create({
             spinner: 'crescent',
             content: 'Please Wait...'

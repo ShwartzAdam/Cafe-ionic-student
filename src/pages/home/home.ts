@@ -1,6 +1,7 @@
-// HOME COMPONENT - AFTER SUCCESSFULL LOGIN , THIS PAGE IS ACTING AS THE MAIN PAGE
-// FROM HERE , YOU CAN ACCESS ALL OTHER PAGES IN THE APPLICAION
-
+/**
+ * Home component - after successfull login , this page is acting as the main page
+ *  from here , you can access all other pages in the applicaion
+ */
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { BasketPage } from "../basket/basket";

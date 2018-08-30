@@ -1,3 +1,8 @@
+/**
+ * Quick order component - sandwich
+ *
+ */
+
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NavController, NavParams, ActionSheetController, AlertController} from 'ionic-angular';
 import {ItemProvider} from '../../../providers/item/item';
@@ -68,9 +73,11 @@ export class SandQuickComponent implements OnInit{
   }
   ionViewDidEnter() {
     if(this.entered == 0) {
+      //First Enter to Page
       this.entered = 1;
     }
     else{
+      //Second Enter to Page
       this.clearOrder();
     }
   }

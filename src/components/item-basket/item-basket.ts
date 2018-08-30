@@ -1,3 +1,7 @@
+/**
+ * Item basket component - each row in basket has this tmeplate
+ *
+ */
 import {Component, Input, OnInit} from '@angular/core';
 import {Item} from "../../model/item";
 

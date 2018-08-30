@@ -1,5 +1,7 @@
-// Basket component - present all items the user has added to the basket
-
+/**
+ * Basket component - present all items the user has added to the basket
+ *
+ */
 import { Component } from '@angular/core';
 import {Events, IonicPage, NavController} from 'ionic-angular';
 import {UserData} from "../../providers/user-data/user-data";

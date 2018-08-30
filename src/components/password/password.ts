@@ -1,3 +1,7 @@
+/**
+ * Password compoent - in profile page , you can reset your
+ * password with the key icon
+ */
 import { Component } from '@angular/core';
 import {AlertController, LoadingController, NavController} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
@@ -35,8 +39,8 @@ export class PasswordResetPage {
       user => {
         // if succeed -> save in userJson
         this.userJson.userid = user;
-      }).catch(err => {
-        // if reject handle error with Logger service
+      }).catch(() => {
+
     })
   }
 
@@ -63,7 +67,7 @@ export class PasswordResetPage {
           }, 5000);
 
         }
-      }, (err) => {
+      }, () => {
       });
     } else {
       // present error

@@ -1,10 +1,12 @@
+/**
+ * Order list provider - api calls to web service
+ *
+ */
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/timeout";
-//modals
 import {OrderList} from "../../model/orderList";
-import {UserData} from "../user-data/user-data";
 
 @Injectable()
 export class OrderListProvider {
@@ -12,23 +14,12 @@ export class OrderListProvider {
   public urlEnv = 'http://localhost:3000/api';
   public headerConfig: any;
   public http: HttpClient;
-  public userData: UserData;
   constructor() {
-    this.setToken();
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     this.headerConfig = headers;
   }
 
-  setToken(){
-    this.userData.getToken().then(
-      res => {
-        let headers: HttpHeaders = new HttpHeaders();
-        headers = headers.append('Content-Type', 'application/json');
-        headers = headers.append('x-access-token', res);
-        this.headerConfig = headers;
-      });
-  }
   // Create order list
   public createOrderList(_orderList: OrderList){
     return new Promise((resolve, reject) => {

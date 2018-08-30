@@ -1,4 +1,6 @@
-// Menu order component - display all items with type
+/**
+ * Menu order component - display all items with type
+ */
 import {Component} from '@angular/core';
 import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {UserData} from "../../providers/user-data/user-data";

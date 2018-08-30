@@ -1,8 +1,11 @@
+/**
+ * Item Menu Component
+ *
+ */
 import {Component, Input, OnInit} from '@angular/core';
 import {NavParams, NavController, Events, ToastController} from "ionic-angular";
 import {UserData} from "../../providers/user-data/user-data";
 import {BasketPage} from "../../pages/basket/basket";
-import {Item} from "../../model/item";
 import {ItemProvider} from "../../providers/item/item";
 import {ItemComponent} from "../item/item";
 

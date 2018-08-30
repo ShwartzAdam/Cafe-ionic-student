@@ -1,3 +1,7 @@
+/**
+ * Footer nav component - display 3 nav option on Home page
+ *
+ */
 import { Component } from '@angular/core';
 import {NavParams, NavController, Events} from "ionic-angular";
 import {QuickOrderPage} from "../../pages/quick-order/quick-order";

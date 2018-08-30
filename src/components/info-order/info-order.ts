@@ -1,8 +1,11 @@
+/**
+ * Info order component
+ *
+ */
 import {Component, Input, OnInit} from '@angular/core';
 import {OrderList} from "../../model/orderList";
 import {UserData} from "../../providers/user-data/user-data";
 import {OrderListProvider} from "../../providers/order-list/order-list";
-
 
 @Component({
   selector: 'info-order',

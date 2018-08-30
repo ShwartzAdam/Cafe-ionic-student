@@ -1,3 +1,7 @@
+/**
+ * Info Item component - shows information about an item
+ *
+ */
 import {Component, Input, OnInit} from '@angular/core';
 import {Item} from "../../model/item";
 import {ItemProvider} from "../../providers/item/item";

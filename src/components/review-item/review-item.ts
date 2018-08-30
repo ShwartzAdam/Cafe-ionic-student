@@ -1,3 +1,7 @@
+/**
+ * Review Item component - display reviews for item
+ *
+ */
 import {Component, Input, OnInit} from '@angular/core';
 import {Review} from "../../model/review";
 import {ReviewProvider} from "../../providers/review/review";
@@ -17,9 +21,7 @@ export class ReviewItemComponent implements OnInit{
   public reviews: Review[] = new Array();
   public users: User = new User();
   public displayEmptyMessage: boolean = false;
-  constructor(public revPro: ReviewProvider,
-              public revListPro: ReviewListProvider,
-              public userPro: UserProvider)
+  constructor(public revPro: ReviewProvider)
   {}
 
   ngOnInit(): void {

@@ -1,3 +1,7 @@
+/**
+ * preloader directive in case there is no image , display defualt
+ *
+ */
 import {Directive, Input, OnInit} from '@angular/core';
 import {UserProvider} from "../../providers/user/user";
 

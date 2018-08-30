@@ -1,3 +1,7 @@
+/**
+ * User component - display full name
+ *
+ */
 import {Component, Input, OnInit} from '@angular/core';
 import {UserProvider} from "../../providers/user/user";
 import {User} from "../../model/user";

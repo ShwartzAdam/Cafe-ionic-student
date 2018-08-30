@@ -1,3 +1,7 @@
+/**
+ * Item component
+ *
+ */
 import {Component, OnInit} from '@angular/core';
 import {NavParams, NavController, Events, ToastController} from "ionic-angular";
 import {UserData} from "../../providers/user-data/user-data";
@@ -17,22 +21,16 @@ export class ItemComponent implements OnInit{
   url : string;
   desc : string;
   price : string;
-  // review on the item
-  reviews : any ;
   // if clicked on button hide reviews, buttons
-  displayReviews : boolean = true;
   displayButton : boolean = true;
   displayTime : boolean = false;
-  displayBottomNav : boolean = true;
   // input
-  qItem : string;
   date : string;
   item: Item;
   public rootComponent = 'Information';
   private displayReview: boolean = false;
   private displayInfo: boolean = false;
-  //tabOneRoot = ReviewItemComponent;
-  //tabTwoRoot = InfoItemComponent;
+
   constructor(public navParams: NavParams,
               public navCtrl : NavController,
               public userData: UserData,

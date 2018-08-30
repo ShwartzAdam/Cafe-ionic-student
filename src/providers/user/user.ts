@@ -1,3 +1,7 @@
+/**
+ * User provider - api calls to web service
+ *
+ */
 import {HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpEvent} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -14,20 +18,9 @@ export class UserProvider {
   public headerConfig: any;
   constructor(private http: HttpClient,
               private userData:UserData) {
-    this.setToken();
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     this.headerConfig = headers;
-  }
-
-  setToken(){
-    this.userData.getToken().then(
-      res => {
-        let headers: HttpHeaders = new HttpHeaders();
-        headers = headers.append('Content-Type', 'application/json');
-        headers = headers.append('x-access-token', res);
-        this.headerConfig = headers;
-      });
   }
 
   // create user in the db - signup

@@ -1,3 +1,7 @@
+/**
+ * User Data injection - with local storage , store user id , student object , basket
+ *
+ */
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import {Events} from "ionic-angular";
@@ -8,7 +12,6 @@ export class UserData {
   public itemList: any;
   public itemListNew: any;
   private userid: number;
-  private accessToken: string;
   private stu: Student;
 
   constructor(public storage: Storage,
@@ -30,21 +33,6 @@ export class UserData {
   public setUserId(userid: number): void {
     this.userid = userid;
     this.storage.set("userid", userid);
-  }
-  public setToken(token: string): void {
-    this.accessToken = token;
-    this.storage.set('token',token );
-  }
-  public getToken(): Promise<string> {
-    if (this.accessToken) {
-      return Promise.resolve(this.accessToken);
-    }
-    else {
-      return this.storage.get('token').then((accessToken) => {
-        this.accessToken = accessToken;
-        return accessToken;
-      });
-    }
   }
 
   public setStudent(student: Student):void{

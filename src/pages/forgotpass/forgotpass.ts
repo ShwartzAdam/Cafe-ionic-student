@@ -1,4 +1,7 @@
-// Forgot password component - use email for a password reset
+/**
+ * Forgot password component - use email for a password reset
+ *
+ */
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, LoadingController, NavController} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";

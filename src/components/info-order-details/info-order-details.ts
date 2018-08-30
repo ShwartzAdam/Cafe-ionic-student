@@ -1,3 +1,7 @@
+/**
+ * Info Order Details - display order details with option to leave a review
+ *
+ */
 import {Component, Input, OnInit} from '@angular/core';
 import {OrderProvider} from "../../providers/order/order";
 import {Order} from "../../model/order";
@@ -23,8 +27,10 @@ export class InfoOrderDetailsComponent implements OnInit{
               public navParams: NavParams) {}
 
   ngOnInit(): void {
+    // get order list by order list id
     this.orderPro.getOrdersByOrderListIdSuc(this.orderListId).subscribe(res => {
       this.orders = res;
+      // for each orders get item and store in array
       this.orders.forEach(order => {
         this.itemPro.getItemById(order.itemid).subscribe(
           res => {

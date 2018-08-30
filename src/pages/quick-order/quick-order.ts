@@ -1,5 +1,6 @@
-// Quick order page display 4 quick menus to chose from
-
+/**
+ * Quick order page display 4 quick menus to choose from
+ */
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {UserData} from "../../providers/user-data/user-data";

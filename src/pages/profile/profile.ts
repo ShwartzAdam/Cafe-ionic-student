@@ -1,5 +1,8 @@
-// profile page - displaying completed orders , incoming orders , and charge money to account
-
+//
+/**
+ * Profile page - displaying completed orders , incoming orders , and charge money to account
+ *
+ */
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {UserData} from "../../providers/user-data/user-data";

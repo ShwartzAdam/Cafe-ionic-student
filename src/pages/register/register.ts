@@ -1,5 +1,7 @@
-// Register component - allow to create new user in the system
-
+/**
+ * Register component - allow to create new user in the system
+ *
+ */
 import {Component, ViewChild} from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";

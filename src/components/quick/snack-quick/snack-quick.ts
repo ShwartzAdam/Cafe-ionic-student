@@ -1,3 +1,8 @@
+/**
+ * Quick order component - snack
+ *
+ */
+
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NavController, NavParams, ActionSheetController, AlertController} from 'ionic-angular';
 import {ItemProvider} from '../../../providers/item/item';
@@ -68,11 +73,11 @@ export class SnackQuickComponent implements OnInit{
   }
   ionViewDidEnter() {
     if(this.entered == 0) {
-      // console.log("First Enter to Page - Quick Order Snack details");
+      //First Enter to Page
       this.entered = 1;
     }
     else{
-      // console.log("Second Enter to Page - Quick Order Snack Details");
+      //Second Enter to Page
       this.clearOrder();
     }
   }
@@ -88,7 +93,6 @@ export class SnackQuickComponent implements OnInit{
       (_items: Item[]) => {
         _items.forEach(item => this.items.push(item));
       });
-    // console.log(this.items);
   }
   chooseDrink(){
     this.presentActionSheet();
@@ -109,7 +113,6 @@ export class SnackQuickComponent implements OnInit{
         text: this.items[index].name + '  ' + this.items[index].price + ' NIS',
         //icon: this.possibleButtons[index].icon,
         handler: () => {
-          // console.log('choosen item id ' + this.items[index].itemid);
           this.drinkId = this.items[index].itemid;
           this.itemChoosen = this.items[index].name + '  ' + this.items[index].price + ' NIS';
           this.itemDesc = this.items[index].description;

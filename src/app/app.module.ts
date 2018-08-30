@@ -1,3 +1,6 @@
+// Little Cafe - Student Application
+// Shenkar 2018 final project
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -15,7 +18,6 @@ import { ItemComponent } from '../components/item/item';
 import { QuickOrderTicket } from "../pages/quick-order/quick-order-ticket";
 import { ItemMenuComponent }  from "../components/item-menu/item-menu";
 import { ItemBasketComponent } from "../components/item-basket/item-basket";
-import { SideNavComponent } from "../components/side-nav/side-nav";
 import { UserComponent } from "../components/user/user";
 import { ReviewComponent } from "../components/review/review";
 import { ReviewItemComponent } from "../components/review-item/review-item";
@@ -48,9 +50,6 @@ import { CapitalizeFirstPipe } from "../pipes/capitalize-first/capitalize-first"
 import { Timer } from "../components/countdown-timer/timer";
 import { NativePageTransitions } from "@ionic-native/native-page-transitions";
 
-
-
-
 @NgModule({
   declarations: [
     MyApp,
@@ -61,7 +60,6 @@ import { NativePageTransitions } from "@ionic-native/native-page-transitions";
     ItemComponent,
     ReviewComponent,
     ReviewItemComponent,
-    SideNavComponent,
     ImagePreloader,
     DrinkQuickComponent,
     CorDrinkQuickComponent,
@@ -101,7 +99,6 @@ import { NativePageTransitions } from "@ionic-native/native-page-transitions";
     ItemComponent,
     ReviewComponent,
     ReviewItemComponent,
-    SideNavComponent,
     DrinkQuickComponent,
     CorDrinkQuickComponent,
     SnackQuickComponent,

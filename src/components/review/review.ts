@@ -1,3 +1,7 @@
+/**
+ * Review component
+ *
+ */
 import { Component } from '@angular/core';
 import {NavParams, NavController, LoadingController} from "ionic-angular";
 import {UserData} from "../../providers/user-data/user-data";
@@ -18,15 +22,22 @@ import {OrderList} from "../../model/orderList";
   templateUrl: 'review.html'
 })
 export class ReviewComponent {
-
+  // order list id to leave a review to
   private orderListId: number;
   private orderList: OrderList = new OrderList;
+  // show the order
   private orders: Order[] = new Array();
+  // show the items
   private items: Item[] = new Array();
+  // review object
   private review: Review = new Review();
+  // review list object
   private reviewList: ReviewList = new ReviewList();
+  // the user id
   private userid: number;
+  // comments array
   public comment: string[] = new Array();
+  // starts array
   public stars: number[] = new Array();
   public callback: any;
   constructor(public navParams: NavParams,
@@ -49,10 +60,9 @@ export class ReviewComponent {
     this.orderPro.getOrdersByOrderListId(this.orderListId).then( (res: any) => {
       // loop on the orders and push to array
       res.forEach(order => {
-        //let review: ReviewList = new ReviewList;
+        let review: ReviewList = new ReviewList;
         // store item id in RL and push to RL array
-        // review.itemid = order.itemid;
-        // this.reviewList.push(review);
+        review.itemid = order.itemid;
         // set comment and stars array
         let com: string = '';
         let num: number = -1;
@@ -70,7 +80,6 @@ export class ReviewComponent {
   private deleteTrueReview() {
     this.revListPro.getItemRevUser(this.userid,this.orderListId).then(
       res => {
-        console.log(res['length']);
         const len = res['length'];
         if( len == 0){
           // display all items for reviews
