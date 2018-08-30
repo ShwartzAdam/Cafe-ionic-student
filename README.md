@@ -1,3 +1,4 @@
-# Cafe-ionic-student
-build with Ionic framework, angular 2+
-# final project - Little Cafe
+# Little Cafe - Student Application
+
+# Final project 2018 - Shenkar
+
