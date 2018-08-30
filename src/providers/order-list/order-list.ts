@@ -14,7 +14,7 @@ export class OrderListProvider {
   public http: HttpClient;
   public userData: UserData;
   constructor() {
-    //this.setToken();
+    this.setToken();
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     this.headerConfig = headers;

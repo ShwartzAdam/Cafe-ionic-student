@@ -14,12 +14,11 @@ export class ReviewProvider {
   private http: HttpClient;
   private userData:UserData;
   constructor() {
-    // this.setToken();
+    this.setToken();
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     this.headerConfig = headers;
   }
-
   setToken(){
     this.userData.getToken().then(
       res => {

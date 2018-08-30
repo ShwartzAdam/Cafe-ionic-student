@@ -16,12 +16,12 @@ export class ItemProvider {
   private http: HttpClient;
   private userData:UserData;
   constructor() {
-    //this.setToken();
+    this.setToken();
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     this.headerConfig = headers;
   }
-  /*
+
   setToken(){
     console.log('Item Provider - Setting Access Token');
     this.userData.getToken().then(
@@ -33,7 +33,6 @@ export class ItemProvider {
         console.log(this.headerConfig);
       });
   }
-  */
    // Get all items
    public getAllItem(){
      return new Promise(resolve => {
